@@ -8,7 +8,7 @@ void setup() {
 void loop() {
   // put your main code here, to run repeatedly:
   int randomvalue = random(0,10);
-  Serial.print("testvalue, ");
+  Serial.print("test-value-2ca7,");
   Serial.println(randomvalue);
   delay(500);
 }
