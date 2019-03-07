@@ -27,9 +27,10 @@ my_thing.read()
 
 # Start reading the serial port
 ser = serial.Serial(
-    port = os.environ['SERIAL'],
-    baudrate = 9600,
-    timeout = 2)
+    port=os.environ['SERIAL'],
+    baudrate=9600,
+    timeout=2)
+
 
 # Read the next line from the serial port
 # and update the property values
@@ -58,5 +59,6 @@ def serial_to_property_values():
             print('Warning: unknown property ' + property_id)
     # Finally, we call this method again
     serial_to_property_values()
+
 
 serial_to_property_values()
