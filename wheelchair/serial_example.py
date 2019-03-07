@@ -43,20 +43,23 @@ def serial_to_property_values():
         line = line_bytes.decode('utf-8')
         # Split the string using commas as separator, we get a list of strings
         values = line.split(',')
-        # Use the first element of the list as property id
-        property_id = values.pop(0)
-        # Get the property from the thing
-        prop = my_thing.properties[property_id]
-        print("property id is ")
-        print(property_id)
-        print("property value is")
-        print(prop)
-        # If we find the property, we update the values (rest of the list)
-        if prop is not None:
-            prop.update_values([float(x) for x in values])
-        # Otherwise, we show a warning
-        else:
-            print('Warning: unknown property ' + property_id)
+        try:
+            # Use the first element of the list as property id
+            property_id = values.pop(0)
+            # Get the property from the thing
+            prop = my_thing.properties[property_id]
+            print("property id is ")
+            print(property_id)
+            print("property value is")
+            print(prop)
+            # If we find the property, we update the values (rest of the list)
+            if prop is not None:
+                prop.update_values([float(x) for x in values])
+            # Otherwise, we show a warning
+            else:
+                print('Warning: unknown property ' + property_id)
+        except:
+            print("Can't parse data or property id: " + line)
     # Finally, we call this method again
     serial_to_property_values()
 
