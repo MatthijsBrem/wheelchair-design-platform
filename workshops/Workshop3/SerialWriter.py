@@ -1,6 +1,6 @@
 import os
 from dotenv import load_dotenv
-import Serial
+import serial
 import time
 
 load_dotenv()
