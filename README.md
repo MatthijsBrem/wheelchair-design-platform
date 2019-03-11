@@ -3,7 +3,7 @@ To improve interaction between childern in their breaks at school we designed th
 
 by Matthijs, Natasa & Tjapko
 
-## sensors
+## Sensors
 
 The following list of sensors should be implemented for the realization of the “Disco chair” a chair that enables and stimulates physical activity and interaction between children with a wheelchair and children without.
 
@@ -25,6 +25,32 @@ Properties and behaviours: measures the audio output
 Motivation of choice: we use the beat and speed of the music that is playing to adjust the lights to the beat.
 example:
 https://m.banggood.com/RobotDyn-Microphone-Sound-Measure-Module-Voice-Sensor-Board-with-Digital-and-Analog-p-1243618.html?utm_campaign=NaturalNerd_1243618&utm_content=2635&p=3M010288024812017024
+
+## Actuators
+
+* LEDs :
+
+Properties and behaviour: an LED lights up once a current is sent through the diode. LEDs are suitable for flashing and are available in RGB, but effectively every colour can be made. LEDs can also easily be dimmed by lowering the current or by pulse width modulation.  
+
+Motivation for choice: We want to create a wheelchair that is nice to use on a dance floor. The LEDs can be used to trigger communication/interaction with others on the dancefloor. Furthermore, the LEDs can light up in a pattern that is linked to the rhythm of the music, and by doing so, making the wheelchair the centrepiece of the dancefloor. 
+
+Ideally, the lights of the club would change accordingly to the music remixes of the wheelchair user, in order to prototype this LED lights can be used. 10 LED lights could be used: 2/3  lights can be used for the stroboscopic effect and the other ones should be RGB lights and UV LED lights
+
+
+
+* Rotary Servo Motor:
+
+Properties and behaviour:  A rotary servo motor is a motor that transforms current into a rotational motion. Servo motors can keep track of the acceleration, velocity and angular position. A sensor in the motor is used to send feedback on the position/velocity/acceleration. Electromagnetic induction is used to let the motor rotate.  
+
+Motivation for choice: The servo motor can be integrated in order to give a hand to the person in the wheelchair in the moment of dancing in executing more difficult moves such as a spin or similar. When the orientation sensor will detect a change in direction the servo motor will activate in order to help in the action of spinning. In order to avoid misunderstanding and involuntary actions, the servomotor will activate only once a determined pattern of movements is detected (i.g. the signal for activation could be “turn to the left, turn to the right, turn to the left”)
+
+* Speaker:
+
+Properties and behaviour: A Speaker is a electroacoustic transducer which converts an electrical audio signal into a corresponding sound. The speaker that will be used is a dynamic speaker. Dynamic speakers work when an alternating current electrical audio signal is applied to a coil of wire suspended in a circular gap between the poles of a permanent magnet. The rapid movement back and forth of the coil causes the movement of a diaphragm attached to the coil, this creates sound waves.
+
+
+Motivation for choice: The selection of the speaker as an actuator for the project is based on the main objective of the project: Making the movements and interaction with the surroundings of the wheelchair expressed in music variation in tone/pitch/insertion of sounds/speed of the music. The speaker will, therefore, allow releasing the remixed tones based on the data collected.
+
 
 
 # A Noisy wheelchair
