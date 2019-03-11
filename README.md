@@ -1,6 +1,31 @@
 # Disco wheelchair
 To improve interaction between childern in their breaks at school we designed the Discochair. This chair uses different sensors to change the music and ligths on the wheelchair. Some are controlled by the wheelchair users and some are controlled by the people surrounding the wheelchair user.
 
+by Matthijs, Natasa & Tjapko
+
+## sensors
+
+The following list of sensors should be implemented for the realization of the “Disco chair” a chair that enables and stimulates physical activity and interaction between children with a wheelchair and children without.
+
+
+** gesture sensor (Adafruit_APDS9960)
+properties and behaviours: detects a hand going up, down, left or right.
+Motivation of choice: We want to use this as a soundboard and add different sounds to each movement like a drum.
+* orientation sensor (Adafruit BNO055)
+properties and behaviours: They provide with orientation data by combining sensors such as accelerometers, gyroscopes and magnetometers. The data can be read in different formats, the one that would be more appropriate for the project would be Absolute orientation, acceleration Vector and Linear accelerator vector.
+Motivation of choice: Sensing the orientation of the wheelchair could activate different lightning presets or colours. This will enable the user to dance to the song but still have the sound in control.
+proximity sensor (SHARP_2Y0A02 x 3)
+properties and behaviours: The sensor measures if something is in front of him and based on the distance the voltages changes. This can be converted into distance in cm.
+Motivation of choice: When a person approaches between 20 cm and 1 m of distance new sounds are implemented into the music with the same beat of the song playing.
+pressure sensor x 4 (FSR 406)
+Properties and behaviours: measures the pressure on the seat of the user.
+Motivation of choice: by leaning left, right, forward or backwards we want to control the speed and pitch.
+Microphone (e.g. RobotDyn® Microphone Sound Measure Module)
+Properties and behaviours: measures the audio output
+Motivation of choice: we use the beat and speed of the music that is playing to adjust the lights to the beat.
+example:
+https://m.banggood.com/RobotDyn-Microphone-Sound-Measure-Module-Voice-Sensor-Board-with-Digital-and-Analog-p-1243618.html?utm_campaign=NaturalNerd_1243618&utm_content=2635&p=3M010288024812017024
+
 
 # A Noisy wheelchair
 
