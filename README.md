@@ -10,9 +10,10 @@ The following list of sensors should be implemented for the realization of the â
 
 * gesture sensor (Adafruit_APDS9960)
 
-  properties and behaviours: detects a hand going up, down, left or right.
-
-  Motivation of choice: We want to use this as a soundboard and add different sounds to each movement like a drum.
+  properties and behaviours:
+  detects a hand going up, down, left or right.
+  Motivation of choice:
+  We want to use this as a soundboard and add different sounds to each movement like a drum.
 
 * orientation sensor (Adafruit BNO055)
 
@@ -47,7 +48,7 @@ The following list of sensors should be implemented for the realization of the â
   Properties and behaviour: an LED lights up once a current is sent through the diode. LEDs are suitable for flashing and are available in RGB, but effectively every colour can be made. LEDs can also easily be dimmed by lowering the current or by pulse width modulation.
 
   Motivation for choice: We want to create a wheelchair that is nice to use on a dance floor. The LEDs can be used to trigger communication/interaction with others on the dancefloor. Furthermore, the LEDs can light up in a pattern that is linked to the rhythm of the music, and by doing so, making the wheelchair the centrepiece of the dancefloor.
-  
+
   Ideally, the lights of the club would change accordingly to the music remixes of the wheelchair user, in order to prototype this LED lights can be used. 10 LED lights could be used: 2/3  lights can be used for the stroboscopic effect and the other ones should be RGB lights and UV LED lights
 
 * Rotary Servo Motor:
