@@ -15,7 +15,7 @@
 /*
     Please note the long strings of data sent mean the *RTS* pin is
     required with UART to slow down data sent to the Bluefruit LE!
-*/  
+*/
 
 #include <Arduino.h>
 #include <SPI.h>
