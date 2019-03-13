@@ -1,7 +1,11 @@
 
 from aupyom import Sound
 
-from aupyom.util2 import file1_audio_file
+import pkg_resources
+
+def file1_audio_file():
+    return pkg_resources.resource_filename(__name__, "file1.wav")
+
 
 audio_file = file1_audio_file()
 print(audio_file)
