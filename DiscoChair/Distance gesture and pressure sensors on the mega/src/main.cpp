@@ -91,17 +91,47 @@ void distance()
 */
 
 // insert gesture varriables Here
+#include "Adafruit_APDS9960.h"
+uint8_t gesture = 0;
+
+
+Adafruit_APDS9960 apds;
 
 String gestureID = "gesturesensorgroup4-cc12";
 
-void gesture()
+void gestureSensor()
 {
+
+  gesture = apds.readGesture(); // Read gesture into the variable
+
+   // Processing captured gesture, if any.
+   if(gesture == APDS9960_DOWN) {
+     Serial.println();
+     Serial.print(gestureID);
+     Serial.print(",");
+     Serial.println("down");
+   }
+   if(gesture == APDS9960_UP){
+     Serial.println();
+     Serial.print(gestureID);
+     Serial.print(",");
+    Serial.println("up");
+  }
+   if(gesture == APDS9960_LEFT){
+     Serial.println();
+     Serial.print(gestureID);
+     Serial.print(",");
+    Serial.println("left");
+ }
+   if(gesture == APDS9960_RIGHT){
+     Serial.println();
+     Serial.print(gestureID);
+     Serial.print(",");
+   Serial.println("right");
+ }
   int gesture_value = 1;
 
-  Serial.println();
-  Serial.print(gestureID);
-  Serial.print(",");
-  Serial.println(gesture_value);
+
 }
 /*****************************
       Pressure sensor
@@ -122,7 +152,15 @@ void setup()
   Serial.begin(9600);
 
 
+  if(!apds.begin()){            // Begining the work period of the sensor
+      Serial.println("Failed to initialize Sensor! Please check your wiring.");
+    }
+  else Serial.println("Gesture Sensor initialized!");
 
+
+  //gesture mode will be entered once proximity mode senses something close
+  apds.enableProximity(true);   // Enabling proximity detection
+apds.enableGesture(true); // Enabling Gesture detection
   // distance sensor_t  pinMode(IR_PIN, INPUT);                // setting pinmode to read analog value
 
   deviation = 10; // since there's a bit of a drift in the values if you put the same object over a certain period
@@ -131,10 +169,10 @@ void setup()
 
 void loop()
 {
-  gesture();
+  gestureSensor();
   delay(500);
-  distance();
+//  distance();
   delay(500);
-  pressure();
+//  pressure();
   delay(500);
 }
