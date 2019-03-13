@@ -1,0 +1,17 @@
+
+from aupyom import Sound
+
+from aupyom.util2 import file1_audio_file
+
+audio_file = file1_audio_file()
+print(audio_file)
+
+s1 = Sound.from_file(audio_file)
+
+from aupyom import Sampler
+
+sampler = Sampler()
+
+sampler.play(s1)
+
+print(s1.playing)
