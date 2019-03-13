@@ -110,7 +110,7 @@ void gesture()
 
 // insert gesture varriables here
 
-String pressureID = "";
+String pressureID = "pressuresensorsgroup4-1865";
 
 void pressure()
 {
