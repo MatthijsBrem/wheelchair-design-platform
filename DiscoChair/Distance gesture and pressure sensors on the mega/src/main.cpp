@@ -90,18 +90,49 @@ void distance()
 ******************************
 */
 
+
 // insert gesture varriables Here
+#include "Adafruit_APDS9960.h"
+uint8_t gesture = 0;
+
+
+Adafruit_APDS9960 apds;
 
 String gestureID = "gesturesensorgroup4-cc12";
 
-void gesture()
+void gestureSensor()
 {
+
+  gesture = apds.readGesture(); // Read gesture into the variable
+
+   // Processing captured gesture, if any.
+   if(gesture == APDS9960_DOWN) {
+     Serial.println();
+     Serial.print(gestureID);
+     Serial.print(",");
+     Serial.println("down");
+   }
+   if(gesture == APDS9960_UP){
+     Serial.println();
+     Serial.print(gestureID);
+     Serial.print(",");
+    Serial.println("up");
+  }
+   if(gesture == APDS9960_LEFT){
+     Serial.println();
+     Serial.print(gestureID);
+     Serial.print(",");
+    Serial.println("left");
+ }
+   if(gesture == APDS9960_RIGHT){
+     Serial.println();
+     Serial.print(gestureID);
+     Serial.print(",");
+   Serial.println("right");
+ }
   int gesture_value = 1;
 
-  Serial.println();
-  Serial.print(gestureID);
-  Serial.print(",");
-  Serial.println(gesture_value);
+
 }
 /*****************************
       Pressure sensor
@@ -109,11 +140,62 @@ void gesture()
 */
 
 // insert gesture varriables here
+#define PRESSURE_PIN  A1        // Setting up pin to receive voltage
+
+int value_Pressure_1, prev_value_Pressure_1 = - 10000;     // int values (read from analog port, both the current and the previous)
+int deviation = 0;              // setting the minimum deviation between the measurements (0 by default)
+                                // up to 512 (although that is pretty useless)
+double voltage_value_Pressure_1, newton_value_Pressure_1;           // Converted to Voltage
 
 String pressureID = "pressuresensorsgroup4-1865";
 
+double convert_to_newtons( double voltage)
+{
+  /* General fitting model Exp2:
+     f(x) = a*exp(b*x) + c*exp(d*x)
+     Coefficients (with 95% confidence bounds):
+       a =     0.01419  (0.01163, 0.01676)
+       b =      0.9523  (0.8922, 1.012)
+       c =    -0.01461  (-0.02317, -0.006043)
+       d =      -2.231  (-6.605, 2.142)
+       Goodness of fit:
+       SSE: 7.906e-06
+       R-square: 0.9999
+       Adjusted R-square: 0.9997
+       RMSE: 0.001988
+   */
+   double a = 0.01419 ;
+   double b = 0.9523;
+   double c = -0.01461;
+   double d = -2.231;
+
+  return( (a*exp(b*voltage) + c*exp(d* voltage)) * 9.81 ); // the result of the fit is in KgF to convert to newton we simply
+                                                      // multiply by 9.81, if you want data in KgF, remove the final multiplication!
+}
+
 void pressure()
 {
+  value_Pressure_1 = analogRead(PRESSURE_PIN); // reading our analog voltage, careful we only have 10 bit resolution so each
+                                    // measurement step is only 5V ÷ 1024, so our result will be 0 - 1023
+
+  // if value is within the range of [ previous - σ , previous + σ], ignore it (if value is relatively the same)
+  // this will help with having data ocuppy your buffer that is not a significant deviation.
+  if( value_Pressure_1 >= (prev_value_Pressure_1 - deviation) && value_Pressure_1 <= (prev_value_Pressure_1 + deviation) )
+    return;
+
+  voltage_value_Pressure_1 = double((value_Pressure_1*5)) / 1023; // converting to voltage [ 0, 5] v.
+  newton_value_Pressure_1 = convert_to_newtons(voltage_value_Pressure_1); // getting actual force value (careful using this, accuracy may not be ideal)
+                                                    // sensitivity after 1Kgf and before 0.06kgf is limited, you can lower the deviation
+                                                    // for some improvements
+  Serial.print("Pressure_1: ");
+  Serial.print(value_Pressure_1);
+  Serial.print(" (0 - 1023) steps,  ");
+  Serial.print(voltage_value_Pressure_1);
+  Serial.print(" (v),  ");
+  Serial.print(newton_value_Pressure_1);
+  Serial.println(" N.");
+
+  prev_value_Pressure_1 = value_Pressure_1;
 }
 
 void setup()
@@ -122,19 +204,34 @@ void setup()
   Serial.begin(9600);
 
 
+<<<<<<< HEAD
+  if(!apds.begin()){            // Begining the work period of the sensor
+      Serial.println("Failed to initialize Sensor! Please check your wiring.");
+    }
+  else Serial.println("Gesture Sensor initialized!");
 
+
+  //gesture mode will be entered once proximity mode senses something close
+  apds.enableProximity(true);   // Enabling proximity detection
+apds.enableGesture(true); // Enabling Gesture detection
+=======
+  Serial.begin(9600);
+    Serial.println("Pressure sensors begin here!");
+    pinMode(PRESSURE_PIN, INPUT); // setting pinmode to read analog value
+>>>>>>> e0db674ac00c9098b78f3bb1a5990ec02e5f3c14
   // distance sensor_t  pinMode(IR_PIN, INPUT);                // setting pinmode to read analog value
 
   deviation = 10; // since there's a bit of a drift in the values if you put the same object over a certain period
+
                   // we ignore a divergence of around 1 percent around the previous value.
 }
 
 void loop()
 {
-  gesture();
+  gestureSensor();
   delay(500);
-  distance();
+//  distance();
   delay(500);
-  pressure();
+//  pressure();
   delay(500);
 }
