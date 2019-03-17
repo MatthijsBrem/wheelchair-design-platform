@@ -156,7 +156,7 @@ int value_Pressure_3, prev_value_Pressure_3 = -10000;     // int values (read fr
                                                           // up to 512 (although that is pretty useless)
 double voltage_value_Pressure_3, newton_value_Pressure_3; // Converted to Voltage
 
-#define PRESSURE_PIN  A5 // Setting up pin to receive voltage PRESSURE 4
+#define PRESSURE_PIN  A4 // Setting up pin to receive voltage PRESSURE 4
 int value_Pressure_4, prev_value_Pressure_4 = -10000;     // int values (read from analog port, both the current and the previous)
                                                           // up to 512 (although that is pretty useless)
 double voltage_value_Pressure_4, newton_value_Pressure_4; // Converted to Voltage
