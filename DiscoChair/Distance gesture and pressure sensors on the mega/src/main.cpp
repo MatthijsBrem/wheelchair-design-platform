@@ -140,12 +140,52 @@ void gestureSensor()
 */
 
 // insert gesture varriables here
-#define PRESSURE_PIN A1 // Setting up pin to receive voltage
-
+#define PRESSURE_PIN  A1 // Setting up pin to receive voltage PRESSURE 1
 int value_Pressure_1, prev_value_Pressure_1 = -10000;     // int values (read from analog port, both the current and the previous)
 int deviationPressure = 0;                                // setting the minimum deviation between the measurements (0 by default)
                                                           // up to 512 (although that is pretty useless)
 double voltage_value_Pressure_1, newton_value_Pressure_1; // Converted to Voltage
+
+#define PRESSURE_PIN  A2 // Setting up pin to receive voltage PRESSURE 2
+int value_Pressure_2, prev_value_Pressure_2 = -10000;     // int values (read from analog port, both the current and the previous)
+                                                          // up to 512 (although that is pretty useless)
+double voltage_value_Pressure_2, newton_value_Pressure_2; // Converted to Voltage
+
+#define PRESSURE_PIN  A3 // Setting up pin to receive voltage PRESSURE 3
+int value_Pressure_3, prev_value_Pressure_3 = -10000;     // int values (read from analog port, both the current and the previous)
+                                                          // up to 512 (although that is pretty useless)
+double voltage_value_Pressure_3, newton_value_Pressure_3; // Converted to Voltage
+
+#define PRESSURE_PIN  A5 // Setting up pin to receive voltage PRESSURE 4
+int value_Pressure_4, prev_value_Pressure_4 = -10000;     // int values (read from analog port, both the current and the previous)
+                                                          // up to 512 (although that is pretty useless)
+double voltage_value_Pressure_4, newton_value_Pressure_4; // Converted to Voltage
+
+String pressureID = "pressuresensorsgroup4-1865";
+
+double convert_to_newtons(double voltage)
+{
+  /* General fitting model Exp2:
+     f(x) = a*exp(b*x) + c*exp(d*x)
+     Coefficients (with 95% confidence bounds):
+       a =     0.01419  (0.01163, 0.01676)
+       b =      0.9523  (0.8922, 1.012)
+       c =    -0.01461  (-0.02317, -0.006043)
+       d =      -2.231  (-6.605, 2.142)
+       Goodness of fit:
+       SSE: 7.906e-06
+       R-square: 0.9999
+       Adjusted R-square: 0.9997
+       RMSE: 0.001988
+   */
+  double a = 0.01419;
+  double b = 0.9523;
+  double c = -0.01461;
+  double d = -2.231;
+
+  return ((a * exp(b * voltage) + c * exp(d * voltage)) * 9.81); // the result of the fit is in KgF to convert to newton we simply
+                                                                 // multiply by 9.81, if you want data in KgF, remove the final multiplication!
+}
 
 String pressureID = "pressuresensorsgroup4-1865";
 
@@ -196,7 +236,74 @@ void pressure()
   Serial.println(" N.");
 
   prev_value_Pressure_1 = value_Pressure_1;
+
+  prev_value_Pressure_2 = value_Pressure_2; // PRESSURE SENSOR 2
+
+    value_Pressure_2 = analogRead(PRESSURE_PIN); // reading our analog voltage, careful we only have 10 bit resolution so each
+                                                 // measurement step is only 5V ÷ 1024, so our result will be 0 - 1023
+
+    // if value is within the range of [ previous - σ , previous + σ], ignore it (if value is relatively the same)
+    // this will help with having data ocuppy your buffer that is not a significant deviation.
+    if (value_Pressure_2 >= (prev_value_Pressure_2 - deviationPressure) && value_Pressure_2 <= (prev_value_Pressure_2 + deviationPressure))
+      return;
+
+    voltage_value_Pressure_2 = double((value_Pressure_2 * 5)) / 1023;       // converting to voltage [ 0, 5] v.
+    newton_value_Pressure_2 = convert_to_newtons(voltage_value_Pressure_2); // getting actual force value (careful using this, accuracy may not be ideal)
+                                                                            // sensitivity after 1Kgf and before 0.06kgf is limited, you can lower the deviation
+                                                                            // for some improvements
+    Serial.print("Pressure_2: ");
+    Serial.print(value_Pressure_2);
+    Serial.print(" (0 - 1023) steps,  ");
+    Serial.print(voltage_value_Pressure_2);
+    Serial.print(" (v),  ");
+    Serial.print(newton_value_Pressure_2);
+    Serial.println(" N.");
+
+
+  prev_value_Pressure_3 = value_Pressure_3; // PRESSURE SENSOR 3
+  value_Pressure_3 = analogRead(PRESSURE_PIN); // reading our analog voltage, careful we only have 10 bit resolution so each
+                                                 // measurement step is only 5V ÷ 1024, so our result will be 0 - 1023
+
+    // if value is within the range of [ previous - σ , previous + σ], ignore it (if value is relatively the same)
+    // this will help with having data ocuppy your buffer that is not a significant deviation.
+    if (value_Pressure_3 >= (prev_value_Pressure_3 - deviationPressure) && value_Pressure_3 <= (prev_value_Pressure_3 + deviationPressure))
+      return;
+
+    voltage_value_Pressure_3 = double((value_Pressure_3 * 5)) / 1023;       // converting to voltage [ 0, 5] v.
+    newton_value_Pressure_3 = convert_to_newtons(voltage_value_Pressure_3); // getting actual force value (careful using this, accuracy may not be ideal)
+                                                                            // sensitivity after 1Kgf and before 0.06kgf is limited, you can lower the deviation
+                                                                            // for some improvements
+    Serial.print("Pressure_3: ");
+    Serial.print(value_Pressure_3);
+    Serial.print(" (0 - 1023) steps,  ");
+    Serial.print(voltage_value_Pressure_3);
+    Serial.print(" (v),  ");
+    Serial.print(newton_value_Pressure_3);
+    Serial.println(" N.");
+
+    prev_value_Pressure_4 = value_Pressure_4; // PRESSURE SENSOR 4
+  value_Pressure_4 = analogRead(PRESSURE_PIN); // reading our analog voltage, careful we only have 10 bit resolution so each
+                                                 // measurement step is only 5V ÷ 1024, so our result will be 0 - 1023
+
+    // if value is within the range of [ previous - σ , previous + σ], ignore it (if value is relatively the same)
+    // this will help with having data ocuppy your buffer that is not a significant deviation.
+    if (value_Pressure_4 >= (prev_value_Pressure_4 - deviationPressure) && value_Pressure_4 <= (prev_value_Pressure_4 + deviationPressure))
+      return;
+
+    voltage_value_Pressure_4 = double((value_Pressure_4 * 5)) / 1023;       // converting to voltage [ 0, 5] v.
+    newton_value_Pressure_4 = convert_to_newtons(voltage_value_Pressure_4); // getting actual force value (careful using this, accuracy may not be ideal)
+                                                                            // sensitivity after 1Kgf and before 0.06kgf is limited, you can lower the deviation
+                                                                            // for some improvements
+    Serial.print("Pressure_4: ");
+    Serial.print(value_Pressure_4);
+    Serial.print(" (0 - 1023) steps,  ");
+    Serial.print(voltage_value_Pressure_4);
+    Serial.print(" (v),  ");
+    Serial.print(newton_value_Pressure_4);
+    Serial.println(" N.");
+
 }
+
 
 void setup()
 {
