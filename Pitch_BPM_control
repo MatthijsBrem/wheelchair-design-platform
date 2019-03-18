@@ -18,4 +18,5 @@ sampler = Sampler()
 
 sampler.play(s1)
 
+
 print(s1.playing)
