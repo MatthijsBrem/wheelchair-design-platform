@@ -1,10 +1,12 @@
 
-from aupyom.util import Sound
-
+from aupyom import Sound
+import sounddevice as sd
 import pkg_resources
 
+from aupyom import Sampler
+
 def file1_audio_file():
-    return pkg_resources.resource_filename(__name__, "file1.wav")
+    return pkg_resources.resource_filename(__name__, "Yamaha.wav")
 
 
 audio_file = file1_audio_file()
@@ -12,7 +14,6 @@ print(audio_file)
 
 s1 = Sound.from_file(audio_file)
 
-from aupyom import Sampler
 
 sampler = Sampler()
 
