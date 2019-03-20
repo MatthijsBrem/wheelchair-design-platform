@@ -14,7 +14,7 @@ void error(const __FlashStringHelper *err)
 */
 #define IR_PIN A0 // Setting up pin to receive voltage from IR
 
-String distanceId = "distance-64a6";
+String distanceId = "distancegroup4-5518";
 
 int value, prev_value = -10000;       // int values (read from analog port, both the current and the previous)
 int deviation = 0;                    // setting the minimum deviation between the measurements (0 by default)
@@ -109,28 +109,28 @@ void gestureSensor()
     Serial.println();
     Serial.print(gestureID);
     Serial.print(",");
-    Serial.println("down");
+    Serial.println("2");
   }
   if (gesture == APDS9960_UP)
   {
     Serial.println();
     Serial.print(gestureID);
     Serial.print(",");
-    Serial.println("up");
+    Serial.println("8");
   }
   if (gesture == APDS9960_LEFT)
   {
     Serial.println();
     Serial.print(gestureID);
     Serial.print(",");
-    Serial.println("left");
+    Serial.println("4");
   }
   if (gesture == APDS9960_RIGHT)
   {
     Serial.println();
     Serial.print(gestureID);
     Serial.print(",");
-    Serial.println("right");
+    Serial.println("6");
   }
   int gesture_value = 1;
 }
@@ -140,23 +140,23 @@ void gestureSensor()
 */
 
 // insert gesture varriables here
-#define PRESSURE_PIN A1                                   // Setting up pin to receive voltage PRESSURE 1
+#define PRESSURE_PIN1 A1                                   // Setting up pin to receive voltage PRESSURE 1
 int value_Pressure_1, prev_value_Pressure_1 = -10000;     // int values (read from analog port, both the current and the previous)
 int deviationPressure = 0;                                // setting the minimum deviation between the measurements (0 by default)
                                                           // up to 512 (although that is pretty useless)
 double voltage_value_Pressure_1, newton_value_Pressure_1; // Converted to Voltage
 
-#define PRESSURE_PIN A2                                   // Setting up pin to receive voltage PRESSURE 2
+#define PRESSURE_PIN2 A2                                   // Setting up pin to receive voltage PRESSURE 2
 int value_Pressure_2, prev_value_Pressure_2 = -10000;     // int values (read from analog port, both the current and the previous)
                                                           // up to 512 (although that is pretty useless)
 double voltage_value_Pressure_2, newton_value_Pressure_2; // Converted to Voltage
 
-#define PRESSURE_PIN A3                                   // Setting up pin to receive voltage PRESSURE 3
+#define PRESSURE_PIN3 A3                                   // Setting up pin to receive voltage PRESSURE 3
 int value_Pressure_3, prev_value_Pressure_3 = -10000;     // int values (read from analog port, both the current and the previous)
                                                           // up to 512 (although that is pretty useless)
 double voltage_value_Pressure_3, newton_value_Pressure_3; // Converted to Voltage
 
-#define PRESSURE_PIN A4                                   // Setting up pin to receive voltage PRESSURE 4
+#define PRESSURE_PIN4 A4                                   // Setting up pin to receive voltage PRESSURE 4
 int value_Pressure_4, prev_value_Pressure_4 = -10000;     // int values (read from analog port, both the current and the previous)
                                                           // up to 512 (although that is pretty useless)
 double voltage_value_Pressure_4, newton_value_Pressure_4; // Converted to Voltage
@@ -189,7 +189,7 @@ double convert_to_newtons(double voltage)
 
 void pressure()
 {
-  value_Pressure_1 = analogRead(PRESSURE_PIN); // reading our analog voltage, careful we only have 10 bit resolution so each
+  value_Pressure_1 = analogRead(PRESSURE_PIN1); // reading our analog voltage, careful we only have 10 bit resolution so each
                                                // measurement step is only 5V ÷ 1024, so our result will be 0 - 1023
 
   // if value is within the range of [ previous - σ , previous + σ], ignore it (if value is relatively the same)
@@ -205,7 +205,7 @@ void pressure()
 
   prev_value_Pressure_2 = value_Pressure_2; // PRESSURE SENSOR 2
 
-  value_Pressure_2 = analogRead(PRESSURE_PIN); // reading our analog voltage, careful we only have 10 bit resolution so each
+  value_Pressure_2 = analogRead(PRESSURE_PIN2); // reading our analog voltage, careful we only have 10 bit resolution so each
                                                // measurement step is only 5V ÷ 1024, so our result will be 0 - 1023
 
   // if value is within the range of [ previous - σ , previous + σ], ignore it (if value is relatively the same)
@@ -220,7 +220,7 @@ void pressure()
 
 
   prev_value_Pressure_3 = value_Pressure_3;    // PRESSURE SENSOR 3
-  value_Pressure_3 = analogRead(PRESSURE_PIN); // reading our analog voltage, careful we only have 10 bit resolution so each
+  value_Pressure_3 = analogRead(PRESSURE_PIN3); // reading our analog voltage, careful we only have 10 bit resolution so each
                                                // measurement step is only 5V ÷ 1024, so our result will be 0 - 1023
 
   // if value is within the range of [ previous - σ , previous + σ], ignore it (if value is relatively the same)
@@ -234,7 +234,7 @@ void pressure()
                                                                           // for some improvements
 
   prev_value_Pressure_4 = value_Pressure_4;    // PRESSURE SENSOR 4
-  value_Pressure_4 = analogRead(PRESSURE_PIN); // reading our analog voltage, careful we only have 10 bit resolution so each
+  value_Pressure_4 = analogRead(PRESSURE_PIN4); // reading our analog voltage, careful we only have 10 bit resolution so each
                                                // measurement step is only 5V ÷ 1024, so our result will be 0 - 1023
 
   // if value is within the range of [ previous - σ , previous + σ], ignore it (if value is relatively the same)
@@ -278,7 +278,10 @@ void setup()
   apds.enableGesture(true);   // Enabling Gesture detection
 
   Serial.println("Pressure sensors begin here!");
-  pinMode(PRESSURE_PIN, INPUT); // setting pinmode to read analog value
+  pinMode(PRESSURE_PIN1, INPUT); // setting pinmode to read analog value
+  pinMode(PRESSURE_PIN2, INPUT);
+  pinMode(PRESSURE_PIN3, INPUT);
+  pinMode(PRESSURE_PIN4, INPUT);
   // distance sensor_t  pinMode(IR_PIN, INPUT);                // setting pinmode to read analog value
 
   Serial.println("Distance sensor!");
