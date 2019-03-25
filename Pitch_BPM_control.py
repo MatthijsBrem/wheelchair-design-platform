@@ -2,6 +2,8 @@
 from aupyom import Sound
 import sounddevice as sd
 import pkg_resources
+import sounddevice as sd
+
 
 from aupyom import Sampler
 
