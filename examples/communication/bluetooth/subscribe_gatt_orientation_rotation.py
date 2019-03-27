@@ -9,7 +9,11 @@ from dotenv import \
 
 # DCD Hub
 from dcd.entities.thing import Thing
+<<<<<<< HEAD
 from dcd.entities.property_type import PropertyType
+=======
+from dcd.entities.property import PropertyType
+>>>>>>> 97a736033a11f0502b49e75098e9ff3e2b0f017c
 
 # The thing ID and access token
 load_dotenv()
