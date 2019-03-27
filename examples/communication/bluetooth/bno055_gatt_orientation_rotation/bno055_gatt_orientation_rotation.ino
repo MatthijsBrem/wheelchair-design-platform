@@ -145,17 +145,23 @@ void setup(void) {
 
 void orientation() {
 <<<<<<< HEAD
+<<<<<<< HEAD
   // Get Quaternion data (no 'Gimbal Lock' like with Euler angles)
   imu::Quaternion quat = bno.getQuat();
   float quatX = quat.x();
   float quatY = quat.y();
   float quatZ = quat.z();
 =======
+=======
+>>>>>>> 97a736033a11f0502b49e75098e9ff3e2b0f017c
   // Get Euler angle data
   imu::Vector<3> euler_vector = bno.getVector(Adafruit_BNO055::VECTOR_EULER)
   float angleX = euler_vector.x();
   float angleY = euler_vector.y();
   float angleZ = euler_vector.z();
+<<<<<<< HEAD
+>>>>>>> 97a736033a11f0502b49e75098e9ff3e2b0f017c
+=======
 >>>>>>> 97a736033a11f0502b49e75098e9ff3e2b0f017c
   
   // Command is sent when \n (\r) or println is called
@@ -164,17 +170,23 @@ void orientation() {
   ble.print( orientationCharId );
   ble.print( F(",") );
 <<<<<<< HEAD
+<<<<<<< HEAD
   ble.print(String(quatX));
   ble.print( F(",") );
   ble.print(String(quatY));
   ble.print( F(",") );
   ble.println(String(quatZ));
 =======
+=======
+>>>>>>> 97a736033a11f0502b49e75098e9ff3e2b0f017c
   ble.print(String(angleX));
   ble.print( F(",") );
   ble.print(String(angleY));
   ble.print( F(",") );
   ble.println(String(angleZ));
+<<<<<<< HEAD
+>>>>>>> 97a736033a11f0502b49e75098e9ff3e2b0f017c
+=======
 >>>>>>> 97a736033a11f0502b49e75098e9ff3e2b0f017c
 }
 
