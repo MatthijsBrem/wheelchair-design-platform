@@ -161,7 +161,7 @@ int value_Pressure_4, prev_value_Pressure_4 = -10000;     // int values (read fr
                                                           // up to 512 (although that is pretty useless)
 double voltage_value_Pressure_4, newton_value_Pressure_4; // Converted to Voltage
 
-String pressureID = "pressuresensorsgroup4-1865";
+String pressureID = "pressuresensorsgroup4-a5e0";
 
 double convert_to_newtons(double voltage)
 {
@@ -249,7 +249,7 @@ void pressure()
 
 
 
-  Serial.println();
+//  Serial.println();
   Serial.print(pressureID);
   Serial.print(",");
   Serial.print(newton_value_Pressure_1);
@@ -268,23 +268,23 @@ void setup()
 
   if (!apds.begin())
   { // Begining the work period of the sensor
-    Serial.println("Failed to initialize Sensor! Please check your wiring.");
+  //  Serial.println("Failed to initialize Sensor! Please check your wiring.");
   }
   else
-    Serial.println("Gesture Sensor initialized!");
+//    Serial.println("Gesture Sensor initialized!");
 
   //gesture mode will be entered once proximity mode senses something close
   apds.enableProximity(true); // Enabling proximity detection
   apds.enableGesture(true);   // Enabling Gesture detection
 
-  Serial.println("Pressure sensors begin here!");
+//  Serial.println("Pressure sensors begin here!");
   pinMode(PRESSURE_PIN1, INPUT); // setting pinmode to read analog value
   pinMode(PRESSURE_PIN2, INPUT);
   pinMode(PRESSURE_PIN3, INPUT);
   pinMode(PRESSURE_PIN4, INPUT);
   // distance sensor_t  pinMode(IR_PIN, INPUT);                // setting pinmode to read analog value
 
-  Serial.println("Distance sensor!");
+//  Serial.println("Distance sensor!");
   pinMode(IR_PIN, INPUT); // setting pinmode to read analog value
 
   deviation = 10; // since there's a bit of a drift in the values if you put the same object over a certain period
