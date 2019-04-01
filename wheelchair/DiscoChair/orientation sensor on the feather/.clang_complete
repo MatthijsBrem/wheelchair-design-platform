@@ -1,0 +1,31 @@
+-IC:\Users\tjapk\.platformio\packages\framework-arduinoavr\cores\arduino
+-IC:\Users\tjapk\.platformio\packages\framework-arduinoavr\variants\feather32u4
+-IC:\Users\tjapk\.platformio\lib\Adafruit BNO055_ID506
+-IC:\Users\tjapk\.platformio\lib\Adafruit BNO055_ID506\utility
+-IC:\Users\tjapk\.platformio\lib\Adafruit Unified Sensor_ID31
+-IC:\Users\tjapk\.platformio\packages\framework-arduinoavr\libraries\__cores__\arduino\Wire\src
+-IC:\Users\tjapk\.platformio\lib\Adafruit NeoPixel_ID28
+-IC:\Users\tjapk\.platformio\lib\Grove - 125KHz RFID Reader_ID5356
+-IC:\Users\tjapk\.platformio\lib\Grove - Chainable RGB LED_ID4716
+-IC:\Users\tjapk\.platformio\lib\Grove 4-Digit Display_ID5064
+-IC:\Users\tjapk\.platformio\lib\Grove LED Bar_ID5241
+-IC:\Users\tjapk\.platformio\packages\framework-arduinoavr\libraries\__cores__\arduino\EEPROM\src
+-IC:\Users\tjapk\.platformio\packages\framework-arduinoavr\libraries\__cores__\arduino\HID\src
+-IC:\Users\tjapk\.platformio\packages\framework-arduinoavr\libraries\__cores__\arduino\SPI\src
+-IC:\Users\tjapk\.platformio\packages\framework-arduinoavr\libraries\__cores__\arduino\SoftwareSerial\src
+-IC:\Users\tjapk\.platformio\packages\toolchain-atmelavr\avr\include
+-IC:\Users\tjapk\.platformio\packages\toolchain-atmelavr\lib\gcc\avr\5.4.0\include
+-IC:\Users\tjapk\.platformio\packages\toolchain-atmelavr\lib\gcc\avr\5.4.0\include-fixed
+-IC:\Users\tjapk\.platformio\packages\tool-unity
+-IE:\Documenten\Studie\2018-2019\IoT2\wheelchair-design-platform\DiscoChair\orientation sensor on the feather\include
+-IE:\Documenten\Studie\2018-2019\IoT2\wheelchair-design-platform\DiscoChair\orientation sensor on the feather\src
+-DPLATFORMIO=40000
+-DARDUINO_AVR_FEATHER32U4
+-DF_CPU=8000000L
+-DARDUINO_ARCH_AVR
+-DARDUINO=10805
+-DUSB_VID=0x239A
+-DUSB_PID=0x800C
+-DUSB_PRODUCT="Feather 32u4"
+-DUSB_MANUFACTURER="Adafruit"
+-D__AVR_ATmega32U4__
