@@ -294,10 +294,10 @@ void setup()
 
 void loop()
 {
-  gestureSensor();
-  delay(50);
-  distance();
-  delay(50);
+//  gestureSensor();
+//  delay(50);
+//  distance();
+//  delay(50);
     pressure();
   delay(50);
 }
