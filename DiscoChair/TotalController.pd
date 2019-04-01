@@ -61,7 +61,8 @@
 #X floatatom 179 218 5 0 0 0 - - -;
 #X floatatom 179 241 5 0 0 0 - - -;
 #X floatatom 179 261 5 0 0 0 - - -;
-#X msg 401 71 read wheelchair-design-platform/PureData/file1.wav;
+#X msg 401 71 read -resize \$1 wheelchair-design-platform/PureData/file1.wav
+, f 65;
 #X connect 1 0 2 0;
 #X connect 2 0 7 0;
 #X connect 2 0 4 1;
