@@ -37,3 +37,9 @@ def pitch():
     tempo = 0.003
     message = '6' + str(tempo) + ';'
     send2Pd(message)
+
+while True:
+    audio_on()
+    time.sleep(3)
+    audio_off()
+    time.sleep(3)
