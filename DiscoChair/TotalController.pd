@@ -1,4 +1,4 @@
-#N canvas 251 122 1029 570 10;
+#N canvas 163 113 1029 570 10;
 #N canvas 0 22 450 278 (subpatch) 0;
 #X array soundData 1.29613e+07 float 4;
 #X coords 0 1 1.29613e+07 -1 200 140 1 0 0;
@@ -11,7 +11,7 @@
 #X obj 522 526 dac~;
 #X obj 351 208 expr 44100/$f1;
 #X obj 933 201 hsl 64 15 0.0027 0.0043 0 0 0$@ 0 0 0 0 0 4 -262144
--1 -1 0 0;
+-1 -1 1300 0;
 #X floatatom 932 240 10 0 0 0 - - -;
 #X msg 796 128 -1;
 #X msg 845 129 1;
@@ -61,7 +61,7 @@
 #X floatatom 179 218 5 0 0 0 - - -;
 #X floatatom 179 241 5 0 0 0 - - -;
 #X floatatom 179 261 5 0 0 0 - - -;
-#X msg 401 71 read -resize \$1 wheelchair-design-platform/PureData/file1.wav
+#X msg 401 71 read wheelchair-design-platform/PureData/file1.wav soundData
 , f 65;
 #X connect 1 0 2 0;
 #X connect 2 0 7 0;
