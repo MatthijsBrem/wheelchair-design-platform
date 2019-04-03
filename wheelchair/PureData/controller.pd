@@ -1,6 +1,6 @@
 #N canvas 3 97 1029 570 10;
 #N canvas 0 22 450 278 (subpatch) 0;
-#X array soundData 704513 float 4;
+#X array soundData 704513 float 8;
 #X coords 0 1 704512 -1 200 140 1 0 0;
 #X restore 5 398 graph;
 #X obj 401 121 soundfiler;
@@ -20,7 +20,7 @@
 #X obj 557 337 *~;
 #X obj 726 387 vsl 15 128 -0.1 0.5 0 0 empty empty empty 0 -9 0 10 -262144 -1 -1 0 1;
 #X obj 521 450 delread~ delayname 75;
-#X obj 254 270 hsl 128 15 20 20000 1 0 empty empty empty -2 -8 0 10 -262144 -1 -1 0 1;
+#X obj 254 270 hsl 128 15 20 20000 1 0 empty empty empty -2 -8 0 10 -262144 -1 -1 2000 1;
 #X obj 226 324 hip~;
 #X obj 226 450 lop~;
 #X obj 364 25 loadbang;
@@ -96,11 +96,6 @@
 #X connect 21 0 36 0;
 #X connect 22 0 63 0;
 #X connect 30 0 16 0;
-#X connect 31 0 38 0;
-#X connect 32 0 37 0;
-#X connect 33 0 39 0;
-#X connect 34 0 18 0;
-#X connect 35 0 7 0;
 #X connect 37 0 9 0;
 #X connect 38 0 10 0;
 #X connect 39 0 13 0;
