@@ -62,7 +62,7 @@
 #X obj 351 208 expr 44100 / $f1;
 #X floatatom 520 164 10 0 0 0 - - -;
 #X text 515 143 Sample size;
-#X obj 857 291 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+#X obj 857 291 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X obj 857 311 metro 50;
 #X obj 858 336 snapshot~;

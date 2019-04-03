@@ -1,9 +1,8 @@
 import os
 import time
-import sys
 
 
-def send2Pd(message=''):
+def send2Pd(message=' '):
     os.system("echo '" + message + "' | pdsend 1000")
 
 
@@ -35,12 +34,22 @@ def delay():
     send2Pd(message)
 
 def pitch():
-    tempo = 0.003
+    tempo = 0.05
     message = '6' + str(tempo) + ';'
     send2Pd(message)
 
 while True:
     audio_on()
     time.sleep(3)
-    audio_off()
+    audio_reverse()
     time.sleep(3)
+    audio_on()
+    time.sleep(3)
+    pitch()
+    delay()
+    time.sleep(3)
+    lowpassf()
+    time.sleep(3)
+    hipassf()
+    time.sleep(3)
+    audio_off()

@@ -1,10 +1,10 @@
 import socket
 
 s = socket.socket()
-host = socket.gethostname()
-port = 1000
+host = '127.0.0.1'
+port = 5670
 
-s.connect((host, port))
+s.connect((host, 3000))
 
 mess = "Hello!"
 
