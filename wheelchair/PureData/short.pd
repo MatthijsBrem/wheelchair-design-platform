@@ -17,9 +17,7 @@
 #X floatatom 408 265 10 0 0 0 - - -;
 #X obj 835 78 loadbang;
 #X msg 845 129 0.0625964;
-#X msg 363 66 read -resize wheelchair-design-platform/PureData/shortloop.wav
-soundData, f 65;
-#X msg 212 97 \; pd dsp 1;
+#X msg 363 66 read -resize shortloop.wav soundData, f 65;
 #X connect 1 0 2 0;
 #X connect 1 0 9 0;
 #X connect 2 0 8 0;
