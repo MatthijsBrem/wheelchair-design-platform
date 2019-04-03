@@ -9,8 +9,7 @@
 #X obj 511 281 *~;
 #X obj 397 319 tabread4~ soundData;
 #X obj 522 526 dac~;
-#X obj 933 201 hsl 64 15 0.04 0.085 0 0 0$@ 0 0 0 0 0 4 -262144 -1
--1 3163 0;
+#X obj 933 201 hsl 64 15 0.04 0.085 0 0 0$@ 0 0 0 0 0 4 -262144 -1 -1 3163 0;
 #X floatatom 932 240 10 0 0 0 - - -;
 #X msg 796 128 -1;
 #X msg 845 129 1;
@@ -19,11 +18,9 @@
 #X msg 891 129 0;
 #X obj 556 382 delwrite~ delayname 200;
 #X obj 557 337 *~;
-#X obj 726 387 vsl 15 128 -0.1 0.5 0 0 empty empty empty 0 -9 0 10
--262144 -1 -1 0 1;
+#X obj 726 387 vsl 15 128 -0.1 0.5 0 0 empty empty empty 0 -9 0 10 -262144 -1 -1 0 1;
 #X obj 521 450 delread~ delayname 75;
-#X obj 254 270 hsl 128 15 20 20000 1 0 empty empty empty -2 -8 0 10
--262144 -1 -1 0 1;
+#X obj 254 270 hsl 128 15 20 20000 1 0 empty empty empty -2 -8 0 10 -262144 -1 -1 0 1;
 #X obj 226 324 hip~;
 #X obj 226 450 lop~;
 #X obj 364 25 loadbang;
@@ -42,12 +39,9 @@
 #X obj 235 226 r hipassf;
 #X obj 930 162 r pitch;
 #X msg 269 67 \; pd dsp \$1 \;;
-#X obj 784 89 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
--1;
-#X obj 842 91 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
--1;
-#X obj 889 93 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
--1;
+#X obj 784 89 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1 -1;
+#X obj 842 91 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1 -1;
+#X obj 889 93 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1 -1;
 #X floatatom 179 118 5 0 0 0 - - -;
 #X floatatom 179 138 5 0 0 0 - - -;
 #X floatatom 179 158 5 0 0 0 - - -;
@@ -59,8 +53,7 @@
 #X obj 351 208 expr 44100 / $f1;
 #X floatatom 520 164 10 0 0 0 - - -;
 #X text 515 143 Sample size;
-#X obj 857 291 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
-1;
+#X obj 857 291 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0 1;
 #X obj 857 311 metro 50;
 #X obj 858 336 snapshot~;
 #X obj 520 184 s sampleSize;
@@ -68,8 +61,7 @@
 #X obj 913 365 r sampleSize;
 #X floatatom 873 385 5 0 0 0 - - -;
 #X msg 606 256 0;
-#X msg 363 66 read -resize /Users/matthijsbremmer/wheelchair-design-platform/PureData/shortloop.wav
-soundData, f 65;
+#X msg 363 66 read -resize /Users/matthijsbremmer/wheelchair-design-platform/PureData/shortloop.wav soundData, f 65;
 #X floatatom 408 265 10 0 0 0 - - -;
 #X msg 938 119 0.0625964;
 #X obj 939 94 loadbang;
