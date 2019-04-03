@@ -1,4 +1,4 @@
-#N canvas 3 97 1029 570 10;
+#N canvas 814 23 1029 570 10;
 #N canvas 0 22 450 278 (subpatch) 0;
 #X array soundData 704513 float 8;
 #X coords 0 1 704512 -1 200 140 1 0 0;
@@ -9,7 +9,8 @@
 #X obj 511 281 *~;
 #X obj 397 319 tabread4~ soundData;
 #X obj 522 526 dac~;
-#X obj 933 201 hsl 64 15 0.04 0.085 0 0 0$@ 0 0 0 0 0 4 -262144 -1 -1 3163 0;
+#X obj 933 201 hsl 64 15 0.04 0.085 0 0 0$@ 0 0 0 0 0 4 -262144 -1
+-1 3163 0;
 #X floatatom 932 240 10 0 0 0 - - -;
 #X msg 796 128 -1;
 #X msg 845 129 1;
@@ -18,9 +19,11 @@
 #X msg 891 129 0;
 #X obj 556 382 delwrite~ delayname 200;
 #X obj 557 337 *~;
-#X obj 726 387 vsl 15 128 -0.1 0.5 0 0 empty empty empty 0 -9 0 10 -262144 -1 -1 0 1;
+#X obj 726 387 vsl 15 128 -0.1 0.5 0 0 empty empty empty 0 -9 0 10
+-262144 -1 -1 0 1;
 #X obj 521 450 delread~ delayname 75;
-#X obj 254 270 hsl 128 15 20 20000 1 0 empty empty empty -2 -8 0 10 -262144 -1 -1 2000 1;
+#X obj 254 270 hsl 128 15 20 20000 1 0 empty empty empty -2 -8 0 10
+-262144 -1 -1 0 1;
 #X obj 226 324 hip~;
 #X obj 226 450 lop~;
 #X obj 364 25 loadbang;
@@ -39,9 +42,12 @@
 #X obj 235 226 r hipassf;
 #X obj 930 162 r pitch;
 #X msg 269 67 \; pd dsp \$1 \;;
-#X obj 784 89 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1 -1;
-#X obj 842 91 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1 -1;
-#X obj 889 93 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1 -1;
+#X obj 784 89 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 842 91 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 889 93 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
 #X floatatom 179 118 5 0 0 0 - - -;
 #X floatatom 179 138 5 0 0 0 - - -;
 #X floatatom 179 158 5 0 0 0 - - -;
@@ -53,7 +59,8 @@
 #X obj 351 208 expr 44100 / $f1;
 #X floatatom 520 164 10 0 0 0 - - -;
 #X text 515 143 Sample size;
-#X obj 857 291 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0 1;
+#X obj 857 291 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
 #X obj 857 311 metro 50;
 #X obj 858 336 snapshot~;
 #X obj 520 184 s sampleSize;
@@ -61,13 +68,13 @@
 #X obj 913 365 r sampleSize;
 #X floatatom 873 385 5 0 0 0 - - -;
 #X msg 606 256 0;
-#X msg 363 66 read -resize /Users/matthijsbremmer/wheelchair-design-platform/PureData/shortloop.wav soundData, f 65;
 #X floatatom 408 265 10 0 0 0 - - -;
 #X msg 938 119 0.0625964;
 #X obj 939 94 loadbang;
 #X obj 25 69 route 0 1 2 3 4 5 6 7;
 #X obj 301 364 loadbang;
 #X msg 301 388 50;
+#X msg 363 66 read -resize shortloop.wav soundData, f 65;
 #X connect 1 0 2 0;
 #X connect 1 0 49 0;
 #X connect 2 0 4 1;
@@ -92,15 +99,15 @@
 #X connect 18 0 19 1;
 #X connect 19 0 20 0;
 #X connect 20 0 14 0;
-#X connect 21 0 59 0;
+#X connect 21 0 65 0;
 #X connect 21 0 36 0;
-#X connect 22 0 63 0;
+#X connect 22 0 62 0;
 #X connect 30 0 16 0;
 #X connect 37 0 9 0;
 #X connect 38 0 10 0;
 #X connect 39 0 13 0;
 #X connect 48 0 3 0;
-#X connect 48 0 60 0;
+#X connect 48 0 59 0;
 #X connect 49 0 54 0;
 #X connect 51 0 52 0;
 #X connect 52 0 53 0;
@@ -108,23 +115,23 @@
 #X connect 55 0 57 0;
 #X connect 56 0 55 1;
 #X connect 58 0 3 1;
-#X connect 59 0 1 0;
-#X connect 61 0 7 0;
-#X connect 62 0 61 0;
-#X connect 63 0 23 0;
-#X connect 63 0 40 0;
-#X connect 63 1 24 0;
-#X connect 63 1 41 0;
-#X connect 63 2 25 0;
-#X connect 63 2 42 0;
-#X connect 63 3 26 0;
-#X connect 63 3 43 0;
-#X connect 63 4 27 0;
-#X connect 63 4 44 0;
-#X connect 63 5 28 0;
-#X connect 63 5 45 0;
-#X connect 63 6 29 0;
-#X connect 63 6 46 0;
-#X connect 63 7 47 0;
-#X connect 64 0 65 0;
-#X connect 65 0 20 0;
+#X connect 60 0 7 0;
+#X connect 61 0 60 0;
+#X connect 62 0 23 0;
+#X connect 62 0 40 0;
+#X connect 62 1 24 0;
+#X connect 62 1 41 0;
+#X connect 62 2 25 0;
+#X connect 62 2 42 0;
+#X connect 62 3 26 0;
+#X connect 62 3 43 0;
+#X connect 62 4 27 0;
+#X connect 62 4 44 0;
+#X connect 62 5 28 0;
+#X connect 62 5 45 0;
+#X connect 62 6 29 0;
+#X connect 62 6 46 0;
+#X connect 62 7 47 0;
+#X connect 63 0 64 0;
+#X connect 64 0 20 0;
+#X connect 65 0 1 0;
