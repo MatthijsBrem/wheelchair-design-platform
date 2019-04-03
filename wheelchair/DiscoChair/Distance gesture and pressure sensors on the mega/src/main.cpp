@@ -484,6 +484,7 @@ void setup()
 
   strand.begin(); //Initialize the LED strand object.
   strand.show();  //Show a blank strand, just to get the LED's ready for use.
+  delay(100);
 }
 
 void loop()
@@ -493,8 +494,8 @@ void loop()
   //  distance();
   //  delay(50);
   pressure();
-  delay(50);
+  delay(10);
 
-  LEDstrip();
-  delay(50);
+//  LEDstrip();
+//  delay(50);
 }
