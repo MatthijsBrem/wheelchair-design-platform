@@ -4,7 +4,7 @@ import sys
 
 
 def send2Pd(message=''):
-    os.system("echo '" + message + "' | pdsend 1000")
+    os.system("echo '" + message + "' | pdsend 3000")
 
 
 def audio_on():
