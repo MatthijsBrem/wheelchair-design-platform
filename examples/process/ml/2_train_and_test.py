@@ -40,8 +40,8 @@ END_TS = 1554383700000 + 13000
 # END_TS = 1554294661302
 
 # Property ID
-PROPERTY_DATA = "discopressure"
-PROPERTY_LABEL = "discopostures"
+PROPERTY_DATA = "discoPressure"
+PROPERTY_LABEL = "discoPostures"
 
 # Instantiate a thing with its credential
 my_thing = Thing(thing_id=THING_ID, token=THING_TOKEN)
