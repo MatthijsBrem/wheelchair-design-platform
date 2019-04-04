@@ -20,7 +20,7 @@ THING_TOKEN = os.environ['THING_TOKEN']
 CLASSES = ["Not Sitting", "Proper Sitting", "Leaning Forward",
            "Leaning Backward", "Leaning Left", "Leaning Right"]
 
-LABEL_PROP_NAME = "sittingPostures-9324"
+LABEL_PROP_NAME = "sittingPostures"
 DATA_PROP_NAME = "pressuresensorsgroup4"
 
 # How many samples do we want for each class
