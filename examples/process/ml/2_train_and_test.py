@@ -35,6 +35,10 @@ MODEL_FILE_NAME = "model.pickle"
 START_TS = 1554294000000
 END_TS = 1554294000000+300000
 
+# Exact  time in local time  start time 2019/04/03 12:20:07.540 end time 2019/04/03 12:31:01.302
+# START_TS = 1554294007540
+# END_TS = 1554294661302
+
 # Property ID
 PROPERTY_DATA = "pressuresensorsgroup4-a5e0"
 PROPERTY_LABEL = "sittingpostures-9324"
