@@ -40,8 +40,8 @@ END_TS = 1554378910000 + 15000
 # END_TS = 1554294661302
 
 # Property ID
-PROPERTY_DATA = "pressuresensorsgroup4"
-PROPERTY_LABEL = "sittingPostures"
+PROPERTY_DATA = "group4pressure"
+PROPERTY_LABEL = "group4postures"
 
 # Instantiate a thing with its credential
 my_thing = Thing(thing_id=THING_ID, token=THING_TOKEN)
@@ -162,6 +162,8 @@ data = fsr.values
 label = sitting.values
 print(data)
 print(label)
+
+(data).align_values_to(label)
 
 # Split the data into training data (60%), cross validation data(20%) and test data (20%)
 train_data = []

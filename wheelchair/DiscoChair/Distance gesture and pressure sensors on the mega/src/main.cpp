@@ -160,7 +160,7 @@ int value_Pressure_4, prev_value_Pressure_4 = -10000;     // int values (read fr
                                                           // up to 512 (although that is pretty useless)
 double voltage_value_Pressure_4, newton_value_Pressure_4; // Converted to Voltage
 
-String pressureID = "pressuresensorsgroup4-a5e0";
+String pressureID = "group4pressure-bd50";
 
 double convert_to_newtons(double voltage)
 {
