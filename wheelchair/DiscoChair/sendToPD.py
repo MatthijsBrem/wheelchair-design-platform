@@ -4,11 +4,11 @@ import sys
 
 
 def send2Pd(message=''):
-    os.system("echo '" + message + "' | pdsend 1000")
+    os.system("echo '" + message + "' | pdsend 3000")
 
 
 def audio_on():
-    message = '0 1'
+    message = 'audio is now on'
     send2Pd(message)
 
 def audio_reverse():
@@ -16,7 +16,7 @@ def audio_reverse():
     send2Pd(message)
 
 def audio_off():
-    message = '2 1'
+    message = 'audio is now of'
     send2Pd(message)
 
 def hipassf():

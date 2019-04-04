@@ -1,0 +1,6 @@
+#N canvas 0 50 450 300 10;
+#X obj 25 27 netreceive 3000;
+#X floatatom 24 67 5 0 0 0 - - -;
+#X obj 26 108 print~;
+#X connect 0 0 1 0;
+#X connect 1 0 2 0;

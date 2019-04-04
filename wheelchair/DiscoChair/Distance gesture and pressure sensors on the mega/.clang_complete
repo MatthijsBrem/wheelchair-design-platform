@@ -1,10 +1,10 @@
 -IC:\Users\tjapk\.platformio\packages\framework-arduinoavr\cores\arduino
 -IC:\Users\tjapk\.platformio\packages\framework-arduinoavr\variants\mega
 -IE:\Documenten\Studie\2018-2019\IoT2\wheelchair-design-platform\wheelchair\DiscoChair\Distance gesture and pressure sensors on the mega\lib\Adafruit_APDS9960-master
+-IC:\Users\tjapk\.platformio\lib\Adafruit NeoPixel_ID28
 -IC:\Users\tjapk\.platformio\packages\framework-arduinoavr\libraries\__cores__\arduino\Wire\src
 -IC:\Users\tjapk\.platformio\lib\Adafruit BNO055_ID506
 -IC:\Users\tjapk\.platformio\lib\Adafruit BNO055_ID506\utility
--IC:\Users\tjapk\.platformio\lib\Adafruit NeoPixel_ID28
 -IC:\Users\tjapk\.platformio\lib\Adafruit Unified Sensor_ID31
 -IC:\Users\tjapk\.platformio\lib\Grove - 125KHz RFID Reader_ID5356
 -IC:\Users\tjapk\.platformio\lib\Grove - Chainable RGB LED_ID4716
