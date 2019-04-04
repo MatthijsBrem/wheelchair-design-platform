@@ -3,7 +3,7 @@ import io
 from dotenv import load_dotenv
 from datetime import datetime
 import math
-
+from dcd.entities.property import Property
 # Import all machine learning computation libraries
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import accuracy_score
@@ -33,7 +33,7 @@ MODEL_FILE_NAME = "model.pickle"
 
 # Data collection time frame (in milliseconds)
 START_TS = 1554383700000
-END_TS = 1554383700000 + 13000
+END_TS = 1554383700000 + 780000
 
 # Exact  time in local time  start time 2019/04/03 12:20:07.540 end time 2019/04/03 12:31:01.302
 # START_TS = 1554294007540
@@ -153,17 +153,19 @@ fsr.read(START_TS, END_TS)
 
 sitting = my_thing.find_property_by_name(PROPERTY_LABEL)
 sitting.read(START_TS, END_TS)
+sitting.align_values_to(fsr)
 
 classes = []
 for clazz in sitting.classes:
     classes.append(clazz['name'])
+    print(classes)
+    breakpoint()
 
 data = fsr.values
 label = sitting.values
 print(data)
 print(label)
 
-(data).align_values_to(label)
 
 # Split the data into training data (60%), cross validation data(20%) and test data (20%)
 train_data = []
