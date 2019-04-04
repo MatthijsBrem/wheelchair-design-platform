@@ -159,7 +159,6 @@ classes = []
 for clazz in sitting.classes:
     classes.append(clazz['name'])
     print(classes)
-    breakpoint()
 
 data = fsr.values
 label = sitting.values
