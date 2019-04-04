@@ -11,6 +11,7 @@ s.connect((host, port))
 
 #Need to add " ;" at the end so pd knows when you're finished writing.
 
+
 play_normal = '0 ' + str(1) + " ;"
 stop_playing = '1 ' + str(1) + " ;"
 audio_reverse = '2 ' + str(1) + " ;"
