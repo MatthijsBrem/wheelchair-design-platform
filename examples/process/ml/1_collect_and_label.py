@@ -17,16 +17,16 @@ THING_ID = os.environ['THING_ID']
 THING_TOKEN = os.environ['THING_TOKEN']
 
 # Sitting classes
-CLASSES = ["Not Sitting", "Proper Sitting", "Leaning Forward",
-           "Leaning Backward", "Leaning Left", "Leaning Right"]
+CLASSES = ["No Sitting", "Normal Sitting", "Forward",
+           "Backward", "Left", "Right"]
 
-LABEL_PROP_NAME = "group4postures"
-DATA_PROP_NAME = "group4pressure-bd50"
+LABEL_PROP_NAME = "discoPostures"
+DATA_PROP_NAME = "discoPressure"
 
 # How many samples do we want for each class
 MAX_SAMPLES = 2000
 # How much time (in seconds) to leave between the collection of each class
-DELAY_BETWEEN_POSTURE = 7
+DELAY_BETWEEN_POSTURE = 10
 
 # Collect data for a given posture
 # posture_index: index of the class in the array CLASSES
