@@ -32,8 +32,8 @@ THING_TOKEN = os.environ['THING_TOKEN']
 MODEL_FILE_NAME = "model.pickle"
 
 # Data collection time frame (in milliseconds)
-START_TS = 1553276760000
-END_TS = 1553276760000+300000
+START_TS = 1554286807540
+END_TS = 1554287461302
 
 # Property ID
 PROPERTY_DATA = "pressuresensorsgroup4-a5e0"
