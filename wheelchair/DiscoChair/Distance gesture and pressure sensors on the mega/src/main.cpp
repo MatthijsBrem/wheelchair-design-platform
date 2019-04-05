@@ -248,6 +248,16 @@ void pressure()
   //  Serial.println();
 //  Serial.print(pressureID);
   //Serial.print(",");
+  String pressureStringBuf;
+  pressureStringBuf += String(newton_value_Pressure_1);
+  pressureStringBuf += ",";
+  pressureStringBuf += String(newton_value_Pressure_2);
+  pressureStringBuf += ",";
+  pressureStringBuf += String(newton_value_Pressure_3);
+  pressureStringBuf += ",";
+  pressureStringBuf += String(newton_value_Pressure_4);
+  Serial.println(pressureStringBuf);
+  /*
   Serial.print(newton_value_Pressure_1);
   Serial.print(",");
   Serial.print(newton_value_Pressure_2);
@@ -255,6 +265,7 @@ void pressure()
   Serial.print(newton_value_Pressure_3);
   Serial.print(",");
   Serial.println(newton_value_Pressure_4);
+  */
 }
 
 /*****************************

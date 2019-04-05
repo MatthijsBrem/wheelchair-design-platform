@@ -33,6 +33,8 @@ def serial_to_property_values():
     if len(line_bytes) > 0:
         # Convert the bytes into string
         line = line_bytes.decode('utf-8')
+        print("the line is as follows")
+        print(line)
         str_values = line.split(',')
         if len(str_values) > 1:
             str_values.pop(0)
