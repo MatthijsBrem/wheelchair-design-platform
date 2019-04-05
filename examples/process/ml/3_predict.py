@@ -45,7 +45,9 @@ def serial_to_property_values():
             print(values[0])
             print("the lengt is")
             print(len(values[0]))
-            predict(values)
+            if len(values) == 4:
+                print("i am in here")
+                predict(values)
 
 
 while(True):
