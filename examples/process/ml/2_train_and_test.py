@@ -162,7 +162,7 @@ for clazz in sitting.classes:
 
 data = fsr.values
 label = sitting.values
-print(data)
+# print(data)
 print(label)
 
 
