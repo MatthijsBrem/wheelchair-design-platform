@@ -163,7 +163,7 @@ for clazz in sitting.classes:
 data = fsr.values
 label = sitting.values
 # print(data)
-print(label)
+# print(label)
 
 
 # Split the data into training data (60%), cross validation data(20%) and test data (20%)
