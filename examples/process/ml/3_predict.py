@@ -40,9 +40,9 @@ def serial_to_property_values():
             values = [values]
             np.array(values).reshape(1, -1)
             print("checking what the values are")
-            print(values)
-            print("the lengt it")
-            print(len(values))
+            print(values[0])
+            print("the lengt is")
+            print(len(values[0]))
             if len(values) == 4:
                 predict(values)
 
