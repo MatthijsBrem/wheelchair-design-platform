@@ -39,6 +39,8 @@ def serial_to_property_values():
             values = [float(x) for x in str_values]
             values = [values]
             np.array(values).reshape(1, -1)
+            print("checking what the values are")
+            print(values)
             predict(values)
 
 serial_to_property_values()

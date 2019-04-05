@@ -246,8 +246,8 @@ void pressure()
                                                                           // for some improvements
 
   //  Serial.println();
-  Serial.print(pressureID);
-  Serial.print(",");
+//  Serial.print(pressureID);
+  //Serial.print(",");
   Serial.print(newton_value_Pressure_1);
   Serial.print(",");
   Serial.print(newton_value_Pressure_2);
