@@ -33,20 +33,20 @@ def serial_to_property_values():
     if len(line_bytes) > 0:
         # Convert the bytes into string
         line = line_bytes.decode('utf-8')
-        print("the line is as follows")
-        print(line)
+        # print("the line is as follows")
+        # print(line)
         str_values = line.split(',')
         if len(str_values) > 1:
             str_values.pop(0)
             values = [float(x) for x in str_values]
             values = [values]
             np.array(values).reshape(1, -1)
-            print("checking what the values are")
-            print(values[0])
-            print("the lengt is")
-            print(len(values[0]))
+            # print("checking what the values are")
+            # print(values[0])
+            # print("the length is")
+            # print(len(values[0]))
             if len(values[0]) == 4:
-                print("i am in here")
+                # print("i am in here")
                 predict(values)
 
 

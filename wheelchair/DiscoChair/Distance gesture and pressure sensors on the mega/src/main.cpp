@@ -507,7 +507,7 @@ void loop()
   //  distance();
   //  delay(50);
   pressure();
-  delay(10);
+  delay(100);
 
 //  LEDstrip();
 //  delay(50);
