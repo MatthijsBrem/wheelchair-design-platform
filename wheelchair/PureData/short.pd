@@ -37,7 +37,7 @@
 #X obj 323 312 hsl 128 10 20 5000 1 0 empty empty empty -2 -8 0 10
 -262130 -1 -1 0 1;
 #X obj 324 374 hsl 128 10 100 20000 1 1 empty empty empty -2 -8 0 10
--203904 -1 -1 3858 1;
+-203904 -1 -1 12700 1;
 #X obj 321 354 r lowpassf;
 #X obj 426 384 lop~;
 #X text 210 309 between 20 & 5000;
