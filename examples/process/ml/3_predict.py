@@ -47,4 +47,5 @@ def serial_to_property_values():
                 predict(values)
 
 
-serial_to_property_values()
+while(True):
+    serial_to_property_values()
