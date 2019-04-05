@@ -32,8 +32,8 @@ THING_TOKEN = os.environ['THING_TOKEN']
 MODEL_FILE_NAME = "model.pickle"
 
 # Data collection time frame (in milliseconds)
-START_TS = 1554383700000
-END_TS = 1554383700000 + 780000
+START_TS = 1554468600000
+END_TS = 1554468600000 + 780000
 
 # Exact  time in local time  start time 2019/04/03 12:20:07.540 end time 2019/04/03 12:31:01.302
 # START_TS = 1554294007540
