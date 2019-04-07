@@ -37,10 +37,12 @@ ser = serial.Serial(
 
 def translatePredictionToPD(prediction):
     if prediction == 0:
-        s.send("1 1")
+        music_off = "1 1 ;"
+        s.send(music_off.encode('utf-8'))
         print("turning the music off")
     elif prediction == 1:
-        s.send("0 1")
+        music_on = "0 1 ;"
+        s.send(music_on.encode('utf-8'))
         print("turning the music on")
 
 
