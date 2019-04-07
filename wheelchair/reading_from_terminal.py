@@ -50,7 +50,8 @@ def translatePredictionToPD(prediction):
     lastpredictions.append(prediction[0])
     print("the lengt of the list is")
     print(len(lastpredictions))
-
+    print ("currently pushing the following to PD: ")
+    print(classes[lastpredictions[0]])
 
     if lastpredictions[0] == 0:
         music_off = "1 1 ;"
@@ -73,8 +74,8 @@ def translatePredictionToPD(prediction):
 def predict(values):
     result = neigh.predict(values)
     print(classes[result[0]])
-    print("the value of the prediction result is")
-    print(result[0])
+    # print("the value of the prediction result is")
+    # print(result[0])
     translatePredictionToPD(result)
 
 def serial_Reader():
@@ -85,8 +86,8 @@ def serial_Reader():
         property_id=values.pop(0)
         print(property_id)
         if(property_id == PressureID):
-            print("this is the pressure")
-            print([float(x) for x in values])
+            # print("this is the pressure")
+            # print([float(x) for x in values])
             values = [float(x) for x in values]
             values = [values]
             np.array(values).reshape(1,-1)
