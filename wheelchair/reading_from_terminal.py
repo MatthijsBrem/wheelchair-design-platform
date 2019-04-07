@@ -149,7 +149,7 @@ def serial_Reader():
                 delay_str = "5 0 ;"
                 s.send(delay_str.encode('utf-8'))
             elif values[0] == 8:
-                deyaly_str = "5 0.6 ;"
+                deylay_str = "5 0.6 ;"
                 s.send(delay_str.encode('utf-8'))
 
 
