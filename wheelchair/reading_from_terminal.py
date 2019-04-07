@@ -7,6 +7,11 @@ import pickle
 import numpy as np
 import socket
 
+from dcd.entities.thing import Thing
+from dcd.entities.property_type import Porpertytype
+
+
+
 s = socket.socket()
 host = socket.gethostname()
 port = 3000
@@ -15,6 +20,12 @@ s.connect((host,port))
 
 # The thing ID and access token
 load_dotenv()
+THING_ID = os.environ['THING_ID']
+THING_TOKEN = os.environ['THING_TOKEN']
+
+my_thing = Thing(thing_id = THING_ID, token = THING_TOKEN)
+
+my_thing.read()
 
 PressureID = "discopressure-5988"
 GestureID = "discogesture-4e6b"
@@ -123,7 +134,16 @@ def serial_Reader():
         values = line.split(',')
         property_id = values.pop(0)
         print(property_id)
+        prop = my_thing.properties[property_id]
+
+        if prop is not None:
+            prop.update_values([float(x) for x in values])
+        else:
+            print('Warning: unknown property ' + property_id)
+
         if(property_id == PressureID):
+
+
             # print("this is the pressure")
             # print([float(x) for x in values])
             values = [float(x) for x in values]
