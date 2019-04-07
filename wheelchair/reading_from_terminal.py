@@ -91,14 +91,14 @@ def translatePredictionToPD(prediction):
         s.send(pitch_decrease.encode('utf-8'))
         print("the pitch that is send is")
         print(currentPitch)
-    elif lastpredictions[0] == 3:
+    elif lastpredictions[0] == 4:
         if lowpass> 100:
             lowpass -=100
         else:
             lowpass = 100
         lowpass_str= "4 " + str(lowpass)+" ;"
         s.send(lowpass_str.encode('utf-8'))
-    elif lastpredictions[0] == 4:
+    elif lastpredictions[0] == 5:
         if highpass < 5000:
             highpass += 25
         else:
