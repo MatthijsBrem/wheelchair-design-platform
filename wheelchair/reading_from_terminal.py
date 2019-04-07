@@ -13,5 +13,10 @@ ser = serial.Serial(
     baudrate = 9600,
     write_timeout = 0)
 
+while True:
+    for line in ser.read():
 
-    ser.read()
+        print(str(count) + str(': ') + chr(line) )
+        count = count+1
+
+ser.close()
