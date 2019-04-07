@@ -64,11 +64,12 @@ def translatePredictionToPD(prediction):
     #elif lastpredictions[0] == 2:
     #    pitch_increase= " ;"
     #    s.send(music_on.encode('utf-8'))
-
-
     elif lastpredictions[0] == 3:
-        reverse_on = "2 1 ;"
-        s.send(reverse_on.encode('utf-8'))
+        OldRange = 42
+        NewRange = (0.044 - 0.0626)
+        NewValue = ((len(lastpredictions)* NewRange)/OldRange) + 0.0626
+        pitch_decrease = '7 ' + str(NewValue) + " ;"
+        s.send(pitch_decrease.encode('utf-8'))
 
 
 def predict(values):
