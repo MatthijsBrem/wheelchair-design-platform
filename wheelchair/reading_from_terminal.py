@@ -34,7 +34,7 @@ ser = serial.Serial(
     baudrate = 9600,
     write_timeout = 0)
 
-lastpredictions = []
+lastpredictions = [-1]
 
 def translatePredictionToPD(prediction):
     if len(lastpredictions) > 4:
