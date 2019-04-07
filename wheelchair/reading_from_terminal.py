@@ -27,6 +27,7 @@ my_thing.read()
 
 PressureID = "discopressure-5988"
 GestureID = "discogesture-4e6b"
+PostureID = "discopostures-f286"
 
 #load the ml model
 MODEL_FILE_NAME = "model.pickle"
@@ -122,6 +123,13 @@ def translatePredictionToPD(prediction):
 def predict(values):
     result = neigh.predict(values)
     print(classes[result[0]])
+    prop = my_thing.properties[PostureID]
+
+    if prop is not None:
+        prop.update_values([classes[result[0]]])
+    else:
+        print('Warning: unknown property ' + PostureID)
+
     # print("the value of the prediction result is")
     # print(result[0])
     translatePredictionToPD(result)
@@ -142,7 +150,6 @@ def serial_Reader():
                 prop.update_values([float(x) for x in values])
             else:
                 print('Warning: unknown property ' + property_id)
-
 
             # print("this is the pressure")
             # print([float(x) for x in values])
