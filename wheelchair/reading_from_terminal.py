@@ -14,9 +14,7 @@ ser = serial.Serial(
     write_timeout = 0)
 
 while True:
-    for line in ser.read():
 
-        print(str(count) + str(': ') + chr(line) )
-        count = count+1
+line = ser.readline()
 
 ser.close()
