@@ -7,6 +7,8 @@ import time                     # To sleep for a few seconds
 # The thing ID and access token
 load_dotenv()
 
+PressureID = "discopressure-5988"
+
 # Start reading the serial port
 ser = serial.Serial(
     port = os.environ['SERIAL'],
@@ -20,6 +22,9 @@ def serial_Reader():
         values = line.split(',')
         property_id=values.pop(0)
         print(property_id)
+        if(property_id == PressureID):
+            print("this is the pressure")
+            print([float(x) for x in values])
 
 while True:
     serial_Reader()
