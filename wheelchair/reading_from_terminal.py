@@ -84,7 +84,7 @@ def translatePredictionToPD(prediction):
             lowpass_normal = "4 20000 ;"
             s.send(lowpass_normal.encode('utf-8'))
         if highpass != 20:
-            highpas = 20
+            highpass = 20
             highpass_normal = "3 20 ;"
             s.send(highpass_normal.encode('utf-8'))
     elif lastpredictions[0] == 2:
