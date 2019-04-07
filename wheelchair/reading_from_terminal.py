@@ -145,6 +145,12 @@ def serial_Reader():
                 reverse_str = "0 1 ;"
                 s.send(reverse_str.encode('utf-8'))
                 print("disableing reverse")
+            elif values[0] == 2:
+                delay_str = "5 0 ;"
+                s.send(delay_str.encode('utf-8'))
+            elif values[0] == 8:
+                deyaly_str = "5 0.6 ;"
+                s.send(delay_str.encode('utf-8'))
 
 
 while True:
