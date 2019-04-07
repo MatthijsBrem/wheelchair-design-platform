@@ -41,6 +41,7 @@ currentPitch = 0.0626
 highpass = 20
 lowpass = 20000
 
+
 def translatePredictionToPD(prediction):
     global currentPitch
     global highpass
@@ -51,7 +52,6 @@ def translatePredictionToPD(prediction):
                 if lastpredictions[-3] == prediction:
                     if lastpredictions[0] != prediction:
                         lastpredictions.clear()
-                        currentPrediction = prediction
                         print("Time to clear the list")
 
     lastpredictions.append(prediction[0])
@@ -68,15 +68,15 @@ def translatePredictionToPD(prediction):
         music_on = "0 1 ;"
         s.send(music_on.encode('utf-8'))
         print("turning the music on")
-        if lowpass !=20000:
-            lowpass_normal= "4 20000 ;"
+        if lowpass != 20000:
+            lowpass_normal = "4 20000 ;"
             s.send(lowpass_normal.encode('utf-8'))
         if highpass != 20:
             highpass_normal = "3 20 ;"
             s.send(highpass_normal.encode('utf-8'))
     elif lastpredictions[0] == 2:
         if currentPitch < 0.08:
-                currentPitch += 0.000428
+            currentPitch += 0.000428
         else:
             currentPitch = 0.08
         pitch_decrease = '6 ' + str(currentPitch) + " ;"
@@ -93,21 +93,19 @@ def translatePredictionToPD(prediction):
         print("the pitch that is send is")
         print(currentPitch)
     elif lastpredictions[0] == 4:
-        if lowpass> 200:
-            lowpass -=250
+        if lowpass > 200:
+            lowpass -= 250
         else:
             lowpass = 200
-        lowpass_str= "4 " + str(lowpass)+" ;"
+        lowpass_str = "4 " + str(lowpass) + " ;"
         s.send(lowpass_str.encode('utf-8'))
     elif lastpredictions[0] == 5:
         if highpass < 5000:
             highpass += 25
         else:
             highpass = 5000
-        highpass_str= "3 " + str(highpass)+" ;"
+        highpass_str = "3 " + str(highpass) + " ;"
         s.send(highpass_str.encode('utf-8'))
-
-
 
 
 def predict(values):
@@ -117,24 +115,25 @@ def predict(values):
     # print(result[0])
     translatePredictionToPD(result)
 
+
 def serial_Reader():
     line_bytes = ser.readline()
-    if(len(line_bytes))>0:
+    if(len(line_bytes)) > 0:
         line = line_bytes.decode('utf-8')
         values = line.split(',')
-        property_id=values.pop(0)
+        property_id = values.pop(0)
         print(property_id)
         if(property_id == PressureID):
             # print("this is the pressure")
             # print([float(x) for x in values])
             values = [float(x) for x in values]
             values = [values]
-            np.array(values).reshape(1,-1)
-            if len(values[0]) == 4 :
+            np.array(values).reshape(1, -1)
+            if len(values[0]) == 4:
                 predict(values)
-            else :
+            else:
                 print("did not get 4 values")
-        if(property_id == GestureID):
+        elif(property_id == GestureID):
             if values == 4:
                 reverse_str = "2 1 ;"
                 s.send(reverse_str.encode('utf-8'))
@@ -143,7 +142,6 @@ def serial_Reader():
                 reverse_str = "0 1 ;"
                 s.send(reverse_str.encode('utf-8'))
                 print("disableing reverse")
-
 
 
 while True:
