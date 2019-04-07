@@ -102,34 +102,35 @@ void gestureSensor()
 
   gesture = apds.readGesture(); // Read gesture into the variable
 
+  String gesturestr = "";
   // Processing captured gesture, if any.
   if (gesture == APDS9960_DOWN)
   {
-    Serial.println();
-    Serial.print(gestureID);
-    Serial.print(",");
-    Serial.println("2");
+    gesturestr += gestureID;
+    gesturestr += ",2";
+    Serial.println(gesturestr);
+    delay(50);
   }
   if (gesture == APDS9960_UP)
   {
-    Serial.println();
-    Serial.print(gestureID);
-    Serial.print(",");
-    Serial.println("8");
+    gesturestr += gestureID;
+    gesturestr += ",8";
+    Serial.println(gesturestr);
+    delay(50);
   }
   if (gesture == APDS9960_LEFT)
   {
-    Serial.println();
-    Serial.print(gestureID);
-    Serial.print(",");
-    Serial.println("4");
+    gesturestr += gestureID;
+    gesturestr += ",4";
+    Serial.println(gesturestr);
+    delay(50);
   }
   if (gesture == APDS9960_RIGHT)
   {
-    Serial.println();
-    Serial.print(gestureID);
-    Serial.print(",");
-    Serial.println("6");
+    gesturestr += gestureID;
+    gesturestr += ",6";
+    Serial.println(gesturestr);
+    delay(50);
   }
   int gesture_value = 1;
 }
@@ -246,7 +247,7 @@ void pressure()
                                                                           // for some improvements
 
   //  Serial.println();
-//  Serial.print(pressureID);
+  //  Serial.print(pressureID);
   //Serial.print(",");
   String pressureStringBuf;
   pressureStringBuf += pressureID;
@@ -474,9 +475,9 @@ void setup()
     //    Serial.println("Gesture Sensor initialized!");
 
     //gesture mode will be entered once proximity mode senses something close
-  apds.enableProximity(true); // Enabling proximity detection
+    apds.enableProximity(true); // Enabling proximity detection
   apds.enableGesture(true);     // Enabling Gesture detection
-  apds.setLED(APDS9960_LEDDRIVE_12MA,APDS9960_LEDBOOST_100PCNT);
+  apds.setLED(APDS9960_LEDDRIVE_12MA, APDS9960_LEDBOOST_100PCNT);
 
   //  Serial.println("Pressure sensors begin here!");
   pinMode(PRESSURE_PIN1, INPUT); // setting pinmode to read analog value
@@ -503,13 +504,12 @@ void setup()
 
 void loop()
 {
-    gestureSensor();
+  gestureSensor();
+  //distance();
   //  delay(50);
-    //distance();
-  //  delay(50);
-//  pressure();
+  pressure();
   delay(100);
 
-//  LEDstrip();
-//  delay(50);
+  //  LEDstrip();
+  //  delay(50);
 }
