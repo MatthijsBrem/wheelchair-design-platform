@@ -2,14 +2,12 @@
 import os                       # To access environment variables
 from dotenv import load_dotenv  # To load environment variables from .env file
 import serial                   # To connect via the serial port
-import time                     # To sleep for a few seconds
 import pickle
 import numpy as np
 import socket
 
 from dcd.entities.thing import Thing
-from dcd.entities.property_type import PropertyType
-
+#from dcd.entities.property_type import PropertyType
 
 
 s = socket.socket()
