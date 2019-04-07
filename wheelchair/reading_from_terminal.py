@@ -126,7 +126,7 @@ def predict(values):
     prop = my_thing.properties[PostureID]
 
     if prop is not None:
-        prop.update_values([classes[result[0]]])
+        prop.update_values(classes[result[0]])
     else:
         print('Warning: unknown property ' + PostureID)
 
