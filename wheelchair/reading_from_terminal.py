@@ -65,10 +65,13 @@ def translatePredictionToPD(prediction):
     #    pitch_increase= " ;"
     #    s.send(music_on.encode('utf-8'))
     elif lastpredictions[0] == 3:
-        OldRange = 42
-        NewRange = (0.044 - 0.0626)
-        NewValue = ((len(lastpredictions)* NewRange)/OldRange) + 0.0626
-        pitch_decrease = '7 ' + str(NewValue) + " ;"
+        if len(lastpredictions)< 42:
+            OldRange = 42
+            NewRange = (0.044 - 0.0626)
+            NewValue = ((len(lastpredictions)* NewRange)/OldRange) + 0.0626
+        else:
+            NewValue = 0.044
+        pitch_decrease = '6 ' + str(NewValue) + " ;"
         s.send(pitch_decrease.encode('utf-8'))
         print("the pitch that is send is")
         print(NewValue)
