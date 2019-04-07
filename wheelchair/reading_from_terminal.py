@@ -42,7 +42,7 @@ def translatePredictionToPD(prediction):
         if lastpredictions[-1] == prediction:
             if lastpredictions[-2] == prediction:
                 if lastpredictions[-3] == prediction:
-                    if lastpredictions[-5] != prediction:
+                    if lastpredictions[0] != prediction:
                         lastpredictions.clear()
                         currentPrediction = prediction
                         print("Time to clear the list")
