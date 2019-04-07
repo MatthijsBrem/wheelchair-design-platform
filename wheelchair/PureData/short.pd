@@ -49,7 +49,7 @@
 #X obj 672 157 r stop_playing;
 #X obj 673 242 *~;
 #X obj 751 242 hsl 128 15 0.044 0.08 0 0 empty empty empty -2 -8 0
-10 -204786 -1 -1 7100 1;
+10 -204786 -1 -1 5644 1;
 #X floatatom 320 326 5 0 0 0 - - -;
 #X floatatom 321 388 5 0 0 0 - - -;
 #X obj 748 226 r pitch;
