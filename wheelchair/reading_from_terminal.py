@@ -6,9 +6,9 @@ import pickle
 import numpy as np
 import socket
 
-from dcd.entities.thing import Thing
-#from dcd.entities.property_type import PropertyType
 
+from dcd.entities.thing import Thing
+from dcd.entities.property import PropertyType
 
 s = socket.socket()
 host = socket.gethostname()
