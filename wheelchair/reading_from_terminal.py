@@ -34,8 +34,10 @@ def send2Pd(message=''):
 def translatePredictionToPD(prediction):
     if prediction == 0:
         send2Pd("1 1")
+        print("turning the music off")
     elif prediction == 1:
         send2Pd("0 1")
+        print("turning the music on")
 
 
 def predict(values):
