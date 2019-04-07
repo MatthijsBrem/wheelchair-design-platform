@@ -80,9 +80,11 @@ def translatePredictionToPD(prediction):
         s.send(music_on.encode('utf-8'))
         print("turning the music on")
         if lowpass != 20000:
+            lowpass = 20000
             lowpass_normal = "4 20000 ;"
             s.send(lowpass_normal.encode('utf-8'))
         if highpass != 20:
+            highpas = 20
             highpass_normal = "3 20 ;"
             s.send(highpass_normal.encode('utf-8'))
     elif lastpredictions[0] == 2:
