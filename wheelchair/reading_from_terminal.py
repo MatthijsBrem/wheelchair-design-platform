@@ -96,14 +96,14 @@ def translatePredictionToPD(prediction):
             lowpass -=100
         else:
             lowpass = 100
-        lowpass_str= "4" + str(lowpass)+" ;"
+        lowpass_str= "4 " + str(lowpass)+" ;"
         s.send(lowpass_str.encode('utf-8'))
     elif lastpredictions[0] == 4:
         if highpass < 5000:
             highpass += 25
         else:
             highpass = 5000
-        highpass_str= "3" + str(highpass)+" ;"
+        highpass_str= "3 " + str(highpass)+" ;"
         s.send(highpass_str.encode('utf-8'))
 
 
