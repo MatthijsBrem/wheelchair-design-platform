@@ -17,6 +17,7 @@ s.connect((host,port))
 load_dotenv()
 
 PressureID = "discopressure-5988"
+GestureID = "discogesture-4e6b"
 
 #load the ml model
 MODEL_FILE_NAME = "model.pickle"
@@ -133,6 +134,15 @@ def serial_Reader():
                 predict(values)
             else :
                 print("did not get 4 values")
+        if(property_id == GestureID):
+            if values == 4:
+                reverse_str = "2 1 ;"
+                s.send(reverse_str.encode('utf-8'))
+                print("enabling reverse")
+            elif values == 6:
+                reverse_str = "0 1 ;"
+                s.send(reverse_str.encode('utf-8'))
+                print("disableing reverse")
 
 
 

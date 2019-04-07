@@ -95,7 +95,7 @@ uint8_t gesture = 0;
 
 Adafruit_APDS9960 apds;
 
-String gestureID = "gesturesensorgroup4-cc12";
+String gestureID = "discogesture-4e6b";
 
 void gestureSensor()
 {
@@ -474,8 +474,9 @@ void setup()
     //    Serial.println("Gesture Sensor initialized!");
 
     //gesture mode will be entered once proximity mode senses something close
-    apds.enableProximity(true); // Enabling proximity detection
+  apds.enableProximity(true); // Enabling proximity detection
   apds.enableGesture(true);     // Enabling Gesture detection
+  apds.setLED(APDS9960_LEDDRIVE_12MA,APDS9960_LEDBOOST_100PCNT);
 
   //  Serial.println("Pressure sensors begin here!");
   pinMode(PRESSURE_PIN1, INPUT); // setting pinmode to read analog value
@@ -502,11 +503,11 @@ void setup()
 
 void loop()
 {
-  //  gestureSensor();
+    gestureSensor();
   //  delay(50);
-  //  distance();
+    //distance();
   //  delay(50);
-  pressure();
+//  pressure();
   delay(100);
 
 //  LEDstrip();
