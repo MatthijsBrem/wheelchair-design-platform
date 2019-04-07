@@ -35,26 +35,30 @@ ser = serial.Serial(
     write_timeout = 0)
 
 lastpredictions = [-1]
+currentPrediction = 0
 
 def translatePredictionToPD(prediction):
     if len(lastpredictions) > 4:
         if lastpredictions[-1] == prediction:
             if lastpredictions[-2] == prediction:
                 if lastpredictions[-3] == prediction:
-                    print("i am in here")
+                    if lastpredictions[-5] != prediction:
+                        lastpredictions.clear()
+                        currentPrediction = prediction
+                        print("Time to clear the list")
 
     lastpredictions.append(prediction[0])
     print(lastpredictions)
 
-    if prediction == 0:
+    if currentPrediction == 0:
         music_off = "1 1 ;"
         s.send(music_off.encode('utf-8'))
         print("turning the music off")
-    elif prediction == 1:
+    elif currentPrediction == 1:
         music_on = "0 1 ;"
         s.send(music_on.encode('utf-8'))
         print("turning the music on")
-    elif prediction == 2:
+    elif currentPrediction == 2:
         pitch_increase= " ;"
         s.send(music_on.encode('utf-8'))
 
