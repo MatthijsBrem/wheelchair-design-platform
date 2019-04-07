@@ -36,6 +36,7 @@ ser = serial.Serial(
 
 lastpredictions = [-1]
 currentPrediction = 0
+currentPitch = 0.0626
 
 def translatePredictionToPD(prediction):
     if len(lastpredictions) > 4:
@@ -61,20 +62,24 @@ def translatePredictionToPD(prediction):
         music_on = "0 1 ;"
         s.send(music_on.encode('utf-8'))
         print("turning the music on")
-    #elif lastpredictions[0] == 2:
-    #    pitch_increase= " ;"
-    #    s.send(music_on.encode('utf-8'))
-    elif lastpredictions[0] == 3:
-        if len(lastpredictions)< 42:
-            OldRange = 42
-            NewRange = (0.044 - 0.0626)
-            NewValue = ((len(lastpredictions)* NewRange)/OldRange) + 0.0626
+    elif lastpredictions[0] == 2:
+        if currentPitch < 0.08:
+                currentPitch += 0.000428
         else:
-            NewValue = 0.044
-        pitch_decrease = '6 ' + str(NewValue) + " ;"
+            currentPitch = 0.08
+        pitch_decrease = '6 ' + str(currentPitch) + " ;"
         s.send(pitch_decrease.encode('utf-8'))
         print("the pitch that is send is")
-        print(NewValue)
+        print(currentPitch)
+    elif lastpredictions[0] == 3:
+        if currentPitch > 0.044:
+            currentPitch -= 0.000428
+        else:
+            currentPitch = 0.044
+        pitch_decrease = '6 ' + str(currentPitch) + " ;"
+        s.send(pitch_decrease.encode('utf-8'))
+        print("the pitch that is send is")
+        print(currentPitch)
 
 
 def predict(values):
