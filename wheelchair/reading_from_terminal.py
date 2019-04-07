@@ -49,7 +49,8 @@ def translatePredictionToPD(prediction):
 
     lastpredictions.append(prediction[0])
     print(lastpredictions)
-
+    print("the current prediction is")
+    print(currentPrediction)
     if currentPrediction == 0:
         music_off = "1 1 ;"
         s.send(music_off.encode('utf-8'))
