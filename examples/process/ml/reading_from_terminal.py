@@ -5,7 +5,13 @@ import serial                   # To connect via the serial port
 import time                     # To sleep for a few seconds
 import pickle
 import numpy as np
+import socket
 
+s = socket.socket()
+host = socket.gethostname()
+port = 3000
+
+s.connect((host,port))
 
 # The thing ID and access token
 load_dotenv()
@@ -15,6 +21,7 @@ PressureID = "discopressure-5988"
 #load the ml model
 MODEL_FILE_NAME = "model.pickle"
 
+#load classifier
 with open("model.pickle", 'rb') as file:
     neigh = pickle.load(file)
 
@@ -27,9 +34,24 @@ ser = serial.Serial(
     baudrate = 9600,
     write_timeout = 0)
 
+
+def translatePredictionToPD(prediction):
+    if prediction == 0:
+        music_off = "1 1 ;"
+        s.send(music_off.encode('utf-8'))
+        print("turning the music off")
+    elif prediction == 1:
+        music_on = "0 1 ;"
+        s.send(music_on.encode('utf-8'))
+        print("turning the music on")
+
+
 def predict(values):
     result = neigh.predict(values)
     print(classes[result[0]])
+    print("the value of the prediction result is")
+    print(result[0])
+    translatePredictionToPD(result)
 
 def serial_Reader():
     line_bytes = ser.readline()
@@ -43,7 +65,7 @@ def serial_Reader():
             print([float(x) for x in values])
             values = [float(x) for x in values]
             values = [values]
-            np.arry(values).reshape(1,-1)
+            np.array(values).reshape(1,-1)
             if len(values[0]) == 4 :
                 predict(values)
             else :
