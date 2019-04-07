@@ -93,7 +93,7 @@ def translatePredictionToPD(prediction):
         print(currentPitch)
     elif lastpredictions[0] == 4:
         if lowpass> 200:
-            lowpass -=500
+            lowpass -=250
         else:
             lowpass = 200
         lowpass_str= "4 " + str(lowpass)+" ;"
