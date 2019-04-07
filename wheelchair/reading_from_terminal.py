@@ -70,6 +70,8 @@ def translatePredictionToPD(prediction):
         NewValue = ((len(lastpredictions)* NewRange)/OldRange) + 0.0626
         pitch_decrease = '7 ' + str(NewValue) + " ;"
         s.send(pitch_decrease.encode('utf-8'))
+        print("the pitch that is send is")
+        print(NewValue)
 
 
 def predict(values):
