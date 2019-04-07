@@ -13,8 +13,14 @@ ser = serial.Serial(
     baudrate = 9600,
     write_timeout = 0)
 
+
+
 while True:
+    line_bytes = ser.readline()
+    if(len(line_bytes))>0:
+        line = line_bytes.decode('utg-8')
+        values = line.split(',')
+        property_id=values.pop(0)
+        print(property_id)
 
-    line = ser.readline()
-
-ser.close()
+# ser.close()
