@@ -135,6 +135,7 @@ def serial_Reader():
                 print("did not get 4 values")
         elif(property_id == GestureID):
             print("the gesture is as follows: ")
+            values = [float(x) for x in values]
             print (values)
             if values == 4:
                 reverse_str = "2 1 ;"
