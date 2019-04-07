@@ -46,7 +46,7 @@ def translatePredictionToPD(prediction):
         print("turning the music on")
     elif prediction == 3:
         reverse_on = "2 1 ;"
-        s.send(reverse_on.encode('utf-4'))
+        s.send(reverse_on.encode('utf-8'))
 
 
 def predict(values):
