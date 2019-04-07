@@ -31,6 +31,8 @@ ser = serial.Serial(
 def predict(values):
     result = neigh.predict(values)
     print(classes[result[0]])
+    print("the value of the prediction result is")
+    print(result[0])
 
 def serial_Reader():
     line_bytes = ser.readline()
