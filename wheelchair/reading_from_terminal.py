@@ -5,7 +5,13 @@ import serial                   # To connect via the serial port
 import time                     # To sleep for a few seconds
 import pickle
 import numpy as np
+import socket
 
+s = socket.socket()
+host = socket.gethostname()
+port = 3000
+
+s.connect((host,port))
 
 # The thing ID and access token
 load_dotenv()
@@ -28,15 +34,13 @@ ser = serial.Serial(
     baudrate = 9600,
     write_timeout = 0)
 
-def send2Pd(message=''):
-    os.system("echo '" + message + "' | pdsend 3000")
 
 def translatePredictionToPD(prediction):
     if prediction == 0:
-        send2Pd("1 1")
+        s.send("1 1")
         print("turning the music off")
     elif prediction == 1:
-        send2Pd("0 1")
+        s.send("0 1")
         print("turning the music on")
 
 
