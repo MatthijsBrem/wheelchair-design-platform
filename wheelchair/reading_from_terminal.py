@@ -15,6 +15,6 @@ ser = serial.Serial(
 
 while True:
 
-line = ser.readline()
+    line = ser.readline()
 
 ser.close()
