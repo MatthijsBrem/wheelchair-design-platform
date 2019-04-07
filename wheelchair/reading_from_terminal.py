@@ -136,12 +136,12 @@ def serial_Reader():
         elif(property_id == GestureID):
             print("the gesture is as follows: ")
             values = [float(x) for x in values]
-            print (values)
-            if values == 4:
+            print (values[0])
+            if values[0] == 4:
                 reverse_str = "2 1 ;"
                 s.send(reverse_str.encode('utf-8'))
                 print("enabling reverse")
-            elif values == 6:
+            elif values[0] == 6:
                 reverse_str = "0 1 ;"
                 s.send(reverse_str.encode('utf-8'))
                 print("disableing reverse")
