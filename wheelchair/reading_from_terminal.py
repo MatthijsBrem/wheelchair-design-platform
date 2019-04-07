@@ -154,6 +154,13 @@ def serial_Reader():
             else:
                 print("did not get 4 values")
         elif(property_id == GestureID):
+            prop = my_thing.properties[property_id]
+
+            if prop is not None:
+                prop.update_values([float(x) for x in values])
+            else:
+                print('Warning: unknown property ' + property_id)
+
             print("the gesture is as follows: ")
             values = [float(x) for x in values]
             print (values[0])
