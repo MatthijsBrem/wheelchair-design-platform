@@ -134,14 +134,14 @@ def serial_Reader():
         values = line.split(',')
         property_id = values.pop(0)
         print(property_id)
-        prop = my_thing.properties[property_id]
-
-        if prop is not None:
-            prop.update_values([float(x) for x in values])
-        else:
-            print('Warning: unknown property ' + property_id)
 
         if(property_id == PressureID):
+            prop = my_thing.properties[property_id]
+
+            if prop is not None:
+                prop.update_values([float(x) for x in values])
+            else:
+                print('Warning: unknown property ' + property_id)
 
 
             # print("this is the pressure")
