@@ -39,11 +39,11 @@ lastpredictions = [-1]
 def translatePredictionToPD(prediction):
     if len(lastpredictions) > 4:
         if lastpredictions[-1] == prediction:
-            if lastpredictions [-2] == prediction:
-                if lastpredictions [-3] == prediction:
+            if lastpredictions[-2] == prediction:
+                if lastpredictions[-3] == prediction:
                     print("i am in here")
 
-    lastpredictions.append(prediction)
+    lastpredictions.append(prediction[0])
     print(lastpredictions)
 
     if prediction == 0:
