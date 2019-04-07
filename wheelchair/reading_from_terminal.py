@@ -8,7 +8,7 @@ import numpy as np
 import socket
 
 from dcd.entities.thing import Thing
-from dcd.entities.property_type import Porpertytype
+from dcd.entities.property_type import PropertyType
 
 
 
