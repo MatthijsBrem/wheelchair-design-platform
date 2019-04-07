@@ -28,11 +28,22 @@ ser = serial.Serial(
     baudrate = 9600,
     write_timeout = 0)
 
+def send2Pd(message=''):
+    os.system("echo '" + message + "' | pdsend 3000")
+
+def translatePredictionToPD(prediction):
+    if prediction == 0:
+        send2Pd("1 1")
+    elif prediction == 1:
+        send2Pd("0 1")
+
+
 def predict(values):
     result = neigh.predict(values)
     print(classes[result[0]])
     print("the value of the prediction result is")
     print(result[0])
+    translatePredictionToPD(result)
 
 def serial_Reader():
     line_bytes = ser.readline()
