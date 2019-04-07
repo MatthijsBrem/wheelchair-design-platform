@@ -15,6 +15,7 @@ PressureID = "discopressure-5988"
 #load the ml model
 MODEL_FILE_NAME = "model.pickle"
 
+#load classifier
 with open("model.pickle", 'rb') as file:
     neigh = pickle.load(file)
 
@@ -43,7 +44,7 @@ def serial_Reader():
             print([float(x) for x in values])
             values = [float(x) for x in values]
             values = [values]
-            np.arry(values).reshape(1,-1)
+            np.array(values).reshape(1,-1)
             if len(values[0]) == 4 :
                 predict(values)
             else :
