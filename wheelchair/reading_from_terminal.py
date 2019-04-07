@@ -39,6 +39,7 @@ currentPrediction = 0
 currentPitch = 0.0626
 
 def translatePredictionToPD(prediction):
+    global currentPitch
     if len(lastpredictions) > 4:
         if lastpredictions[-1] == prediction:
             if lastpredictions[-2] == prediction:
