@@ -48,7 +48,8 @@ def translatePredictionToPD(prediction):
                         print("Time to clear the list")
 
     lastpredictions.append(prediction[0])
-    print(lastpredictions)
+    print("the lengt of the list is")
+    print(len(lastpredictions))
 
 
     if lastpredictions[0] == 0:
