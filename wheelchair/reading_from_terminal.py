@@ -49,22 +49,22 @@ def translatePredictionToPD(prediction):
 
     lastpredictions.append(prediction[0])
     print(lastpredictions)
-    print("the current prediction is")
-    print(currentPrediction)
-    if currentPrediction == 0:
+
+
+    if lastpredictions[0] == 0:
         music_off = "1 1 ;"
         s.send(music_off.encode('utf-8'))
         print("turning the music off")
-    elif currentPrediction == 1:
+    elif lastpredictions[0] == 1:
         music_on = "0 1 ;"
         s.send(music_on.encode('utf-8'))
         print("turning the music on")
-    elif currentPrediction == 2:
+    elif lastpredictions[0] == 2:
         pitch_increase= " ;"
         s.send(music_on.encode('utf-8'))
 
 
-    elif prediction == 3:
+    elif lastpredictions[0] == 3:
         reverse_on = "2 1 ;"
         s.send(reverse_on.encode('utf-8'))
 
