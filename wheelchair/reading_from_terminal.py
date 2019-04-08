@@ -27,7 +27,7 @@ my_thing.read()
 
 PressureID = "discopressure-5988"
 GestureID = "discogesture-4e6b"
-PostureID = "discopostures-f286"
+PostureID = "discopostures"
 
 #load the ml model
 MODEL_FILE_NAME = "model.pickle"
@@ -123,7 +123,7 @@ def translatePredictionToPD(prediction):
 def predict(values):
     result = neigh.predict(values)
     print(classes[result[0]])
-    prop = my_thing.find_property_by_name(PostureID, PropertyType.CLASS)
+    prop = my_thing.find_or_create_property(PostureID, PropertyType.CLASS)
 
     if prop is not None:
         posture = int(result[0])
