@@ -61,15 +61,15 @@ def translatePredictionToPD(prediction):
             if lastpredictions[-2] == prediction:
                 if lastpredictions[-3] == prediction:
                     if lastpredictions[0] != prediction:
-
+                        if lastpredictions[0] == 0:
+                            music_on = "0 1 ;"
+                            s.send(music_on.encode('utf-8'))
+                            print("turning the music on")
                         lastpredictions.clear()
                         print("Time to clear the list")
 
     lastpredictions.append(prediction[0])
-    if lastpredictions[0] != 0:
-        music_on = "0 1 ;"
-        s.send(music_on.encode('utf-8'))
-        print("turning the music on")
+
     print("the lengt of the list is")
     print(len(lastpredictions))
     print ("currently pushing the following to PD: ")
