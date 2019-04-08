@@ -123,10 +123,11 @@ def translatePredictionToPD(prediction):
 def predict(values):
     result = neigh.predict(values)
     print(classes[result[0]])
-    prop = my_thing.properties[PostureID]
+    prop = my_thing.find(PostureID, PropertyType.CLASS)
 
     if prop is not None:
-        prop.update_values(classes[result[0]])
+        posture = int(result[0])
+        prop.update_values([posture])
     else:
         print('Warning: unknown property ' + PostureID)
 
