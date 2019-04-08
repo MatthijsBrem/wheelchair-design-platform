@@ -123,7 +123,7 @@ def translatePredictionToPD(prediction):
 def predict(values):
     result = neigh.predict(values)
     print(classes[result[0]])
-    prop = my_thing.find(PostureID, PropertyType.CLASS)
+    prop = my_thing.find_property_by_name(PostureID, PropertyType.CLASS)
 
     if prop is not None:
         posture = int(result[0])
