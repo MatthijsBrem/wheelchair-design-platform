@@ -63,6 +63,10 @@ def translatePredictionToPD(prediction):
                     if lastpredictions[0] != prediction:
                         lastpredictions.clear()
                         print("Time to clear the list")
+                        if lastpredictions[0] == 0:
+                            music_on = "0 1 ;"
+                            s.send(music_on.encode('utf-8'))
+                            print("turning the music on")
 
     lastpredictions.append(prediction[0])
     print("the lengt of the list is")
@@ -75,9 +79,9 @@ def translatePredictionToPD(prediction):
         s.send(music_off.encode('utf-8'))
         print("turning the music off")
     elif lastpredictions[0] == 1:
-        music_on = "0 1 ;"
-        s.send(music_on.encode('utf-8'))
-        print("turning the music on")
+        #music_on = "0 1 ;"
+        #s.send(music_on.encode('utf-8'))
+        #print("turning the music on")
         if lowpass != 20000:
             lowpass = 20000
             lowpass_normal = "4 20000 ;"
