@@ -1,7 +1,7 @@
 # Disco wheelchair
-To improve interaction between children in their breaks at school we designed the Discochair. This chair uses different sensors to change the music and ligths on the wheelchair. Some are controlled by the wheelchair users and some are controlled by the people surrounding the wheelchair user.
+To improve interaction between children in their breaks at school we designed the Discochair. This chair uses different sensors to change the music and lights on the wheelchair. Some are controlled by the wheelchair users and some are controlled by the people surrounding the wheelchair user.
 
-To achieve this we used a Arduino mega, a RaspberryPi and serveral sensors and acutators which can be found below. The arduino was mainly used for gathering sensor data and actuacting the LED's. The RaspberryPi was used for proceccing the data in python using machine learning.  The proccesed data was then used as an input for PureData, a graphical programming enviroment for audio and video proccecing. Which also ran on the RaspberryPi.
+To achieve this we used a Arduino mega, a RaspberryPi and several sensors and actuators which can be found below. The arduino was mainly used for gathering sensor data and actuating the LED's. The RaspberryPi was used for processing the data in python using machine learning.  The processed data was then used as an input for PureData, a graphical programming environment for audio and video processing. Which also ran on the RaspberryPi.
 
 ## Sensors
 The following list of sensors should be implemented for the realization of the “Disco chair” a chair that enables and stimulates physical activity and interaction between children with a wheelchair and children without.
@@ -15,12 +15,12 @@ Motivation of choice: We want to introduce the movements of remixing a song and 
 
 properties and behaviours: The sensor measures if something is in front of him and based on the distance the voltages changes. This can be converted into distance in cm.
 
-Motivation of choice: When a person approaches between 20 cm and 1 m of distance additional samples will be added the the music.
+Motivation of choice: When a person approaches between 20 cm and 1 m of distance additional samples will be added the music.
 - pressure sensor x 4 (FSR 406)
 
 Properties and behaviours: measures the pressure on the seat of the user.
 
-Motivation of choice: by leaning left, right, forward or backwards we want to control the pitch of the music and the filtering of the music. This introduces new tools for the children to remix the song. Leaning forward means a pitch increase, leaning backwards leads to a lower pitch. Leaning to the right applies a high pass filter to the music and leaning leaning left applies a lowpass filter to the music. Both filters are controlled by a ramp function that is dependent on how long the leaning is performed.
+Motivation of choice: by leaning left, right, forward or backwards we want to control the pitch of the music and the filtering of the music. This introduces new tools for the children to remix the song. Leaning forward means a pitch increase, leaning backwards leads to a lower pitch. Leaning to the right applies a high pass filter to the music and leaning left applies a lowpass filter to the music. Both filters are controlled by a ramp function that is dependent on how long the leaning is performed.
 
 
 ## Actuator
@@ -41,14 +41,14 @@ Motivation for choice: The selection of the speaker as an actuator for the proje
 
 ## Other components
 
- - Aruidno Mega
+ - Arduino Mega
  - Raspberry pi
  - 2 x Powerbank (5v)
  - Breadboard
  - Sensors
 	  - gesture sensor (Adafruit_APDS9960)
 	  -  proximity sensor (SHARP_2Y0A02 x 3)
-	  - 4 xpressure sensor (FSR 406)
+	  - 4 x pressure sensor (FSR 406)
 	  - Microphone (sparkfun sound detector)
 - Actuators
 	- LED strip (AdaFruit Neopixel)
@@ -65,7 +65,7 @@ enter picture plus explanation here
 ## Arduino Sound & LEDS
 explain the sound sensor and led actuation here
 ## Arduino Other Sensors
-explain all the sensors here plus communication to tthe python code
+explain all the sensors here plus communication to the python code
 # Raspberry
 introduction of what is running on the raspberry
 ## Python Code
