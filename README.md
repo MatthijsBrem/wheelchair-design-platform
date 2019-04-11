@@ -1,6 +1,8 @@
 # Disco wheelchair
 To improve interaction between children in their breaks at school we designed the Discochair. This chair uses different sensors to change the music and ligths on the wheelchair. Some are controlled by the wheelchair users and some are controlled by the people surrounding the wheelchair user.
 
+To achieve this we used a Arduino mega, a RaspberryPi 
+
 # Sensors
 The following list of sensors should be implemented for the realization of the “Disco chair” a chair that enables and stimulates physical activity and interaction between children with a wheelchair and children without.
 
@@ -167,6 +169,6 @@ or links to your project.
 #learning github
 by Tjapko Vermeulen
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEwNzMzNTgzOTEsLTEwOTc4NTE4NjZdfQ
-==
+eyJoaXN0b3J5IjpbLTEzMzUzNzQzOTUsLTEwNzMzNTgzOTEsLT
+EwOTc4NTE4NjZdfQ==
 -->
