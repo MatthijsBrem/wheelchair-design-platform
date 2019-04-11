@@ -110,6 +110,9 @@ and the second argument to:
 ### Distance
 
 ### Pressure Sensor
+
+### communication
+
 # RaspberryPi
 introduction of what is running on the raspberry
 ## Python Code
@@ -128,56 +131,14 @@ The latest version of Pure Data can be found on the Pure Data website (https://p
 
 To install Pure Data on the raspberry, connect to the raspberry and type the following text in the command line:
 
-    sudo apt-get install puredata
+sudo apt-get install puredata
 
-Now we take a look at the Pure Data file short.pd:
-
-It is best to open the pure data file on your mac or pc for inspection, as a GUI will open.
-
-The Gui will show a couple of different building blocks. The left side of the patch is for receiving signals from python, this will be explained in the paragraph under this one.
-
-The rest of the patch is dedicated to manipulating the sound of the short audio file that the patch opens (shortloop.wav).
-
-Upon opening the short.pd patch, the loadbang will trigger three elements;
-
-  1. The pitch is set to 0.06 (this corresponds roughly to a normal       
-  playing speed, in case of a different file, this value has to be retuned, the value for the normal playing speed can be read under the 44100/$f1 block.
-
-  2. The audio file is loaded into soundData and cut into samples. If an other file is used, just change the file name. In case it is placed in the same folder as the pd file, no directory path is needed.
-
-  3. The dsp is turned on, this means that audio can be broadcasted by Pure Data.
-
-The right side of the patch is dedicated to playback speed and direction of the sound; both the direction and pitch are controlled based upon the inputs from python.
-
-After the pitch has been set, the sound is then again compiled from the samples, hereafter the effects are applied to the sound.
-
-
-
+explain what it is plus what we do with it
 
 ## PD & Python
 explain communication between PD & Python
 
-For the communication between Pure Data and python, two programs from the puredata-utils are used; pdsend and pdreceive. These programs are automatically installed upon installing Pure Data.
-
-For the communication the sockets are used, so start the code with  
-
-    import socket
-
-After this the socket is initialized and the port number is set. Make sure the netreceive in Pure Data is set to the same port number.
-
-    s = socket.socket()
-    host = socket.gethostname()
-    port = 3000
-
-Now the connection can be established
-
-    s.connect((host,port))
-
-Commands are now send using:
-
-    s.send(command.encode('utf-8'))
-
-where command is built up like: command= "PDport " + "signal" + " ;"
+For the communication between Pure Data and python, two programs from the puredata-utils are used; pdsend and pdreceive. These programs are automatically installed upon installing Pure Data
 
 # Sound controlling software
 
