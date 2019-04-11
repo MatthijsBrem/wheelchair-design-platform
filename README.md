@@ -46,7 +46,15 @@ explain all the sensors here plus communication to tthe python code
 # Raspberry
 introduction of what is running on the raspberry
 ## Python Code
-explanation of t
+explanation of the code plus reading the serial monitor & sending everything to the hub 
+## Machine learning
+
+## Pure data 
+explain what it is plus what we do with it 
+
+## PD & Python
+explain communication between PD & Python
+
 # Sound controlling software
 
 In order to manipulate the music that is being played on the Pi, another programming language is used, which suits itself well to music manipulation. This language is called Pure Data. Pure Data is used as the link between the sensor data that is processed in python on the Pi and the audio output.
@@ -159,5 +167,6 @@ or links to your project.
 #learning github
 by Tjapko Vermeulen
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTI1ODk3Mjk0MCwtMTA5Nzg1MTg2Nl19
+eyJoaXN0b3J5IjpbLTEwNzMzNTgzOTEsLTEwOTc4NTE4NjZdfQ
+==
 -->
