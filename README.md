@@ -38,7 +38,8 @@ Properties and behaviour: A Speaker is a electroacoustic transducer which conver
 Motivation for choice: The selection of the speaker as an actuator for the project is based on the main objective of the project: Making the movements and interaction with the surroundings of the wheelchair expressed in music variation in tone, pitch and effects for the music. The speaker will, therefore, allow releasing the remixed tones based on the data collected.
 
 # Other components
-enter list of other compoments here
+
+ - enter list of other compoments here
 
 # Arduino
 quick introduction here
@@ -184,6 +185,6 @@ or links to your project.
 #learning github
 by Tjapko Vermeulen
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNTY2NTM3NTQsLTEwNzMzNTgzOTEsLTEwOT
-c4NTE4NjZdfQ==
+eyJoaXN0b3J5IjpbLTE4NjY1ODUyMzMsNTY2NTM3NTQsLTEwNz
+MzNTgzOTEsLTEwOTc4NTE4NjZdfQ==
 -->
