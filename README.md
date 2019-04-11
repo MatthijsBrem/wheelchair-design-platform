@@ -8,7 +8,7 @@ To achieve this we used a Arduino mega, a Raspberry Pi and several sensors and a
 ![Dataschemetic](/docs/resources/Poster_Group_4_Disco_Wheelchair_Data_Flow.jpg)
 
 
-This project was done for the elective Developing connected products and services for the internet of things. Part of the TU Delft IDE Master track. It uses [this](https://github.com/datacentricdesign/wheelchair-design-platform) repository as bassis and other libraries provided by the course.
+This project was done for the elective Developing connected products and services for the internet of things. Part of the TU Delft IDE Master track. It uses [this](https://github.com/datacentricdesign/wheelchair-design-platform) repository as basis and other libraries provided by the course.
 
 ## Sensors
 The following list of sensors should be implemented for the realization of the “Disco chair” a chair that enables and stimulates physical activity and interaction between children with a wheelchair and children without.
