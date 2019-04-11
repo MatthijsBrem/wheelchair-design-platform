@@ -11,7 +11,7 @@ properties and behaviours: detects a hand going up, down, left or right.
 Motivation of choice: We want to introduce the movements of remixing a song and use these movements to give the music a backspin effect.
 - proximity sensor (SHARP_2Y0A02 x 3)
 properties and behaviours: The sensor measures if something is in front of him and based on the distance the voltages changes. This can be converted into distance in cm.
-Motivation of choice: When a person approaches between 20 cm and 1 m of distance a delay will be added to the music. In this way interaction with the user of the wheelchair is promoted, as positioning oneself close to the wheelhair changes the music.
+Motivation of choice: When a person approaches between 20 cm and 1 m of distance additional samples will be added the the music
 - pressure sensor x 4 (FSR 406)
 Properties and behaviours: measures the pressure on the seat of the user.
 Motivation of choice: by leaning left, right, forward or backwards we want to control the pitch of the music and the filtering of the music. This introduces new tools for the children to remix the song. Leaning forward means a pitch increase, leaning backwards leads to a lower pitch. Leaning to the right applies a high pass filter to the music and leaning leaning left applies a lowpass filter to the music. Both filters are controlled by a ramp function that is dependent on how long the leaning is performed.
@@ -169,6 +169,6 @@ or links to your project.
 #learning github
 by Tjapko Vermeulen
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTA2NTc2MjgxOCwtMTM5ODUwNjIwNCwtMT
-A3MzM1ODM5MSwtMTA5Nzg1MTg2Nl19
+eyJoaXN0b3J5IjpbMjU0ODkyMDkzLDEwNjU3NjI4MTgsLTEzOT
+g1MDYyMDQsLTEwNzMzNTgzOTEsLTEwOTc4NTE4NjZdfQ==
 -->
