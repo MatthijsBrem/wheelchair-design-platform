@@ -137,8 +137,10 @@ To open the serial port in the python script the following code is added.
         port = os.environ['SERIAL'],
         baudrate = 9600,
         write_timeout = 0)
-To tell the python where the port is edit the .env file in the Raspberry Pi. This can be done with the following command: 'nano .env' from the command line inside the Raspberry pi. The add the following line.
+To tell the python where the port is edit the .env file in the Raspberry Pi. This can be done with the following command: `nano .env` from the command line inside the Raspberry pi. The add the following line.
+
     SERIAL=/dev/TTYUSB0
+
 The port can also be ttyS0 or ttyAM0
 
 explanation of the code plus reading the serial monitor & sending everything to the hub
