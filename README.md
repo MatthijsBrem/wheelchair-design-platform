@@ -43,7 +43,10 @@ Motivation for choice: The selection of the speaker as an actuator for the proje
  - Raspberry pi
  - 2 x Powerbank
  - Breadboard
- - 
+ - Sensors
+	  - gesture sensor (Adafruit_APDS9960)
+	  -  proximity sensor (SHARP_2Y0A02 x 3)
+	  - 4 xpressure sensor (FSR 406)
 
 # Arduino
 quick introduction here
@@ -189,6 +192,6 @@ or links to your project.
 #learning github
 by Tjapko Vermeulen
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbOTUwNTYxMjMzLDU2NjUzNzU0LC0xMDczMz
-U4MzkxLC0xMDk3ODUxODY2XX0=
+eyJoaXN0b3J5IjpbLTE0MTExMTI3MTMsNTY2NTM3NTQsLTEwNz
+MzNTgzOTEsLTEwOTc4NTE4NjZdfQ==
 -->
