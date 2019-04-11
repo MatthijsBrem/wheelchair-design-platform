@@ -47,7 +47,10 @@ Motivation for choice: The selection of the speaker as an actuator for the proje
 	  - gesture sensor (Adafruit_APDS9960)
 	  -  proximity sensor (SHARP_2Y0A02 x 3)
 	  - 4 xpressure sensor (FSR 406)
-	  - Microphone (Spa
+	  - Microphone (sparkfun sound detector)
+- Actuators
+	- LED strip (Neopixel rgbw
+	- Speaker
 
 # Arduino
 quick introduction here
@@ -193,6 +196,6 @@ or links to your project.
 #learning github
 by Tjapko Vermeulen
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTQ4Mjg0MTM5Niw1NjY1Mzc1NCwtMTA3Mz
-M1ODM5MSwtMTA5Nzg1MTg2Nl19
+eyJoaXN0b3J5IjpbMzI2OTM4NzczLDU2NjUzNzU0LC0xMDczMz
+U4MzkxLC0xMDk3ODUxODY2XX0=
 -->
