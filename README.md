@@ -34,9 +34,14 @@ Motivation for choice: The selection of the speaker as an actuator for the proje
 # Other components
 enter list of other compoments here
 
-# Wiring Schematic
+# Arduino
+quick introduction here
+## Wiring Schematic
 enter picture plus explanation here
-# ## Heading
+
+## Arduiono Sound & LEDS
+explain the sound
+## Arduino Other Sensors
 
 # Sound controlling software
 
@@ -150,6 +155,6 @@ or links to your project.
 #learning github
 by Tjapko Vermeulen
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE5MzU0NDgwNTAsLTEwOTc4NTE4NjZdfQ
+eyJoaXN0b3J5IjpbLTE0MjgwNjYyMzYsLTEwOTc4NTE4NjZdfQ
 ==
 -->
