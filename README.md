@@ -200,17 +200,3 @@ or links to your project.
 #Natasa was here
 
 *hello
-<<<<<<< HEAD
-=======
-
-
-#learning github
-by Tjapko Vermeulen
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbMTY2MzMxMDUwNSw4NjgzNjc4OTYsNTY2NTeyJoaXN0b3J5IjpbMTY2MzMxMDUwNSw4NjgzNjc4OTYsNTY2NTeyJoaXN0b3J5IjpbMTY2MzMxMDUwNSw4NjgzNjc4OTYsNTY2NTeyJoaXN0b3J5IjpbMTY2MzMxMDUwNSw4NjgzNjc4OTYsNTY2NTeyJoaXN0b3J5IjpbMTY2MzMxMDUwNSw4NjgzNjc4OTYsNTY2NTeyJoaXN0b3J5IjpbMTY2MzMxMDUwNSw4NjgzNjc4OTYsNTY2NTeyJoaXN0b3J5IjpbMTY2MzMxMDUwNSw4NjgzNjc4OTYsNTY2NTeyJoaXN0b3J5IjpbMTY2MzMxMDUwNSw4NjgzNjc4OTYsNTY2NTeyJoaXN0b3J5IjpbLTEwNzMzNTgzOTEsLTEwOTc4NTE4NjZdfQ
-==
--->
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbMTM1MDk3NjMxNF19
--->
->>>>>>> fdf0ec356a4e8690638458daeeab41243c6c09c1
