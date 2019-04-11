@@ -122,6 +122,45 @@ Four Force Resistive Sensors are used on the seating of the wheelchair. The code
     #define PRESSURE_PIN1 A1                                  // Setting up pin to receive voltage PRESSURE 1
     int value_Pressure_1, prev_value_Pressure_1 = -10000;     // int values (read from analog port, both the current and the previous)
     int deviationPressure = 0;                                // setting the minimum deviation between the measurements
+The data of the Voltage measured by the FSRs are converted in Newtons
+    double convert_to_newtons(double voltage)
+    {double a = 0.01419;
+    double b = 0.9523;
+    double c = -0.01461;
+    double d = -2.231;
+
+    return ((a * exp(b * voltage) + c * exp(d * voltage)) * 9.81);
+    }
+
+The void loop for the pressure sensors sets the sensibility of the sensors by comparing the measured value to the previous ones
+{
+  value_Pressure_1 = analogRead(PRESSURE_PIN1);
+  if (value_Pressure_1 >= (prev_value_Pressure_1 - deviationPressure) && value_Pressure_1 <= (prev_value_Pressure_1 + deviationPressure))
+    return;
+
+  voltage_value_Pressure_1 = double((value_Pressure_1 * 5)) / 1023;       // converting to voltage [ 0, 5] v.
+  newton_value_Pressure_1 = convert_to_newtons(voltage_value_Pressure_1); // getting actual force value (careful using this, accuracy may not be ideal)
+                                                                          // sensitivity after 1Kgf and before 0.06kgf is limited, you can lower the deviation
+
+  prev_value_Pressure_1 = value_Pressure_1;
+
+  prev_value_Pressure_2 = value_Pressure_2; // PRESSURE SENSOR 2
+
+  value_Pressure_2 = analogRead(PRESSURE_PIN2);
+
+  String pressureStringBuf;
+  pressureStringBuf += pressureID;
+  pressureStringBuf += ",";
+  pressureStringBuf += String(newton_value_Pressure_1);
+  pressureStringBuf += ",";
+  pressureStringBuf += String(newton_value_Pressure_2);
+  pressureStringBuf += ",";
+  pressureStringBuf += String(newton_value_Pressure_3);
+  pressureStringBuf += ",";
+  pressureStringBuf += String(newton_value_Pressure_4);
+  Serial.println(pressureStringBuf);
+
+As with the rest of the sensors the loop is called in the end in order to mergre informstions in one file
 
 ### communication
 Communication with the python code is done through the serial port. This means that in Arduino, the values the sensors measure are printed to the Serial port with an unique identifier in front of them. Then the python code reads the serial port of the Raspberry Pi and processes it. The example given is from the Pressure sensor. To prevent errors it is advisable to first put everything into one string before printing it.
@@ -398,23 +437,3 @@ On the wheel:
 * 1 small power bank;
 * 1 small breadboard;
 * 1 USB cable A/B (power bank to Arduino Uno).
-
-
-## Contact and Existing projects
-
-* [The hiking wheelchair](https://github.com/cprecioso/wheelchair-design-platform)
-* [The EDU wheelchair](https://github.com/ctsai-1/wheelchair-design-platform)
-* [Weelchair tracking for basketball players](https://github.com/FabianIDE/wheelchair-design-platform)
-* [Disco Wheelchair](https://github.com/MatthijsBrem/wheelchair-design-platform)
-* [Wheelchair Madness 2222](https://github.com/pherkan/wheelchair-design-platform/tree/master/wheelchair)
-* [Who is sitting?](https://github.com/Rosanfoppen/wheelchair-design-platform/tree/master/wheelchair)
-* [Magic Wheelchair](https://github.com/Yuciena/wheelchair-design-platform)
-* [Yoga Wheelchair](https://github.com/artgomad/wheelchair-design-platform)
-
-
-Feel free to contact us at jacky@datacentricdesign.org. We welcome feedback, pull requests
-or links to your project.
-
-#Natasa was here
-
-*hello
