@@ -1,7 +1,9 @@
 # Disco wheelchair
-To improve interaction between children in their breaks at school we designed the Discochair. This chair uses different sensors to change the music and ligths on the wheelchair. Some are controlled by the wheelchair users and some are controlled by the people surrounding the wheelchair user.
+To improve interaction between children in their breaks at school we designed the Discochair. This chair uses different sensors to change the music and lights on the wheelchair. Some are controlled by the wheelchair users and some are controlled by the people surrounding the wheelchair user.
 
-# Sensors
+To achieve this we used a Arduino mega, a RaspberryPi and several sensors and actuators which can be found below. The arduino was mainly used for gathering sensor data and actuating the LED's. The RaspberryPi was used for processing the data in python using machine learning.  The processed data was then used as an input for PureData, a graphical programming environment for audio and video processing. Which also ran on the RaspberryPi.
+
+## Sensors
 The following list of sensors should be implemented for the realization of the “Disco chair” a chair that enables and stimulates physical activity and interaction between children with a wheelchair and children without.
 
 - gesture sensor (Adafruit_APDS9960)
@@ -13,15 +15,15 @@ Motivation of choice: We want to introduce the movements of remixing a song and 
 
 properties and behaviours: The sensor measures if something is in front of him and based on the distance the voltages changes. This can be converted into distance in cm.
 
-Motivation of choice: When a person approaches between 20 cm and 1 m of distance a delay will be added to the music. In this way interaction with the user of the wheelchair is promoted, as positioning oneself close to the wheelhair changes the music.
+Motivation of choice: When a person approaches between 20 cm and 1 m of distance additional samples will be added the music.
 - pressure sensor x 4 (FSR 406)
 
 Properties and behaviours: measures the pressure on the seat of the user.
 
-Motivation of choice: by leaning left, right, forward or backwards we want to control the pitch of the music and the filtering of the music. This introduces new tools for the children to remix the song. Leaning forward means a pitch increase, leaning backwards leads to a lower pitch. Leaning to the right applies a high pass filter to the music and leaning leaning left applies a lowpass filter to the music. Both filters are controlled by a ramp function that is dependent on how long the leaning is performed.
+Motivation of choice: by leaning left, right, forward or backwards we want to control the pitch of the music and the filtering of the music. This introduces new tools for the children to remix the song. Leaning forward means a pitch increase, leaning backwards leads to a lower pitch. Leaning to the right applies a high pass filter to the music and leaning left applies a lowpass filter to the music. Both filters are controlled by a ramp function that is dependent on how long the leaning is performed.
 
 
-# Actuator
+## Actuator
 
 - NeoPixel :
 
@@ -37,24 +39,87 @@ Properties and behaviour: A Speaker is a electroacoustic transducer which conver
 
 Motivation for choice: The selection of the speaker as an actuator for the project is based on the main objective of the project: Making the movements and interaction with the surroundings of the wheelchair expressed in music variation in tone, pitch and effects for the music. The speaker will, therefore, allow releasing the remixed tones based on the data collected.
 
-# Other components
+## Other components
 
- - enter list of other compoments here
+ - Arduino Mega
+ - Raspberry pi
+ - 2 x Powerbank (5v)
+ - Breadboard
+ - Sensors
+	  - gesture sensor (Adafruit_APDS9960)
+	  -  proximity sensor (SHARP_2Y0A02 x 3)
+	  - 4 x pressure sensor (FSR 406)
+	  - Microphone (sparkfun sound detector)
+- Actuators
+	- LED strip (AdaFruit Neopixel)
+	- Speaker
+- 4x 220 ohm resistor
+-  470 ohm resistor
+- 1 Farad capacitor
 
 # Arduino
-quick introduction here
+All our sensors are Attached to the Arduino, the wiring can be seen below. Afterwards we explain how we use the speaker as an input for out LED strip. Then we will explain how we gather data from the sensors and communicate them with the Raspberry Pi.
+The arduino code was written in another editor then the standard arduino editor which is why it is an .cpp file and not a .ino file. However is should work perfectly fine if you copy all the code to an .ino file.
 ## Wiring Schematic
 enter picture plus explanation here
 
 ## Arduino Sound & LEDS
 explain the sound sensor and led actuation here
 ## Arduino Other Sensors
-explain all the sensors here plus communication to tthe python code
-# Raspberry
+A function is written for reading each sensor, so our void loop() calls each sensor individually. This is done to keep the code more clean and readable.
+### gesture sensor
+For the gesture sensor the library [Adafruit_APDS9960](https://github.com/adafruit/Adafruit_APDS9960) is used. To initialize the sensor create a variable Adafruit_APDS9960.
+
+    Adafruit_APDS9960 apds;
+
+Then in the void setup begin reading the sensor and reading the proximity and gesture.
+
+    if (!apds.begin())
+    { // Begining the work period of the sensor
+    Serial.println("Failed to initialize Sensor! Please check your wiring.");
+    }
+    else
+    Serial.println("Gesture Sensor initialized!");
+    apds.enableProximity(true);
+    apds.enableGesture(true);
+
+In the function that is called from the loop, read the gesture sensor and store that into a uint8_t. To Check if which gesture it is compare it to APDS9960_UP, APDS9960_DOWN, APDS9960_LEFT or APDS9960_RIGHT.
+
+    uint8_t gesture = 0;
+    void gestureSensor()
+    {
+
+      gesture = apds.readGesture(); // Read gesture into the variable
+      if(gesture == APDS9960_UP)
+      {
+        // then sensor reads up
+      }
+
+It is good to know the gesture only reads something if it actually measures a gesture. If there is trouble with how reliable the sensor detects your gesture try adding `apds.setLED(APDS9960_LEDDRIVE_12MA, APDS9960_LEDBOOST_100PCNT);` to your void setup(). These values worked best for us but you can change the first argument to one of the following options:
+- APDS9960_LEDDRIVE_100MA
+- APDS9960_LEDDRIVE_50MA
+- APDS9960_LEDDRIVE_25MA
+- APDS9960_LEDDRIVE_100MA
+
+and the second argument to:
+- APDS9960_LEDBOOST_100PCNT
+- APDS9960_LEDBOOST_150PCNT
+- APDS9960_LEDBOOST_200PCNT
+- APDS9960_LEDBOOST_300PCNT
+
+### Distance
+
+### Pressure Sensor
+
+### communication
+
+# RaspberryPi
 introduction of what is running on the raspberry
 ## Python Code
 explanation of the code plus reading the serial monitor & sending everything to the hub
 ## Machine learning
+
+    sudo apt-get install puredata
 
 ## Pure data
 
@@ -72,6 +137,8 @@ explain what it is plus what we do with it
 
 ## PD & Python
 explain communication between PD & Python
+
+For the communication between Pure Data and python, two programs from the puredata-utils are used; pdsend and pdreceive. These programs are automatically installed upon installing Pure Data
 
 # Sound controlling software
 
@@ -180,11 +247,3 @@ or links to your project.
 #Natasa was here
 
 *hello
-
-
-#learning github
-by Tjapko Vermeulen
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE4NjY1ODUyMzMsNTY2NTM3NTQsLTEwNz
-MzNTgzOTEsLTEwOTc4NTE4NjZdfQ==
--->
