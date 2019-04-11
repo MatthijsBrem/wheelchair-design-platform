@@ -41,7 +41,7 @@ Motivation for choice: The selection of the speaker as an actuator for the proje
 
  - Aruidno Mega
  - Raspberry pi
- - 2 x Powerbank
+ - 2 x Powerbank (5v)
  - Breadboard
  - Sensors
 	  - gesture sensor (Adafruit_APDS9960)
@@ -52,8 +52,8 @@ Motivation for choice: The selection of the speaker as an actuator for the proje
 	- LED strip (AdaFruit Neopixel)
 	- Speaker
 - 4x 220 ohm resistor
--  420 ohm resistor
-- 1000 micro
+-  470 ohm resistor
+- 1 Farad capacitor
 
 # Arduino
 quick introduction here
@@ -201,6 +201,6 @@ or links to your project.
 #learning github
 by Tjapko Vermeulen
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTk5MDM5NjE2Miw4NjgzNjc4OTYsNTY2NT
+eyJoaXN0b3J5IjpbLTE3MDE2MjE0OSw4NjgzNjc4OTYsNTY2NT
 M3NTQsLTEwNzMzNTgzOTEsLTEwOTc4NTE4NjZdfQ==
 -->
