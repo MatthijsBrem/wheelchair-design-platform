@@ -130,8 +130,17 @@ Communication with the python code is done through the serial port. This means t
 
 The python code will then use the comma's as a separator to process the data.
 # Raspberry Pi
-introduction of what is running on the raspberry
-## Python Code
+On the Raspberry Pi runs a python script and a Pure Data sketch. The python script reads the serial port of the Raspberry pi, to which the arduino is connected. The Raspberry pi processes this data and sends it to the Pure Data sketch that controls the audio based on this input.
+## Reading the Serial Monitor
+To open the serial port in the python script the following code is added.
+    ser = serial.Serial(
+        port = os.environ['SERIAL'],
+        baudrate = 9600,
+        write_timeout = 0)
+To tell the python where the port is edit the .env file in the Raspberry Pi. This can be done with the following command: 'nano .env' from the command line inside the Raspberry pi. The add the following line.
+    SERIAL=/dev/TTYUSB0
+The port can also be ttyS0 or ttyAM0
+
 explanation of the code plus reading the serial monitor & sending everything to the hub
 ## Machine learning
 
