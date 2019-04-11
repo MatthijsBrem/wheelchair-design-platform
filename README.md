@@ -51,6 +51,9 @@ Motivation for choice: The selection of the speaker as an actuator for the proje
 - Actuators
 	- LED strip (AdaFruit Neopixel)
 	- Speaker
+- 4x 220 ohm resistor
+-  420 ohm resistor
+- 1000 micro
 
 # Arduino
 quick introduction here
@@ -198,6 +201,6 @@ or links to your project.
 #learning github
 by Tjapko Vermeulen
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbODY4MzY3ODk2LDU2NjUzNzU0LC0xMDczMz
-U4MzkxLC0xMDk3ODUxODY2XX0=
+eyJoaXN0b3J5IjpbMTk5MDM5NjE2Miw4NjgzNjc4OTYsNTY2NT
+M3NTQsLTEwNzMzNTgzOTEsLTEwOTc4NTE4NjZdfQ==
 -->
