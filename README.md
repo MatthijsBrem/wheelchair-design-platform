@@ -84,9 +84,27 @@ The latest version of Pure Data can be found on the Pure Data website (https://p
 
 To install Pure Data on the raspberry, connect to the raspberry and type the following text in the command line:
 
-sudo apt-get install puredata
+    sudo apt-get install puredata
 
-explain what it is plus what we do with it
+Now we take a look at the Pure Data file short.pd:
+
+It is best to open the pure data file on your mac or pc for inspection, as a GUI will open.
+
+The Gui will show a couple of different building blocks. The left side of the patch is for receiving signals from python, this will be explained in the paragraph under this one.
+
+The rest of the patch is dedicated to manipulating the sound of the short audio file that the patch opens (shortloop.wav).
+
+Upon opening the short.pd patch, the loadbang will trigger three elements;
+
+  1. The pitch is set to 0.06 (this corresponds roughly to a normal       
+  playing speed, in case of a different file, this value has to be retuned, the value for the normal playing speed can be read under the 44100/$f1 block.
+
+  2. The audio file is loaded into soundData and cut into samples. If an other file is used, just change the file name. In case it is placed in the same folder as the pd file, no directory path is needed.
+
+  3. The dsp is turned on, this means that audio can be broadcasted by Pure Data.
+
+The right side of the patch is dedicated to playback speed and direction of the sound; both the direction and pitch are controlled based upon the inputs from python. 
+
 
 ## PD & Python
 explain communication between PD & Python
