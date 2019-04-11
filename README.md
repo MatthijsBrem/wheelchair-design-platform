@@ -114,7 +114,21 @@ and the second argument to:
 ### Pressure Sensor
 
 ### communication
+Communication with the python code is done through the serial port. This mean that in arduino the values the sensors measure are printed to the Serial port with an unique identifier in front of them. Then the python code reads the serial port of the raspberry pi and processes it. The example given is from the Pressure sensor. To prevent errors it is advisable to first put everything into one string before printing it.
 
+    String pressureStringBuf;
+    pressureStringBuf += discopressure-5988;
+    pressureStringBuf += ",";
+    pressureStringBuf += String(newton_value_Pressure_1);
+    pressureStringBuf += ",";
+    pressureStringBuf += String(newton_value_Pressure_2);
+    pressureStringBuf += ",";
+    pressureStringBuf += String(newton_value_Pressure_3);
+    pressureStringBuf += ",";
+    pressureStringBuf += String(newton_value_Pressure_4);
+    Serial.println(pressureStringBuf);
+
+The python code will then use the comma's as a separator to proces the data.
 # RaspberryPi
 introduction of what is running on the raspberry
 ## Python Code
