@@ -3,6 +3,7 @@ To improve interaction between children in their breaks at school we designed th
 
 To achieve this we used a Arduino mega, a RaspberryPi and several sensors and actuators which can be found below. The arduino was mainly used for gathering sensor data and actuating the LED's. The RaspberryPi was used for processing the data in python using machine learning.  The processed data was then used as an input for PureData, a graphical programming environment for audio and video processing. Which also ran on the RaspberryPi.
 
+![Poster](C:\Users\natas\Desktop\TU Delft Fall 2018\IoT\wheelchair-design-platform\docs\resources\Poster Group 4 Disco Wheelchair Description.jpg)
 ## Sensors
 The following list of sensors should be implemented for the realization of the “Disco chair” a chair that enables and stimulates physical activity and interaction between children with a wheelchair and children without.
 
@@ -39,7 +40,7 @@ Properties and behaviour: A Speaker is a electroacoustic transducer which conver
 
 Motivation for choice: The selection of the speaker as an actuator for the project is based on the main objective of the project: Making the movements and interaction with the surroundings of the wheelchair expressed in music variation in tone, pitch and effects for the music. The speaker will, therefore, allow releasing the remixed tones based on the data collected.
 
-## All components
+## Other components
 
  - Arduino Mega
  - Raspberry pi
@@ -108,11 +109,10 @@ and the second argument to:
 - APDS9960_LEDBOOST_300PCNT
 
 ### Distance
- Done by matthijs
+
 ### Pressure Sensor
- Done by Natasa
+
 ### communication
-Done by Tjapko
 
 # RaspberryPi
 introduction of what is running on the raspberry
