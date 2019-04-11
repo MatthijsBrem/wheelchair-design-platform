@@ -68,10 +68,33 @@ explain the sound sensor and led actuation here
 ## Arduino Other Sensors
 A function is written for reading each sensor, so our void loop() calls each sensor individually. This is done to keep the code more clean and readable.
 ### gesture sensor
-For the gesture sensor the library [Adafruit_APDS9960](https://github.com/adafruit/Adafruit_APDS9960) is used. To initialize the sensor create a variable Adafruit_APDS9960 `Adafruit_APDS9960 apds;
-`.
+For the gesture sensor the library [Adafruit_APDS9960](https://github.com/adafruit/Adafruit_APDS9960) is used. To initialize the sensor create a variable Adafruit_APDS9960.
 
     Adafruit_APDS9960 apds;
+
+Then in the void setup begin reading the sensor and reading the proximity and gesture.
+
+    if (!apds.begin())
+    { // Begining the work period of the sensor
+    Serial.println("Failed to initialize Sensor! Please check your wiring.");
+    }
+    else
+    Serial.println("Gesture Sensor initialized!");
+    apds.enableProximity(true);
+    apds.enableGesture(true);
+
+In the function that is called from the loop, read the gesture sensor and store that into a uint8_t. To Check if which gesture it is compare it to APDS9960_UP, APDS9960_DOWN, APDS9960_LEFT or APDS9960_RIGHT.
+
+    uint8_t gesture = 0;
+    void gestureSensor()
+    {
+
+      gesture = apds.readGesture(); // Read gesture into the variable
+      if(gesture == APDS9960_UP)
+      {
+        // then sensor reads up
+      }
+
 
 # RaspberryPi
 introduction of what is running on the raspberry
