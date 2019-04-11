@@ -2,9 +2,14 @@
 ![Poster](/docs/resources/Wheelchair_visual_idea.jpg)
 To improve interaction between children in their breaks at school we designed the Discochair. This chair uses different sensors to change the music and lights on the wheelchair. Some are controlled by the wheelchair users and some are controlled by the people surrounding the wheelchair user.
 
-To achieve this we used a Arduino mega, a Raspberry Pi and several sensors and actuators which can be found below. The arduino was mainly used for gathering sensor data and actuating the LED's. The Raspberry Pi was used for processing the data in python using machine learning.  The processed data was then used as an input for PureData, a graphical programming environment for audio and video processing. Which also ran on the Raspberry Pi.
+
+To achieve this we used a Arduino mega, a Raspberry Pi and several sensors and actuators which can be found below. The Arduino was mainly used for gathering sensor data and actuating the LED's. The Raspberry Pi was used for processing the data in python using machine learning.  The processed data was then used as an input for PureData, a graphical programming environment for audio and video processing. Which also ran on the Raspberry Pi.
 
 ![Dataschemetic](/docs/resources/Poster_Group_4_Disco_Wheelchair_Data_Flow.jpg)
+
+
+This project was done for the elective Developing connected products and services for the internet of things. Part of the TU Delft IDE Master track. It uses [this](https://github.com/datacentricdesign/wheelchair-design-platform) repository as basses and other libraries provided by the course.
+
 ## Sensors
 The following list of sensors should be implemented for the realization of the “Disco chair” a chair that enables and stimulates physical activity and interaction between children with a wheelchair and children without.
 
@@ -61,7 +66,7 @@ Motivation for choice: The selection of the speaker as an actuator for the proje
 
 # Arduino
 All our sensors are Attached to the Arduino, the wiring can be seen below. Afterwards we explain how we use the speaker as an input for out LED strip. Then we will explain how we gather data from the sensors and communicate them with the Raspberry Pi.
-The arduino code was written in another editor then the standard arduino editor which is why it is an .cpp file and not a .ino file. However is should work perfectly fine if you copy all the code to an .ino file.
+The Arduino code was written in another editor then the standard Arduino editor which is why it is an .cpp file and not a .ino file. However is should work perfectly fine if you copy all the code to an .ino file.
 ## Wiring Schematic
 ![Wiring](/docs/resources/SchematicWiring.jpg)
 The above image can be used when connecting sensors and actuators to the Arduino Board and Raspberry Pi.
@@ -85,7 +90,7 @@ Then in the void setup begin reading the sensor and reading the proximity and ge
     apds.enableProximity(true);
     apds.enableGesture(true);
 
-In the function that is called from the loop, read the gesture sensor and store that into a uint8_t. To Check if which gesture it is compare it to APDS9960_UP, APDS9960_DOWN, APDS9960_LEFT or APDS9960_RIGHT.
+In the function that is called from the loop, read the gesture sensor and store that into a uint8_t. To Check  which gesture is measured compare it to either APDS9960_UP, APDS9960_DOWN, APDS9960_LEFT or APDS9960_RIGHT.
 
     uint8_t gesture = 0;
     void gestureSensor()
@@ -119,7 +124,7 @@ Four Force Resistive Sensors are used on the seating of the wheelchair. The code
     int deviationPressure = 0;                                // setting the minimum deviation between the measurements
 
 ### communication
-Communication with the python code is done through the serial port. This means that in arduino the values the sensors measure are printed to the Serial port with an unique identifier in front of them. Then the python code reads the serial port of the Raspberry Pi and processes it. The example given is from the Pressure sensor. To prevent errors it is advisable to first put everything into one string before printing it.
+Communication with the python code is done through the serial port. This means that in Arduino, the values the sensors measure are printed to the Serial port with an unique identifier in front of them. Then the python code reads the serial port of the Raspberry Pi and processes it. The example given is from the Pressure sensor. To prevent errors it is advisable to first put everything into one string before printing it.
 
     String pressureStringBuf;
     pressureStringBuf += discopressure-5988;
@@ -135,9 +140,9 @@ Communication with the python code is done through the serial port. This means t
 
 The python code will then use the comma's as a separator to process the data.
 # Raspberry Pi
-On the Raspberry Pi runs a python script and a Pure Data sketch. The python script reads the serial port of the Raspberry pi, to which the arduino is connected. The Raspberry pi processes this data and sends it to the Pure Data sketch that controls the audio based on this input.
+The Raspberry Pi runs a python script and a Pure Data sketch. The python script reads the serial port of the Raspberry pi, to which the Arduino is connected. The Raspberry pi processes this data and sends it to the Pure Data sketch that controls the audio based on this input.
 
-From the arduino its gets the Distance, Gesture and Pressure data. The Distance and Gesture is send to Pure Data directly. The Pressure data is run through a trained model which classifies the data into 6 different Posture of sitting. The posture are : not sitting, sitting normal, leaning forward, leaning backward, leaning left, and leaning right.
+From the Arduino its gets the Distance, Gesture and Pressure data. The Distance and Gesture is send to Pure Data directly. The Pressure data is run through a trained model which classifies the data into 6 different Posture of sitting. The postures are : not sitting, sitting normal, leaning forward, leaning backward, leaning left, and leaning right.
 ## Reading the Serial Monitor
 To open the serial port in the python script the following code is added.
 
@@ -163,9 +168,9 @@ To read from the now opened serial port a function is created. This function che
             property_id = values.pop(0)
             print(property_id)
 
-Then depending on the identifier it is either send to Pure Data (Gesture, And Distance) or it is send to the trained classification model and a prediction is made.
+Then depending on the identifier it is either send to Pure Data (Gesture, and Distance) or it is send to the trained classification model and a prediction is made.
 ## Machine learning
-For classifying the Pressure sensor data into different postures example code provided by the course was used. This consisted of two python scripts, the first one collects data the second on creates and trains a model.
+For classifying the pressure sensor data into different postures, example code provided by the course was used. This consisted of two python scripts, the first one collects data, the second on creates and trains a model.
 
 ### training
 In the first file we defined which classes we wanted, set the label name and data prop for the communication with the provided server. Followed by the amount of samples we want for each class and the delay in-between each class
@@ -181,19 +186,19 @@ In the first file we defined which classes we wanted, set the label name and dat
     # How much time (in seconds) to leave between the collection of each class
     DELAY_BETWEEN_POSTURE = 10
 
-When the code runs it asks you to sit in each posture until it has gather the amount of samples you want and then it goes to the next posture. This needs to run on the raspberry pi which is connected to the Arduino because it read the sensors from the arduino.
+When the code runs it asks you to sit in each posture until it has gathered the amount of samples you want and then it goes to the next posture. This needs to run on the raspberry pi which is connected to the Arduino because it reads the sensors from the Arduino.
 ### classification
-The second file uses the libraries Sk-learn and Pands which can by installed by typing the following command in the command line on the raspberry pi.
+The second file uses the libraries Sk-learn and Pands which can by installed by typing the following command in the command line on the Raspberry Pi.
 
     pip install -U scikit-learn
     pip install pandas
 
-If that does not work which was our case you can also try:
+If that does not work which was our case, you can also try:
 
     sudo apt-get install python3-sklearn
     sudo apt-get install python3-pandas
 
-Having installed the libraries the python code needs to know where to look on the server. This is done by giving it the start and end time in Unix time stamp in your local time and giving it the same label and data that was given to it in the previous file.
+Having installed the libraries the python code needs to know where to look on the server. This is done by giving it the start and end time of when you gathered data in Unix time stamp in your local time and giving it the same label and data that was given to it in the previous file.
 
     START_TS = 1554468600000
     END_TS = 1554468600000 + 780000
@@ -205,7 +210,7 @@ Having installed the libraries the python code needs to know where to look on th
 Running the code should provide a file called "model.pickle". This model is accessed from the python file that constantly runs on the Raspberry Pi .
 
 ### Reading the model
-In the original file were the serial monitor was read the model needs to be imported.
+In the original file where the serial monitor was read the model needs to be imported.
 
     MODEL_FILE_NAME = "model.pickle"
 
@@ -215,14 +220,14 @@ In the original file were the serial monitor was read the model needs to be impo
 
     classes =["No Sitting", "Normal Sitting", "Forward","Backward", "Left", "Right"]
 
-The values That was read from the serial monitor need to be reshaped to use as input for our model.
+The values that were read from the serial monitor need to be reshaped to use as input for our model.
 
     values = [float(x) for x in values]
     values = [values]
     np.array(values).reshape(1, -1)
     predict(values)
 
-As can be seen in the code above the function predict is called. This function used the model to make a prediction based on the data, prints it and sends it to the function that communicates it with Pure data.
+As can be seen in the code above the function predict is called. This function uses the model to make a prediction based on the data, prints it and sends it to the function that communicates it with Pure data.
 
     def predict(values):
         result = neigh.predict(values)
@@ -233,7 +238,7 @@ As can be seen in the code above the function predict is called. This function u
 ### Filtering the data
 The translatePredictionToPD() has a bit of processing to filter out some inaccuracies. We noticed the model could predict the same posture for several seconds but would then suddenly have a one off prediction and then go back to the old prediction. Because this would created undesired behaviour this was filtered
 
-Every prediction is put into an list with all predictions. For each new prediction the script checks if this prediction is the same as the previous three prediction and not the same as the first prediction. This means there are 4 consecutive predictions which are not the current prediction meaning it is not a one off prediction but a new posture. The list is then cleared and the new prediction is added to the list.
+Every prediction is put into an list with all predictions. For each new prediction the script checks if this prediction is the same as the previous three prediction and not the same as the first prediction. This means there are 4 consecutive predictions which are not the current prediction. Meaning it is not a one off prediction but a new posture. The list is then cleared and the new prediction is added to the list.
 
     def translatePredictionToPD(prediction):
         if len(lastpredictions) > 4:
@@ -357,7 +362,7 @@ The Arduino Mega is the micro-controller of the platform. Fixed on the main fram
 it can collect data from sensors (e.g. force sensors, accelerometers), and trigger actions from actuators
 (e.g. LEDs, vibration motors).
 
-More on the Arduino Mega can be found [here](/docs/resources/arduino.md "Arduino resources").
+More on the Arduino Mega can be found [here](/docs/resources/Arduino.md "Arduino resources").
 
 Raspberry Pi is a small computer. It is also fixed to the main frame of the wheelchair,
 where it can:
