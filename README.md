@@ -68,7 +68,10 @@ explain the sound sensor and led actuation here
 ## Arduino Other Sensors
 A function is written for reading each sensor, so our void loop() calls each sensor individually. This is done to keep the code more clean and readable.
 ### gesture sensor
-For the gesture sensor the library [Adafruit_APDS9960](https://github.com/adafruit/Adafruit_APDS9960) is used 
+For the gesture sensor the library [Adafruit_APDS9960](https://github.com/adafruit/Adafruit_APDS9960) is used. To initialize the sensor create a variable Adafruit_APDS9960 `Adafruit_APDS9960 apds;
+`.
+    Adafruit_APDS9960 apds;
+
 # RaspberryPi
 introduction of what is running on the raspberry
 ## Python Code
