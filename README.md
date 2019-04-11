@@ -67,7 +67,8 @@ enter picture plus explanation here
 explain the sound sensor and led actuation here
 ## Arduino Other Sensors
 A function is written for reading each sensor, so our void loop() calls each sensor individually. We did this to keep the code more clean and readable.
-
+### gesture sensor
+this is a test
 # RaspberryPi
 introduction of what is running on the raspberry
 ## Python Code
