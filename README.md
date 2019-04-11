@@ -96,15 +96,15 @@ In the function that is called from the loop, read the gesture sensor and store 
       }
 
 It is good to know the gesture only reads something if it actually measures a gesture. If there is trouble with how reliable the sensor detects your gesture try adding `apds.setLED(APDS9960_LEDDRIVE_12MA, APDS9960_LEDBOOST_100PCNT)` to your void setup(). These values worked best for us but you can change the first argument to one of the following options:
- APDS9960_LEDDRIVE_100MA
-  APDS9960_LEDDRIVE_50MA
-  APDS9960_LEDDRIVE_25MA
-  APDS9960_LEDDRIVE_100MA
+- APDS9960_LEDDRIVE_100MA
+- APDS9960_LEDDRIVE_50MA
+- APDS9960_LEDDRIVE_25MA
+- APDS9960_LEDDRIVE_100MA
 and the second argument to:
-APDS9960_LEDBOOST_100PCNT
-APDS9960_LEDBOOST_150PCNT
-APDS9960_LEDBOOST_200PCNT
-APDS9960_LEDBOOST_300PCNT
+- APDS9960_LEDBOOST_100PCNT
+- APDS9960_LEDBOOST_150PCNT
+- APDS9960_LEDBOOST_200PCNT
+- APDS9960_LEDBOOST_300PCNT
 
 ### Distance
 
