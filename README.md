@@ -39,7 +39,11 @@ Motivation for choice: The selection of the speaker as an actuator for the proje
 
 # Other components
 
- - enter list of other compoments here
+ - Aruidno Mega
+ - Raspberry pi
+ - 2 x Powerbank
+ - Breadboard
+ - 
 
 # Arduino
 quick introduction here
@@ -185,6 +189,6 @@ or links to your project.
 #learning github
 by Tjapko Vermeulen
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE4NjY1ODUyMzMsNTY2NTM3NTQsLTEwNz
-MzNTgzOTEsLTEwOTc4NTE4NjZdfQ==
+eyJoaXN0b3J5IjpbOTUwNTYxMjMzLDU2NjUzNzU0LC0xMDczMz
+U4MzkxLC0xMDk3ODUxODY2XX0=
 -->
