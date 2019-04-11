@@ -1,7 +1,9 @@
 # Disco wheelchair
 To improve interaction between children in their breaks at school we designed the Discochair. This chair uses different sensors to change the music and ligths on the wheelchair. Some are controlled by the wheelchair users and some are controlled by the people surrounding the wheelchair user.
 
-# Sensors
+To achieve this we used a Arduino mega, a RaspberryPi and serveral sensors and acutators which can be found below. The arduino was mainly used for gathering sensor data and actuacting the LED's. The RaspberryPi was used for proceccing the data in python using machine learning.  The proccesed data was then used as an input for PureData, a graphical programming enviroment for audio and video proccecing. Which also ran on the RaspberryPi.
+
+## Sensors
 The following list of sensors should be implemented for the realization of the “Disco chair” a chair that enables and stimulates physical activity and interaction between children with a wheelchair and children without.
 
 - gesture sensor (Adafruit_APDS9960)
@@ -21,7 +23,7 @@ Properties and behaviours: measures the pressure on the seat of the user.
 Motivation of choice: by leaning left, right, forward or backwards we want to control the pitch of the music and the filtering of the music. This introduces new tools for the children to remix the song. Leaning forward means a pitch increase, leaning backwards leads to a lower pitch. Leaning to the right applies a high pass filter to the music and leaning leaning left applies a lowpass filter to the music. Both filters are controlled by a ramp function that is dependent on how long the leaning is performed.
 
 
-# Actuator
+## Actuator
 
 - NeoPixel :
 
@@ -37,7 +39,7 @@ Properties and behaviour: A Speaker is a electroacoustic transducer which conver
 
 Motivation for choice: The selection of the speaker as an actuator for the project is based on the main objective of the project: Making the movements and interaction with the surroundings of the wheelchair expressed in music variation in tone, pitch and effects for the music. The speaker will, therefore, allow releasing the remixed tones based on the data collected.
 
-# Other components
+## Other components
 
  - Aruidno Mega
  - Raspberry pi
@@ -201,6 +203,6 @@ or links to your project.
 #learning github
 by Tjapko Vermeulen
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE3MDE2MjE0OSw4NjgzNjc4OTYsNTY2NT
-M3NTQsLTEwNzMzNTgzOTEsLTEwOTc4NTE4NjZdfQ==
+eyJoaXN0b3J5IjpbLTE2OTg1NzAwOTIsODY4MzY3ODk2LDU2Nj
+UzNzU0LC0xMDczMzU4MzkxLC0xMDk3ODUxODY2XX0=
 -->
