@@ -1,9 +1,7 @@
 # Disco wheelchair
 To improve interaction between children in their breaks at school we designed the Discochair. This chair uses different sensors to change the music and ligths on the wheelchair. Some are controlled by the wheelchair users and some are controlled by the people surrounding the wheelchair user.
 
-To achieve this we used a Arduino mega, a RaspberryPi and serveral sensors and acutators which can be found below. The arduino was mainly used for gathering sensor data and actuacting the LED's. The RaspberryPi was used for proceccing the data in python using machine learning.  The proccesed data was then used as an input for PureData, a graphical programming enviroment for audio and video proccecing. Which also ran on the RaspberryPi.
-
-## Sensors
+# Sensors
 The following list of sensors should be implemented for the realization of the “Disco chair” a chair that enables and stimulates physical activity and interaction between children with a wheelchair and children without.
 
 - gesture sensor (Adafruit_APDS9960)
@@ -11,13 +9,13 @@ properties and behaviours: detects a hand going up, down, left or right.
 Motivation of choice: We want to introduce the movements of remixing a song and use these movements to give the music a backspin effect.
 - proximity sensor (SHARP_2Y0A02 x 3)
 properties and behaviours: The sensor measures if something is in front of him and based on the distance the voltages changes. This can be converted into distance in cm.
-Motivation of choice: When a person approaches between 20 cm and 1 m of distance additional samples will be added the the music
+Motivation of choice: When a person approaches between 20 cm and 1 m of distance a delay will be added to the music. In this way interaction with the user of the wheelchair is promoted, as positioning oneself close to the wheelhair changes the music.
 - pressure sensor x 4 (FSR 406)
 Properties and behaviours: measures the pressure on the seat of the user.
 Motivation of choice: by leaning left, right, forward or backwards we want to control the pitch of the music and the filtering of the music. This introduces new tools for the children to remix the song. Leaning forward means a pitch increase, leaning backwards leads to a lower pitch. Leaning to the right applies a high pass filter to the music and leaning leaning left applies a lowpass filter to the music. Both filters are controlled by a ramp function that is dependent on how long the leaning is performed.
 
 
-## Actuator
+# Actuator
 
 - NeoPixel :
 
@@ -33,7 +31,7 @@ Properties and behaviour: A Speaker is a electroacoustic transducer which conver
 
 Motivation for choice: The selection of the speaker as an actuator for the project is based on the main objective of the project: Making the movements and interaction with the surroundings of the wheelchair expressed in music variation in tone, pitch and effects for the music. The speaker will, therefore, allow releasing the remixed tones based on the data collected.
 
-## Other components
+# Other components
 enter list of other compoments here
 
 # Arduino
@@ -48,11 +46,22 @@ explain all the sensors here plus communication to tthe python code
 # Raspberry
 introduction of what is running on the raspberry
 ## Python Code
-explanation of the code plus reading the serial monitor & sending everything to the hub 
+explanation of the code plus reading the serial monitor & sending everything to the hub
 ## Machine learning
 
-## Pure data 
-explain what it is plus what we do with it 
+## Pure data
+
+Description Pure Data
+
+Pure Data is a visual programming language that can be used to manipulate data (e.g. video data or audio data). The advantage of Pure Data is, that it runs on linux and thus can be run on the raspberry pi.
+
+The latest version of Pure Data can be found on the Pure Data website (https://puredata.info/downloads)
+
+To install Pure Data on the raspberry, connect to the raspberry and type the following text in the command line:
+
+sudo apt-get install puredata
+
+explain what it is plus what we do with it
 
 ## PD & Python
 explain communication between PD & Python
@@ -61,7 +70,7 @@ explain communication between PD & Python
 
 In order to manipulate the music that is being played on the Pi, another programming language is used, which suits itself well to music manipulation. This language is called Pure Data. Pure Data is used as the link between the sensor data that is processed in python on the Pi and the audio output.
 
-After the processing of the sensor data in python, the commands that correspond with the behavior are sent to PureData over a socket, using TCP communication. PureData receives these commands and routes them to the right parts in the code. This then controls the different variables that adjust pitch/play direction/delay. 
+After the processing of the sensor data in python, the commands that correspond with the behavior are sent to PureData over a socket, using TCP communication. PureData receives these commands and routes them to the right parts in the code. This then controls the different variables that adjust pitch/play direction/delay.
 
 # A Noisy wheelchair
 
@@ -169,6 +178,6 @@ or links to your project.
 #learning github
 by Tjapko Vermeulen
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjU0ODkyMDkzLDEwNjU3NjI4MTgsLTEzOT
-g1MDYyMDQsLTEwNzMzNTgzOTEsLTEwOTc4NTE4NjZdfQ==
+eyJoaXN0b3J5IjpbLTEwNzMzNTgzOTEsLTEwOTc4NTE4NjZdfQ
+==
 -->
