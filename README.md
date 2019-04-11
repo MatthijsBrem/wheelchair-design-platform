@@ -91,6 +91,8 @@ explain what it is plus what we do with it
 ## PD & Python
 explain communication between PD & Python
 
+For the communication between Pure Data and python, two programs from the puredata-utils are used; pdsend and pdreceive. These programs are automatically installed upon installing Pure Data
+
 # Sound controlling software
 
 In order to manipulate the music that is being played on the Pi, another programming language is used, which suits itself well to music manipulation. This language is called Pure Data. Pure Data is used as the link between the sensor data that is processed in python on the Pi and the audio output.
@@ -203,6 +205,6 @@ or links to your project.
 #learning github
 by Tjapko Vermeulen
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTY2MzMxMDUwNSw4NjgzNjc4OTYsNTY2NT
-M3NTQsLTEwNzMzNTgzOTEsLTEwOTc4NTE4NjZdfQ==
+eyJoaXN0b3J5IjpbMTY2MzMxMDUwNSw4NjgzNjc4OTYsNTY2NTeyJoaXN0b3J5IjpbMTY2MzMxMDUwNSw4NjgzNjc4OTYsNTY2NTeyJoaXN0b3J5IjpbMTY2MzMxMDUwNSw4NjgzNjc4OTYsNTY2NTeyJoaXN0b3J5IjpbMTY2MzMxMDUwNSw4NjgzNjc4OTYsNTY2NTeyJoaXN0b3J5IjpbMTY2MzMxMDUwNSw4NjgzNjc4OTYsNTY2NTeyJoaXN0b3J5IjpbMTY2MzMxMDUwNSw4NjgzNjc4OTYsNTY2NTeyJoaXN0b3J5IjpbMTY2MzMxMDUwNSw4NjgzNjc4OTYsNTY2NTeyJoaXN0b3J5IjpbMTY2MzMxMDUwNSw4NjgzNjc4OTYsNTY2NTeyJoaXN0b3J5IjpbLTEwNzMzNTgzOTEsLTEwOTc4NTE4NjZdfQ
+==
 -->
