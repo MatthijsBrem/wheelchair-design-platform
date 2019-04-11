@@ -58,15 +58,58 @@ Motivation for choice: The selection of the speaker as an actuator for the proje
 - 1 Farad capacitor
 
 # Arduino
-quick introduction here
+All our sensors are Attached to the Arduino, the wiring can be seen below. Afterwards we explain how we use the speaker as an input for out LED strip. Then we will explain how we gather data from the sensors and communicate them with the Raspberry Pi.
+The arduino code was written in another editor then the standard arduino editor which is why it is an .cpp file and not a .ino file. However is should work perfectly fine if you copy all the code to an .ino file.
 ## Wiring Schematic
 enter picture plus explanation here
 
 ## Arduino Sound & LEDS
 explain the sound sensor and led actuation here
 ## Arduino Other Sensors
-explain all the sensors here plus communication to the python code
-# Raspberry
+A function is written for reading each sensor, so our void loop() calls each sensor individually. This is done to keep the code more clean and readable.
+### gesture sensor
+For the gesture sensor the library [Adafruit_APDS9960](https://github.com/adafruit/Adafruit_APDS9960) is used. To initialize the sensor create a variable Adafruit_APDS9960.
+
+    Adafruit_APDS9960 apds;
+
+Then in the void setup begin reading the sensor and reading the proximity and gesture.
+
+    if (!apds.begin())
+    { // Begining the work period of the sensor
+    Serial.println("Failed to initialize Sensor! Please check your wiring.");
+    }
+    else
+    Serial.println("Gesture Sensor initialized!");
+    apds.enableProximity(true);
+    apds.enableGesture(true);
+
+In the function that is called from the loop, read the gesture sensor and store that into a uint8_t. To Check if which gesture it is compare it to APDS9960_UP, APDS9960_DOWN, APDS9960_LEFT or APDS9960_RIGHT.
+
+    uint8_t gesture = 0;
+    void gestureSensor()
+    {
+
+      gesture = apds.readGesture(); // Read gesture into the variable
+      if(gesture == APDS9960_UP)
+      {
+        // then sensor reads up
+      }
+
+It is good to know the gesture only reads something if it actually measures a gesture. If there is trouble with how reliable the sensor detects your gesture try adding `apds.setLED(APDS9960_LEDDRIVE_12MA, APDS9960_LEDBOOST_100PCNT)` to your void setup(). These values worked best for us but you can change the first argument to one of the following options:
+- APDS9960_LEDDRIVE_100MA
+- APDS9960_LEDDRIVE_50MA
+- APDS9960_LEDDRIVE_25MA
+- APDS9960_LEDDRIVE_100MA
+and the second argument to:
+- APDS9960_LEDBOOST_100PCNT
+- APDS9960_LEDBOOST_150PCNT
+- APDS9960_LEDBOOST_200PCNT
+- APDS9960_LEDBOOST_300PCNT
+
+### Distance
+
+### Pressure Sensor
+# RaspberryPi
 introduction of what is running on the raspberry
 ## Python Code
 explanation of the code plus reading the serial monitor & sending everything to the hub
