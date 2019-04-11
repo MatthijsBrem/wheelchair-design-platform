@@ -39,10 +39,14 @@ quick introduction here
 ## Wiring Schematic
 enter picture plus explanation here
 
-## Arduiono Sound & LEDS
-explain the sound
+## Arduino Sound & LEDS
+explain the sound sensor and led actuation here
 ## Arduino Other Sensors
-
+explain all the sensors here plus communication to tthe python code
+# Raspberry
+introduction of what is running on the raspberry
+## Python Code
+explanation of t
 # Sound controlling software
 
 In order to manipulate the music that is being played on the Pi, another programming language is used, which suits itself well to music manipulation. This language is called Pure Data. Pure Data is used as the link between the sensor data that is processed in python on the Pi and the audio output.
@@ -155,6 +159,5 @@ or links to your project.
 #learning github
 by Tjapko Vermeulen
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE0MjgwNjYyMzYsLTEwOTc4NTE4NjZdfQ
-==
+eyJoaXN0b3J5IjpbLTI1ODk3Mjk0MCwtMTA5Nzg1MTg2Nl19
 -->
