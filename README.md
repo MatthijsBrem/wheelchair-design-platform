@@ -15,7 +15,7 @@ Motivation of choice: We want to introduce the movements of remixing a song and 
 
 properties and behaviours: The sensor measures if something is in front of him and based on the distance the voltages changes. This can be converted into distance in cm.
 
-Motivation of choice: When a person approaches between 20 cm and 1 m of distance a delay will be added to the music. In this way interaction with the user of the wheelchair is promoted, as positioning oneself close to the wheelhair changes the music.
+Motivation of choice: When a person approaches between 20 cm and 1 m of distance additional samples will be added the the music.
 - pressure sensor x 4 (FSR 406)
 
 Properties and behaviours: measures the pressure on the seat of the user.
@@ -203,6 +203,6 @@ or links to your project.
 #learning github
 by Tjapko Vermeulen
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE2OTg1NzAwOTIsODY4MzY3ODk2LDU2Nj
-UzNzU0LC0xMDczMzU4MzkxLC0xMDk3ODUxODY2XX0=
+eyJoaXN0b3J5IjpbMTY2MzMxMDUwNSw4NjgzNjc4OTYsNTY2NT
+M3NTQsLTEwNzMzNTgzOTEsLTEwOTc4NTE4NjZdfQ==
 -->
