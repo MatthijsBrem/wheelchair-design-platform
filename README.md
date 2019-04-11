@@ -15,7 +15,7 @@ Properties and behaviours: measures the pressure on the seat of the user.
 Motivation of choice: by leaning left, right, forward or backwards we want to control the pitch of the music and the filtering of the music. This introduces new tools for the children to remix the song. Leaning forward means a pitch increase, leaning backwards leads to a lower pitch. Leaning to the right applies a high pass filter to the music and leaning leaning left applies a lowpass filter to the music. Both filters are controlled by a ramp function that is dependent on how long the leaning is performed.
 
 
-# Choice of Actuators Disco Wheelchair
+# Actuator
 
 - NeoPixel :
 
@@ -30,6 +30,13 @@ Ideally, the lights of the club would change accordingly to the music remixes of
 Properties and behaviour: A Speaker is a electroacoustic transducer which converts an electrical audio signal into a corresponding sound. The speaker that will be used is a dynamic speaker. Dynamic speakers work when an alternating current electrical audio signal is applied to a coil of wire suspended in a circular gap between the poles of a permanent magnet. The rapid movement back and forth of the coil causes the movement of a diaphragm attached to the coil, this creates sound waves.
 
 Motivation for choice: The selection of the speaker as an actuator for the project is based on the main objective of the project: Making the movements and interaction with the surroundings of the wheelchair expressed in music variation in tone, pitch and effects for the music. The speaker will, therefore, allow releasing the remixed tones based on the data collected.
+
+# Other components
+enter list of other compoments here
+
+# Wiring Schematic
+enter picture plus explanation here
+# ## Heading
 
 # Sound controlling software
 
@@ -143,5 +150,6 @@ or links to your project.
 #learning github
 by Tjapko Vermeulen
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEwOTc4NTE4NjZdfQ==
+eyJoaXN0b3J5IjpbLTE5MzU0NDgwNTAsLTEwOTc4NTE4NjZdfQ
+==
 -->
