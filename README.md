@@ -136,6 +136,7 @@ Communication with the python code is done through the serial port. This means t
 The python code will then use the comma's as a separator to process the data.
 # Raspberry Pi
 On the Raspberry Pi runs a python script and a Pure Data sketch. The python script reads the serial port of the Raspberry pi, to which the arduino is connected. The Raspberry pi processes this data and sends it to the Pure Data sketch that controls the audio based on this input.
+
 From the arduino its gets the Distance, Gesture and Pressure data. The Distance and Gesture is send to Pure Data directly. The Pressure data is run through a trained model which classifies the data into 6 different Posture of sitting. The posture are : not sitting, sitting normal, leaning forward, leaning backward, leaning left, and leaning right.
 ## Reading the Serial Monitor
 To open the serial port in the python script the following code is added.
@@ -164,9 +165,92 @@ To read from the now opened serial port a function is created. This function che
 
 Then depending on the identifier it is either send to Pure Data (Gesture, And Distance) or it is send to the trained classification model and a prediction is made.
 ## Machine learning
+For classifying the Pressure sensor data into different postures example code provided by the course was used. This consisted of two python scripts, the first one collects data the second on creates and trains a model.
 
-    sudo apt-get install puredata
+### training
+In the first file we defined which classes we wanted, set the label name and data prop for the communication with the provided server. Followed by the amount of samples we want for each class and the delay in-between each class
 
+    # Sitting classes
+    CLASSES = ["No Sitting", "Normal Sitting", "Forward",          "Backward", "Left", "Right"]
+
+    LABEL_PROP_NAME = "discoPostures"
+    DATA_PROP_NAME = "discoPressure"
+
+    # How many samples do we want for each class
+    MAX_SAMPLES = 2000
+    # How much time (in seconds) to leave between the collection of each class
+    DELAY_BETWEEN_POSTURE = 10
+
+When the code runs it asks you to sit in each posture until it has gather the amount of samples you want and then it goes to the next posture. This needs to run on the raspberry pi which is connected to the Arduino because it read the sensors from the arduino.
+### classification
+The second file uses the libraries Sk-learn and Pands which can by installed by typing the following command in the command line on the raspberry pi.
+
+    pip install -U scikit-learn
+    pip install pandas
+
+If that does not work which was our case you can also try:
+
+    sudo apt-get install python3-sklearn
+    sudo apt-get install python3-pandas
+
+Having installed the libraries the python code needs to know where to look on the server. This is done by giving it the start and end time in Unix time stamp in your local time and giving it the same label and data that was given to it in the previous file.
+
+    START_TS = 1554468600000
+    END_TS = 1554468600000 + 780000
+
+    # Property ID
+    PROPERTY_DATA = "discoPressure"
+    PROPERTY_LABEL = "discoPostures"
+
+Running the code should provide a file called "model.pickle". This model is accessed from the python file that constantly runs on the Raspberry Pi .
+
+### Reading the model
+In the original file were the serial monitor was read the model needs to be imported.
+
+    MODEL_FILE_NAME = "model.pickle"
+
+    #load classifier
+    with open("model.pickle", 'rb') as file:
+      neigh = pickle.load(file)
+
+    classes =["No Sitting", "Normal Sitting", "Forward","Backward", "Left", "Right"]
+
+The values That was read from the serial monitor need to be reshaped to use as input for our model.
+
+    values = [float(x) for x in values]
+    values = [values]
+    np.array(values).reshape(1, -1)
+    predict(values)
+
+As can be seen in the code above the function predict is called. This function used the model to make a prediction based on the data, prints it and sends it to the function that communicates it with Pure data.
+
+    def predict(values):
+        result = neigh.predict(values)
+        print(classes[result[0]])
+    translatePredictionToPD(result)
+
+
+### Filtering the data
+The translatePredictionToPD() has a bit of processing to filter out some inaccuracies. We noticed the model could predict the same posture for several seconds but would then suddenly have a one off prediction and then go back to the old prediction. Because this would created undesired behaviour this was filtered
+
+Every prediction is put into an list with all predictions. For each new prediction the script checks if this prediction is the same as the previous three prediction and not the same as the first prediction. This means there are 4 consecutive predictions which are not the current prediction meaning it is not a one off prediction but a new posture. The list is then cleared and the new prediction is added to the list.
+
+    def translatePredictionToPD(prediction):
+        if len(lastpredictions) > 4:
+            if lastpredictions[-1] == prediction:
+                if lastpredictions[-2] == prediction:
+                    if lastpredictions[-3] == prediction:
+                        if lastpredictions[0] != prediction:
+                            if lastpredictions[0] == 0:
+                                music_on = "0 1 ;"
+                                s.send(music_on.encode('utf-8'))
+                                print("turning the music on")
+                            lastpredictions.clear()
+                            print("Time to clear the list")
+
+    lastpredictions.append(prediction[0])
+
+There is also a check to see if the previous prediction was not sitting because this means that the music needs to be turned on no matter the current predicted posture. Inside this check you get a preview of how the communication with pure data works, more about this in the next chapter.
 #    Pure data
 
 Pure Data is a visual programming language that can be used to manipulate data (e.g. video data or audio data). The advantage of Pure Data is, that it runs on linux and thus can be run on the raspberry pi.
