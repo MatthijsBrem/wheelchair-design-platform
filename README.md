@@ -58,15 +58,17 @@ Motivation for choice: The selection of the speaker as an actuator for the proje
 - 1 Farad capacitor
 
 # Arduino
-quick introduction here
+All our sensors are Attached to the Arduino, the wiring can be seen below. Afterwards we explain how we use the speaker as an input for out LED strip. Then we will explain how we gather data from the sensors and communicate them with the Raspberry Pi.
+The arduino code was written in another editor then the standard arduino editor which is why it is an .cpp file and not a .ino file. However is should work perfectly fine if you copy all the code to an .ino file.
 ## Wiring Schematic
 enter picture plus explanation here
 
 ## Arduino Sound & LEDS
 explain the sound sensor and led actuation here
 ## Arduino Other Sensors
-explain all the sensors here plus communication to the python code
-# Raspberry
+A function is written for reading each sensor, so our void loop() calls each sensor individually. We did this to keep the code more clean and readable.
+
+# RaspberryPi
 introduction of what is running on the raspberry
 ## Python Code
 explanation of the code plus reading the serial monitor & sending everything to the hub
