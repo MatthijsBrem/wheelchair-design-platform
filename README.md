@@ -64,7 +64,7 @@ All our sensors are Attached to the Arduino, the wiring can be seen below. After
 The arduino code was written in another editor then the standard arduino editor which is why it is an .cpp file and not a .ino file. However is should work perfectly fine if you copy all the code to an .ino file.
 ## Wiring Schematic
 ![Wiring](/docs/resources/SchematicWiring.jpg)
-The above image can be used when connecting sensors and actuators to the Arduino Board and Raspberry Pi. 
+The above image can be used when connecting sensors and actuators to the Arduino Board and Raspberry Pi.
 ## Arduino Sound & LEDS
 explain the sound sensor and led actuation here
 ## Arduino Other Sensors
@@ -112,6 +112,11 @@ and the second argument to:
 ### Distance
 
 ### Pressure Sensor
+Four Force Resistive Sensors are used on the seating of the wheelchair. The code for each of them follows the following structure.
+
+    #define PRESSURE_PIN1 A1                                  // Setting up pin to receive voltage PRESSURE 1
+    int value_Pressure_1, prev_value_Pressure_1 = -10000;     // int values (read from analog port, both the current and the previous)
+    int deviationPressure = 0;                                // setting the minimum deviation between the measurements
 
 ### communication
 Communication with the python code is done through the serial port. This means that in arduino the values the sensors measure are printed to the Serial port with an unique identifier in front of them. Then the python code reads the serial port of the Raspberry Pi and processes it. The example given is from the Pressure sensor. To prevent errors it is advisable to first put everything into one string before printing it.
