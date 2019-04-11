@@ -146,13 +146,37 @@ Upon opening the short.pd patch, the loadbang will trigger three elements;
 
   3. The dsp is turned on, this means that audio can be broadcasted by Pure Data.
 
-The right side of the patch is dedicated to playback speed and direction of the sound; both the direction and pitch are controlled based upon the inputs from python. 
+The right side of the patch is dedicated to playback speed and direction of the sound; both the direction and pitch are controlled based upon the inputs from python.
+
+After the pitch has been set, the sound is then again compiled from the samples, hereafter the effects are applied to the sound.
+
+
 
 
 ## PD & Python
 explain communication between PD & Python
 
-For the communication between Pure Data and python, two programs from the puredata-utils are used; pdsend and pdreceive. These programs are automatically installed upon installing Pure Data
+For the communication between Pure Data and python, two programs from the puredata-utils are used; pdsend and pdreceive. These programs are automatically installed upon installing Pure Data.
+
+For the communication the sockets are used, so start the code with  
+
+    import socket
+
+After this the socket is initialized and the port number is set. Make sure the netreceive in Pure Data is set to the same port number.
+
+    s = socket.socket()
+    host = socket.gethostname()
+    port = 3000
+
+Now the connection can be established
+
+    s.connect((host,port))
+
+Commands are now send using:
+
+    s.send(command.encode('utf-8'))
+
+where command is built up like: command= "PDport " + "signal" + " ;"
 
 # Sound controlling software
 
