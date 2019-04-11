@@ -136,8 +136,12 @@ Communication with the python code is done through the serial port. This means t
 The python code will then use the comma's as a separator to process the data.
 # Raspberry Pi
 On the Raspberry Pi runs a python script and a Pure Data sketch. The python script reads the serial port of the Raspberry pi, to which the arduino is connected. The Raspberry pi processes this data and sends it to the Pure Data sketch that controls the audio based on this input.
+From the arduino its gets the Distance, Gesture and Pressure data. The Distance and Gesture is send to Pure Data directly. The Pressure data is run through a trained model which classifies the data into 6 different Posture of sitting. The posture are : not sitting, sitting normal, leaning forward, leaning backward, leaning left, and leaning right.
 ## Reading the Serial Monitor
 To open the serial port in the python script the following code is added.
+
+    import os                       
+
     ser = serial.Serial(
         port = os.environ['SERIAL'],
         baudrate = 9600,
@@ -148,7 +152,17 @@ To tell the python where the port is edit the .env file in the Raspberry Pi. Thi
 
 The port can also be ttyS0 or ttyAM0
 
-explanation of the code plus reading the serial monitor & sending everything to the hub
+To read from the now opened serial port a function is created. This function checks if there are bites in the line, then it decodes it into a string using utf-8. From there the values are split using the ",". The first value is the unique identifier which is the first value that is put into the string on the Arduino.
+
+    def serial_Reader():
+        line_bytes = ser.readline()
+        if(len(line_bytes)) > 0:
+            line = line_bytes.decode('utf-8')
+            values = line.split(',')
+            property_id = values.pop(0)
+            print(property_id)
+
+Then depending on the identifier it is either send to Pure Data (Gesture, And Distance) or it is send to the trained classification model and a prediction is made.
 ## Machine learning
 
     sudo apt-get install puredata
