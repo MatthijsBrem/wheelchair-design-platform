@@ -49,7 +49,7 @@ Motivation for choice: The selection of the speaker as an actuator for the proje
 	  - 4 xpressure sensor (FSR 406)
 	  - Microphone (sparkfun sound detector)
 - Actuators
-	- LED strip (Neopixel rgbw
+	- LED strip (AdaFruit Neopixel)
 	- Speaker
 
 # Arduino
@@ -66,6 +66,8 @@ introduction of what is running on the raspberry
 ## Python Code
 explanation of the code plus reading the serial monitor & sending everything to the hub
 ## Machine learning
+
+    sudo apt-get install puredata
 
 ## Pure data
 
@@ -196,6 +198,6 @@ or links to your project.
 #learning github
 by Tjapko Vermeulen
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMzI2OTM4NzczLDU2NjUzNzU0LC0xMDczMz
+eyJoaXN0b3J5IjpbODY4MzY3ODk2LDU2NjUzNzU0LC0xMDczMz
 U4MzkxLC0xMDk3ODUxODY2XX0=
 -->
