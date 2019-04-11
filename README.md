@@ -39,7 +39,7 @@ Properties and behaviour: A Speaker is a electroacoustic transducer which conver
 
 Motivation for choice: The selection of the speaker as an actuator for the project is based on the main objective of the project: Making the movements and interaction with the surroundings of the wheelchair expressed in music variation in tone, pitch and effects for the music. The speaker will, therefore, allow releasing the remixed tones based on the data collected.
 
-## Other components
+## All components
 
  - Arduino Mega
  - Raspberry pi
@@ -108,10 +108,11 @@ and the second argument to:
 - APDS9960_LEDBOOST_300PCNT
 
 ### Distance
-
+ Done by matthijs
 ### Pressure Sensor
-
+ Done by Natasa
 ### communication
+Done by Tjapko
 
 # RaspberryPi
 introduction of what is running on the raspberry
