@@ -117,6 +117,7 @@ The void loop section is where the code gets more interesting. Initially the vol
 The following line sets which level to consider as noise. In our case it was set to 15
 
      if (volume < avgVol / 2.0 || volume < 15) volume = 0;
+
 the code overwrites the information once the current volume is larger than the loudest value recorded
 
      if (volume > maxVol) maxVol = volume;
