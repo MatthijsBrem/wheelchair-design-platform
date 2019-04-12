@@ -100,6 +100,7 @@ In the Globals the values used to make comparisons of the recordings of the Soun
 
     bool bump = false;     //Used to pass if there was a "bump" in volume
 In the void setup the reading is set
+
     void setup() {    //Like it's named, this gets ran before any other function.
 
     Serial.begin(9600); //Sets data rate for serial data transmission.
@@ -107,30 +108,42 @@ In the void setup the reading is set
     strand.begin(); //Initialize the LED strand object.
     strand.show();  //Show a blank strand, just to get the LED's ready for use.  
     }
+
 The void loop section is where the code gets more interesting. Initially the volume of the music is red.
+
     volume = analogRead(AUDIO_PIN);       //Record the volume level from the sound detector
     avgVol = (avgVol + volume) / 2.0;     //Take our "average" of volumes.
+
 The following line sets which level to consider as noise. In our case it was set to 15
+
      if (volume < avgVol / 2.0 || volume < 15) volume = 0;
 the code overwrites the information once the current volume is larger than the loudest value recorded
+
      if (volume > maxVol) maxVol = volume;
+
 The gradient is reset everytime a palette gets completed
+
      if (gradient > 1529) {
          gradient %= 1530;
          maxVol = (maxVol + volume) / 2.0;
        }
 
 If there is a decent change in volume since the last pass, we average it into "avgBump" and if there is a notable change in volume, trigger a "bump"
+
        if (volume - last > avgVol - last && avgVol - last > 0) avgBump = (avgBump + (volume - last)) / 2.0;
 
        bump = (volume - last) > avgBump;
+
 The visual Pulse is then displayed and the gradient incremented. Afterwards, the current volume is recorded for the next steps and paces the visuals to make them more enjoyable
+
        Pulse();  
        gradient++;   
        last = volume; //Records current volume for next pass
        delay(30);
       }
-In the following section the finctions of graphical display of the LEDs are set
+
+In the following section the functions of graphical display of the LEDs are set
+
     void Pulse() {
 
     fade(0.75);   //Listed below, this function simply dims the colors a little bit each pass of loop()
