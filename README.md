@@ -160,7 +160,7 @@ The void loop for the pressure sensors sets the sensibility of the sensors by co
   pressureStringBuf += String(newton_value_Pressure_4);
   Serial.println(pressureStringBuf);
 
-As with the rest of the sensors the loop is called in the end in order to mergre informstions in one file
+As with the rest of the sensors the loop is called in the end in order to merge informstions in one file
 
 ### communication
 Communication with the python code is done through the serial port. This means that in Arduino, the values the sensors measure are printed to the Serial port with an unique identifier in front of them. Then the python code reads the serial port of the Raspberry Pi and processes it. The example given is from the Pressure sensor. To prevent errors it is advisable to first put everything into one string before printing it.
