@@ -525,3 +525,9 @@ where command is built up like:
 In order to manipulate the music that is being played on the Pi, another programming language is used, which suits itself well to music manipulation. This language is called Pure Data. Pure Data is used as the link between the sensor data that is processed in python on the Pi and the audio output.
 
 After the processing of the sensor data in python, the commands that correspond with the behavior are sent to PureData over a socket, using TCP communication. PureData receives these commands and routes them to the right parts in the code. This then controls the different variables that adjust pitch/play direction/delay.
+
+#Evaluation and further development
+The project has satisfied some of the initial aims by providing a functional prototype for a wheelchair enabled for musical interaction of its users.
+The sensitivity of the gesture sensor could be enhaced for a better precision.
+The project can be further developped in order to integrate other sensors such as the distance sensor on the back of the wheelchair. This would need more time in order to classify the readings of the distance sensor. Furthermore the LED actuation could be also linked to the Machine learning instead of being regulated with the Arduino Mega. In this way the change of colour or behaviour could be linked to a specific position of the user.
+An other element of possible improvement is having a different setting of the sound from the speaker for a louder output.
