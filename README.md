@@ -1,7 +1,7 @@
 # Disco wheelchair
 ![Poster](/docs/resources/Wheelchair_visual_idea.jpg)
 To improve interaction between children in their breaks at school we designed the Discochair. This chair uses different sensors to change the music and lights on the wheelchair. Some are controlled by the wheelchair users and some are controlled by the people surrounding the wheelchair user.
-
+A video explanation can be seen [here](https://youtu.be/QbcIBNa1BgE)
 
 To achieve this we used a Arduino mega, a Raspberry Pi and several sensors and actuators which can be found below. The Arduino was mainly used for gathering sensor data and actuating the LED's. The Raspberry Pi was used for processing the data in python using machine learning.  The processed data was then used as an input for PureData, a graphical programming environment for audio and video processing. Which also ran on the Raspberry Pi.
 
