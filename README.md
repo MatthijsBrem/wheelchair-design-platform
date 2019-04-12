@@ -241,7 +241,7 @@ In the following section the functions of graphical display of the LEDs are set
     if (i > 509) return strand.Color(0, 255, (i % 255));          //green -> aqua
     if (i > 255) return strand.Color(255 - (i % 255), 255, 0);    //yellow -> green
     return strand.Color(255, i, 0);                               //red -> yellow
-}
+    }
 ## Arduino Other Sensors
 A function is written for reading each sensor, so our void loop() calls each sensor individually. This is done to keep the code more clean and readable.
 ### gesture sensor
