@@ -72,16 +72,21 @@ The Arduino code was written in another editor then the standard Arduino editor 
 The above image can be used when connecting sensors and actuators to the Arduino Board and Raspberry Pi.
 ## Arduino Sound & LEDS
 In order to be able to use the Neoprixel LED Strip the Adafruit NeoPixel library [Adafruit_NeoPixel.h](https://github.com/adafruit/Adafruit_NeoPixel) has to be used and included.
+
     #include <Adafruit_NeoPixel.h>  //Library to simplify interacting with the LED strand
     #ifdef __AVR__
     #include <avr/power.h>   //Includes the library for power reduction registers if your chip supports them.
     #endif
+
 The following step is to define constants
+
     #define LED_PIN   6  //Pin for the pixel strand. Does not have to be analog.
     #define LED_TOTAL 80  //Number of LEDs in your strand.
     #define LED_HALF  LED_TOTAL/2 Sets the starting point from which the leds are going to turn on.
     #define AUDIO_PIN A5  //Pin for the envelope of the sound detector
+
 In the Globals the values used to make comparisons of the recordings of the Sound detector are stated:
+
     Adafruit_NeoPixel strand = Adafruit_NeoPixel(LED_TOTAL, LED_PIN, NEO_GRB + NEO_KHZ800);  //LED strand objetc
 
     uint16_t gradient = 0; //Used to iterate and loop through each color palette gradually
