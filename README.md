@@ -531,7 +531,7 @@ The routing in Pure Data is set in such a way, that based on the Pdport value th
 
 In the python code, the control of the actuators is defined. That is done in the following piece of code:
 
-'''if lastpredictions[0] == 0:
+```if lastpredictions[0] == 0:
     music_off = "1 1 ;"
     s.send(music_off.encode('utf-8'))
     print("turning the music off")
@@ -579,7 +579,7 @@ elif lastpredictions[0] == 5:
         highpass = 5000
     highpass_str = "3 " + str(highpass) + " ;"
     s.send(highpass_str.encode('utf-8'))
-    '''
+    ```
 
 
 
