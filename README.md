@@ -633,7 +633,7 @@ elif(property_id == GestureID):
             s.send(delay_str.encode('utf-8'))
 ```
 
-#Evaluation and further development
+# Evaluation and further development
 
 The project has satisfied some of the initial aims by providing a functional prototype for a wheelchair enabled for musical interaction of its users.
 The sensitivity of the gesture sensor could be enhanced for a better precision.
