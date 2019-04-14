@@ -303,7 +303,7 @@ The data of the Voltage measured by the FSRs are converted in Newtons
     }
 
 The void loop for the pressure sensors sets the sensibility of the sensors by comparing the measured value to the previous ones
-
+```
 {  value_Pressure_1 = analogRead(PRESSURE_PIN1);
   if (value_Pressure_1 >= (prev_value_Pressure_1 - deviationPressure) && value_Pressure_1 <= (prev_value_Pressure_1 + deviationPressure))
     return;
@@ -329,6 +329,7 @@ The void loop for the pressure sensors sets the sensibility of the sensors by co
   pressureStringBuf += ",";
   pressureStringBuf += String(newton_value_Pressure_4);
   Serial.println(pressureStringBuf);
+  ```
 
 As with the rest of the sensors the loop is called in the end in order to merge informstions in one file
 
