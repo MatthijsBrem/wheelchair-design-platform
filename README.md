@@ -601,7 +601,7 @@ elif lastpredictions[0] == 5:
         highpass = 5000
     highpass_str = "3 " + str(highpass) + " ;"
     s.send(highpass_str.encode('utf-8'))
-    ```
+```
 
 Then finally, the gesture sensor inputs are used to controll the reverse (reverse on for a right to left gesture and reverse off for left to right gesture) & for adding a delay effect to the music (delay on for gesture upwards and off for gesture downwards)
 
@@ -631,7 +631,7 @@ elif(property_id == GestureID):
         elif values[0] == 8:
             deylay_str = "5 0.6 ;"
             s.send(delay_str.encode('utf-8'))
-            ```
+```
 
 #Evaluation and further development
 
