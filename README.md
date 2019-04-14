@@ -633,6 +633,7 @@ elif(property_id == GestureID):
             ```
 
 #Evaluation and further development
+
 The project has satisfied some of the initial aims by providing a functional prototype for a wheelchair enabled for musical interaction of its users.
 The sensitivity of the gesture sensor could be enhanced for a better precision.
 The project can be further developped in order to integrate other sensors such as the distance sensor on the back of the wheelchair. The idea would then also be to include other loops apart from shortloop.wav and use a sampler in Pure Data. The sensor inputs could then also be used to build a song from different loop elements and layer them over each other. This would need more time in order to classify the readings of the distance sensor & for implementing a sampler into the Pure Data code. Furthermore the LED actuation could be also linked to the Machine learning instead of being regulated with the Arduino Mega. In this way the change of colour or behaviour could be linked to a specific position of the user.
