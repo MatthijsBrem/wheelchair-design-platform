@@ -477,7 +477,9 @@ To install Pure Data on the raspberry, connect to the raspberry and type the fol
 
 Now we take a look at the Pure Data file short.pd:
 
-It is best to open the pure data file on your mac or pc for inspection, as a GUI will open. The Gui will show a couple of different building blocks. The left side of the patch is for receiving signals from python, this will be explained in the paragraph under this one.
+![Pure Data Overview](/docs/resources/PureD.png)
+
+It is best to open the pure data file on your mac or pc for inspection, as a GUI will open. The Gui will show a couple of different building blocks, like te picture above. The left side of the patch is for receiving signals from python, this will be explained in the paragraph under this one.
 
 The rest of the patch is dedicated to manipulating the sound of the short audio file that the patch opens (shortloop.wav).
 
@@ -495,6 +497,10 @@ Upon opening the short.pd patch, the loadbang will trigger three elements;
 The right side of the patch is dedicated to playback speed and direction of the sound; both the direction and pitch are controlled based upon the inputs from python.
 
 After the pitch has been set, the sound is then again compiled from the samples, hereafter the effects are applied to the sound.
+
+With the input data of the sensors, several audio effects can be controlled within Pure Data. In this example, a highpass and low pass filter are present, a delay is present, the pitch can be controlled within a range and the audio file can be played in reverse.  
+
+
 
 # PD & Python communication
 
@@ -519,6 +525,8 @@ Commands are now send using:
 where command is built up like:
 
     command= “PDport “ + “signal” + “ ;”
+
+The routing in Pure Data is set in such a way, that based on the Pdport value that is sent in the message, the signal is routed to the right input (either controlling the frequency of the filters, the tempo or the reverse/stop/play setting)
 
 # Sound controlling software
 
