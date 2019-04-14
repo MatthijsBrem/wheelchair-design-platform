@@ -467,7 +467,9 @@ Every prediction is put into an list with all predictions. For each new predicti
 There is also a check to see if the previous prediction was not sitting because this means that the music needs to be turned on no matter the current predicted posture. Inside this check you get a preview of how the communication with pure data works, more about this in the next chapter.
 #    Pure data
 
-Pure Data is a visual programming language that can be used to manipulate data (e.g. video data or audio data). The advantage of Pure Data is, that it runs on linux and thus can be run on the raspberry pi.
+In order to manipulate the music that is being played on the Pi, another programming language is used, which suits itself well to music manipulation. This language is called Pure Data. Pure Data is used as the link between the sensor data that is processed in python on the Pi and the audio output.
+
+After the processing of the sensor data in python, the commands that correspond with the behavior are sent to PureData over a socket, using TCP communication. PureData receives these commands and routes them to the right parts in the code. This then controls the different variables that adjust pitch/play direction/delay. The advantage of Pure Data is, that it runs on linux and thus can be run on the raspberry pi.
 
 The latest version of Pure Data can be found on the Pure Data website (https://puredata.info/downloads)
 
@@ -485,26 +487,25 @@ The rest of the patch is dedicated to manipulating the sound of the short audio 
 
 Upon opening the short.pd patch, the loadbang will trigger three elements;
 
-1.  The pitch is set to 0.06 (this corresponds roughly to a normal
-    playing speed, in case of a different file, this value has to be retuned, the value for the normal playing speed can be read under the 44100/$f1 block.
+1.  The pitch is set to 0.06 (this corresponds roughly to a normal playing speed, in case of a different file, this value has to be retuned, the value for the normal playing speed can be read under the 44100/$f1 block.
 
-2.  The audio file is loaded into soundData and cut into samples. If an      
-    other file is used, just change the file name. In case it is placed in the same folder as the pd file, no directory path is needed.
+2.  The audio file is loaded into soundData and cut into samples. If an other file is used, just change the file name. In case it is placed in the same folder as the pd file, no directory path is needed.
 
-3.  The dsp is turned on, this means that audio can be broadcasted by Pure
-    Data.
+3.  The dsp is turned on, this means that audio is send to the soundcard by Pure Data.
 
 The right side of the patch is dedicated to playback speed and direction of the sound; both the direction and pitch are controlled based upon the inputs from python.
 
 After the pitch has been set, the sound is then again compiled from the samples, hereafter the effects are applied to the sound.
 
-With the input data of the sensors, several audio effects can be controlled within Pure Data. In this example, a highpass and low pass filter are present, a delay is present, the pitch can be controlled within a range and the audio file can be played in reverse.  
+With the input data of the sensors, several audio effects can be controlled within Pure Data. In this example, a highpass and low pass filter are present, a delay is present, the pitch can be controlled within a range and the audio file can be played in reverse. In the python code that we are running at the moment, the delay is omitted, as the sensor data from the distance sensor was not robust enough. This effect can however easily be incorporated when robust sensor data is available. The other effects are currently in use. The control logic is explained in the next paragraph.
 
 
 
 # PD & Python communication
 
-For the communication the sockets are used, so start the code with
+For the communication between pure data and python sockets are used. The complete code can be found in the python script reading_from_terminal.py
+
+To enable the sockets, the code starts with
 
     import socket
 
@@ -528,11 +529,63 @@ where command is built up like:
 
 The routing in Pure Data is set in such a way, that based on the Pdport value that is sent in the message, the signal is routed to the right input (either controlling the frequency of the filters, the tempo or the reverse/stop/play setting)
 
-# Sound controlling software
+In the python code, the control of the actuators is defined. That is done in the following piece of code:
 
-In order to manipulate the music that is being played on the Pi, another programming language is used, which suits itself well to music manipulation. This language is called Pure Data. Pure Data is used as the link between the sensor data that is processed in python on the Pi and the audio output.
+'''if lastpredictions[0] == 0:
+    music_off = "1 1 ;"
+    s.send(music_off.encode('utf-8'))
+    print("turning the music off")
+elif lastpredictions[0] == 1:
+    #music_on = "0 1 ;"
+    #s.send(music_on.encode('utf-8'))
+    #print("turning the music on")
+    if lowpass != 20000:
+        lowpass = 20000
+        lowpass_normal = "4 20000 ;"
+        s.send(lowpass_normal.encode('utf-8'))
+    if highpass != 20:
+        highpass = 20
+        highpass_normal = "3 20 ;"
+        s.send(highpass_normal.encode('utf-8'))
+elif lastpredictions[0] == 2:
+    if currentPitch < 0.08:
+        currentPitch += 0.000428
+    else:
+        currentPitch = 0.08
+    pitch_decrease = '6 ' + str(currentPitch) + " ;"
+    s.send(pitch_decrease.encode('utf-8'))
+    print("the pitch that is send is")
+    print(currentPitch)
+elif lastpredictions[0] == 3:
+    if currentPitch > 0.044:
+        currentPitch -= 0.000428
+    else:
+        currentPitch = 0.044
+    pitch_decrease = '6 ' + str(currentPitch) + " ;"
+    s.send(pitch_decrease.encode('utf-8'))
+    print("the pitch that is send is")
+    print(currentPitch)
+elif lastpredictions[0] == 4:
+    if lowpass > 200:
+        lowpass -= 250
+    else:
+        lowpass = 200
+    lowpass_str = "4 " + str(lowpass) + " ;"
+    s.send(lowpass_str.encode('utf-8'))
+elif lastpredictions[0] == 5:
+    if highpass < 5000:
+        highpass += 25
+    else:
+        highpass = 5000
+    highpass_str = "3 " + str(highpass) + " ;"
+    s.send(highpass_str.encode('utf-8'))
+    '''
 
-After the processing of the sensor data in python, the commands that correspond with the behavior are sent to PureData over a socket, using TCP communication. PureData receives these commands and routes them to the right parts in the code. This then controls the different variables that adjust pitch/play direction/delay.
+
+
+
+
+
 
 #Evaluation and further development
 The project has satisfied some of the initial aims by providing a functional prototype for a wheelchair enabled for musical interaction of its users.
