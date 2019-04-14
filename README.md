@@ -497,7 +497,7 @@ The right side of the patch is dedicated to playback speed and direction of the 
 
 After the pitch has been set, the sound is then again compiled from the samples, hereafter the effects are applied to the sound.
 
-With the input data of the sensors, several audio effects can be controlled within Pure Data. In this example, a highpass and low pass filter are present, a delay is present, the pitch can be controlled within a range and the audio file can be played in reverse. In the python code that we are running at the moment, the delay is omitted, as the sensor data from the distance sensor was not robust enough. This effect can however easily be incorporated when robust sensor data is available. The other effects are currently in use. The control logic is explained in the next paragraph.
+With the input data of the sensors, several audio effects can be controlled within Pure Data. In this example, a highpass and low pass filter are present, a delay is present, the pitch can be controlled within a range and the audio file can be played in reverse. Furthermore the delay effect is also controlled by the gesture sensor data. An upward gesture activates the delay and a downward gesture deactivates the delay.
 
 
 
@@ -529,16 +529,28 @@ where command is built up like:
 
 The routing in Pure Data is set in such a way, that based on the Pdport value that is sent in the message, the signal is routed to the right input (either controlling the frequency of the filters, the tempo or the reverse/stop/play setting)
 
-In the python code, the control of the actuators is defined. That is done in the following piece of code:
+In the python code, the control of the actuators is defined. That is done in the following pieces of code, which is part of the reading_from_terminal.py code:
 
-```if lastpredictions[0] == 0:
+```
+if lastpredictions[0] == 0:
     music_off = "1 1 ;"
     s.send(music_off.encode('utf-8'))
     print("turning the music off")
+```
+
+Not sitting turns the music off
+
+```
 elif lastpredictions[0] == 1:
     #music_on = "0 1 ;"
     #s.send(music_on.encode('utf-8'))
     #print("turning the music on")
+```
+Sitting turns the music on
+
+Next are the filters. The filters are reset if no prediction is made of either sitting to the left or sitting to the right.
+
+```
     if lowpass != 20000:
         lowpass = 20000
         lowpass_normal = "4 20000 ;"
@@ -547,6 +559,11 @@ elif lastpredictions[0] == 1:
         highpass = 20
         highpass_normal = "3 20 ;"
         s.send(highpass_normal.encode('utf-8'))
+```
+
+Next the pitch is ontrolled by sitting forward (prediction ==2) or sitting backwards (prediction == 3) The pitch is increased for sitting forward and decreased for sitting backwards
+
+```
 elif lastpredictions[0] == 2:
     if currentPitch < 0.08:
         currentPitch += 0.000428
@@ -565,6 +582,10 @@ elif lastpredictions[0] == 3:
     s.send(pitch_decrease.encode('utf-8'))
     print("the pitch that is send is")
     print(currentPitch)
+```
+
+The lowpass filter frequency is lowered for sitting to the left (prediction == 4) and the highpass filter frequency is increased for sitting to the right (prediction == 5)
+```
 elif lastpredictions[0] == 4:
     if lowpass > 200:
         lowpass -= 250
@@ -581,14 +602,38 @@ elif lastpredictions[0] == 5:
     s.send(highpass_str.encode('utf-8'))
     ```
 
+Then finally, the gesture sensor inputs are used to controll the reverse (reverse on for a right to left gesture and reverse off for left to right gesture) & for adding a delay effect to the music (delay on for gesture upwards and off for gesture downwards)
 
+```
+elif(property_id == GestureID):
+        prop = my_thing.properties[property_id]
 
+        if prop is not None:
+            prop.update_values([float(x) for x in values])
+        else:
+            print('Warning: unknown property ' + property_id)
 
-
-
+        print("the gesture is as follows: ")
+        values = [float(x) for x in values]
+        print (values[0])
+        if values[0] == 4:
+            reverse_str = "2 1 ;"
+            s.send(reverse_str.encode('utf-8'))
+            print("enabling reverse")
+        elif values[0] == 6:
+            reverse_str = "0 1 ;"
+            s.send(reverse_str.encode('utf-8'))
+            print("disableing reverse")
+        elif values[0] == 2:
+            delay_str = "5 0 ;"
+            s.send(delay_str.encode('utf-8'))
+        elif values[0] == 8:
+            deylay_str = "5 0.6 ;"
+            s.send(delay_str.encode('utf-8'))
+            ```
 
 #Evaluation and further development
 The project has satisfied some of the initial aims by providing a functional prototype for a wheelchair enabled for musical interaction of its users.
-The sensitivity of the gesture sensor could be enhaced for a better precision.
-The project can be further developped in order to integrate other sensors such as the distance sensor on the back of the wheelchair. This would need more time in order to classify the readings of the distance sensor. Furthermore the LED actuation could be also linked to the Machine learning instead of being regulated with the Arduino Mega. In this way the change of colour or behaviour could be linked to a specific position of the user.
+The sensitivity of the gesture sensor could be enhanced for a better precision.
+The project can be further developped in order to integrate other sensors such as the distance sensor on the back of the wheelchair. The idea would then also be to include other loops apart from shortloop.wav and use a sampler in Pure Data. The sensor inputs could then also be used to build a song from different loop elements and layer them over each other. This would need more time in order to classify the readings of the distance sensor & for implementing a sampler into the Pure Data code. Furthermore the LED actuation could be also linked to the Machine learning instead of being regulated with the Arduino Mega. In this way the change of colour or behaviour could be linked to a specific position of the user.
 An other element of possible improvement is having a different setting of the sound from the speaker for a louder output.
