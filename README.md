@@ -351,9 +351,9 @@ The next part of the code reads the data from the sensor and checks whether it i
   voltage_value = double((value * 5)) / 1023; // converting to voltage [ 0, 5] v.
 ```
 
+The next piece of code is used to translate the voltage value into a distance value (cm). It then checks whether the measured signal is within the range of measurement. If it is out of the range, the code will return.
 
-
-  distance_value = convert_to_distance(voltage_value); // getting actual distance value(cm) (careful using this, accuracy may not be ideal)
+```  distance_value = convert_to_distance(voltage_value); // getting actual distance value(cm) (careful using this, accuracy may not be ideal)
                                                        // due to the functioning of the sensor, once you're closer than around 20 cm, it will
                                                        // start predicting higher distances again. Be careful with this, this is something you can
                                                        // solve with software, however. (if previous results are close to 20 and its going down)
@@ -361,6 +361,11 @@ The next part of the code reads the data from the sensor and checks whether it i
 
   if (distance_value < 20 || distance_value > 150) // We will ignore values outside the range of measurement, this will happen around 2.7 -0.4 v
     return;
+    ```
+
+The last bit of code is used to print the measured value into the serial & it updates the previous value that was measured to the new value.
+
+    ```
   /*
     Serial.print("Distance: ");
     Serial.print(value);
