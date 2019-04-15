@@ -380,6 +380,7 @@ The last bit of code is used to print the measured value into the serial & it up
 
   prev_value = value; // Here we have the previous saved variable.
 }
+
 ```
 
 ### Pressure Sensor
