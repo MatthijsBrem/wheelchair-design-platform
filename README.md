@@ -80,20 +80,18 @@ In order to be able to use the Neoprixel LED Strip the Adafruit NeoPixel library
 
 The following step is to define constants
 
-    #define LED_PIN   6  //Pin for the pixel strand. Does not have to be analog.
+    #define LED_PIN   6  //Pin for the pixel strand.
     #define LED_TOTAL 80  //Number of LEDs in your strand.
     #define LED_HALF  LED_TOTAL/2 Sets the starting point from which the leds are going to turn on.
     #define AUDIO_PIN A5  //Pin for the envelope of the sound detector
 
-In the Globals the values used to make comparisons of the recordings of the Sound detector are stated:
+In the globals the values used to make comparisons of the recordings of the Sound detector are stated:
 
     Adafruit_NeoPixel strand = Adafruit_NeoPixel(LED_TOTAL, LED_PIN, NEO_GRB + NEO_KHZ800);  //LED strand objetc
 
     uint16_t gradient = 0; //Used to iterate and loop through each color palette gradually
-
     uint8_t volume = 0;    //Holds the volume level read from the sound detector.
     uint8_t last = 0;      //Holds the value of volume from the previous loop() pass.
-
     float maxVol = 15;     //Holds the largest volume recorded thus far to proportionally adjust the visual's responsiveness.
     float avgVol = 0;      //Holds the "average" volume-level to proportionally adjust the visual experience.
     float avgBump = 0;     //Holds the "average" volume-change to trigger a "bump."
@@ -101,15 +99,13 @@ In the Globals the values used to make comparisons of the recordings of the Soun
     bool bump = false;     //Used to pass if there was a "bump" in volume
 In the void setup the reading is set
 
-    void setup() {    //Like it's named, this gets ran before any other function.
-
-    Serial.begin(9600); //Sets data rate for serial data transmission.
+    void setup() {    
 
     strand.begin(); //Initialize the LED strand object.
     strand.show();  //Show a blank strand, just to get the LED's ready for use.  
     }
 
-The void loop section is where the code gets more interesting. Initially the volume of the music is red.
+The void loop section is where the code gets more interesting. Initially the volume of the music is read.
 
     volume = analogRead(AUDIO_PIN);       //Record the volume level from the sound detector
     avgVol = (avgVol + volume) / 2.0;     //Take our "average" of volumes.
@@ -122,7 +118,7 @@ the code overwrites the information once the current volume is larger than the l
 
      if (volume > maxVol) maxVol = volume;
 
-The gradient is reset everytime a palette gets completed
+The gradient is reset every time a palette gets completed
 
      if (gradient > 1529) {
          gradient %= 1530;
@@ -141,13 +137,12 @@ The visual Pulse is then displayed and the gradient incremented. Afterwards, the
        gradient++;   
        last = volume; //Records current volume for next pass
        delay(30);
-      }
 
 In the following section the functions of graphical display of the LEDs are set
 
     void Pulse() {
 
-    fade(0.75);   //Listed below, this function simply dims the colors a little bit each pass of loop()
+    fade(0.75);   //dims the colors a little bit each pass of loop()
 
     //Advances the gradient to the next noticeable color if there is a "bump"
     if (bump) gradient += 64;
@@ -156,11 +151,12 @@ In the following section the functions of graphical display of the LEDs are set
     if (volume > 0) {
     uint32_t col = Rainbow(gradient); //Our retrieved 32-bit color
 
-    //These variables determine where to start and end the pulse since it starts from the middle of the strand.
-    //  The quantities are stored in variables so they only have to be computed once.
+These variables determine where to start and end the pulse since it starts from the middle of the strand. The quantities are stored in variables so they only have to be computed once.
+
     int start = LED_HALF - (LED_HALF * (volume / maxVol));
     int finish = LED_HALF + (LED_HALF * (volume / maxVol)) + strand.numPixels() % 2;
-    //Listed above, LED_HALF is simply half the number of LEDs on your strand. ↑ this part adjusts for an odd quantity.
+
+Listed above, LED_HALF is simply half the number of LEDs on your strand. ↑ this part adjusts for an odd quantity.
 
     for (int i = start; i < finish; i++) {
 
@@ -172,25 +168,25 @@ In the following section the functions of graphical display of the LEDs are set
                    )
                    / float((finish - start) / 2.0);
 
-      //Sets the each pixel on the strand to the appropriate color and intensity
-      //  strand.Color() takes 3 values between 0 & 255, and returns a 32-bit integer.
-      //  Notice "knob" affecting the brightness, as in the rest of the visuals.
-      //  Also notice split() being used to get the red, green, and blue values.
+Sets the each pixel on the strand to the appropriate color and intensity. strand.Color() takes 3 values between 0 & 255, and returns a 32-bit integer.
+
       strand.setPixelColor(i, strand.Color(
                              split(col, 0) * pow(damp, 2.0) ,
                              split(col, 1) * pow(damp, 2.0) ,
                              split(col, 2) * pow(damp, 2.0)
                            ));
     }
-    //Sets the max brightness of all LEDs. If it's loud, it's brighter.
+Sets the max brightness of all LEDs. If it's loud, it's brighter.
+
     strand.setBrightness(255.0 * pow(volume / maxVol, 2));
     }
 
-    //This command actually shows the lights. If you make a new visualization, don't forget this!
+This command actually shows the lights. If you make a new visualization.
+
     strand.show();
     }
 
-    //Fades lights by multiplying them by a value between 0 and 1 each pass of loop().
+This function fades lights by multiplying them by a value between 0 and 1 each pass of loop().
     void fade(float damper) {
 
     //"damper" must be between 0 and 1, or else you'll end up brightening the lights or doing nothing.
@@ -225,13 +221,7 @@ In the following section the functions of graphical display of the LEDs are set
     }
 
 
-    //This function simply take a value and returns a gradient color
-    //  in the form of an unsigned 32-bit integer
-
-    //The gradient returns a different, changing color for each multiple of 255
-    //  This is because the max value of any of the 3 LEDs is 255, so it's
-    //  an intuitive cutoff for the next color to start appearing.
-    //  Gradients should also loop back to their starting color so there's no jumps in color.
+This function simply take a value and returns a gradient color in the form of an unsigned 32-bit integer. The gradient returns a different, changing color for each multiple of 255. This is because the max value of any of the 3 LEDs is 255, so it's an intuitive cutoff for the next color to start appearing. Gradients should also loop back to their starting color so there's no jumps in color.
 
     uint32_t Rainbow(unsigned int i) {
     if (i > 1529) return Rainbow(i % 1530);
@@ -286,101 +276,61 @@ and the second argument to:
 
 ### Distance
 
-On the back of the wheelchair a distance sensor (SHARP_2Y0A02) is placed. The idea with this sensor is, to sense at which distance other people are located from the chair. By coming closer to the chair, new sound elements will be added.
+On the back of the wheelchair a distance sensor (SHARP_2Y0A02) is placed. This sensor is used to sense what distance other people are located from the chair. By coming closer to the chair, new sound elements will be added.
 
-The code for the distance sensor has the following structure:
+The following definitions need to be made for the distance sensor:
 
-```#define IR_PIN A0 // Setting up pin to receive voltage from IR
+    #define IR_PIN A0 // Setting up pin to receive voltage from IR
 
-String distanceId = "distancegroup4-5518";
+    int value, prev_value = -10000;       // int values (read from analog port, both the current and the previous)
+    int deviation = 0;                                       
+    double voltage_value, distance_value; // Converted to Voltage
 
-int value, prev_value = -10000;       // int values (read from analog port, both the current and the previous)
-int deviation = 0;                    // setting the minimum deviation between the measurements (0 by default)
-                                      // up to 512 (although that is pretty useless)
-double voltage_value, distance_value; // Converted to Voltage
-```
 In the first part of the code, the variables and the pin on the Arduino that is used for receiving the signal are defined.
 
 To keep the results somewhat reliable the next part of code checks whether the sensor data is within the limits in which the sensor can make usable predictions
 
-```double convert_to_distance(double voltage)
-{
-  if (voltage_value < 0.35 || voltage_value > 2.85) // We will ignore values outside the range of measurement, this will happen around 20 - 150cm
-    return (0);
-```
+    double convert_to_distance(double voltage)
+    {
+        if (voltage_value < 0.35 || voltage_value > 2.85)
+        return (0);
+
 
 The next piece of code is just a piece of commentary that specifies the parameters with which te sensor works.
 
-```  */ General model Exp2:
-     f(x) = a*exp(b*x) + c*exp(d*x)
-Coefficients (with 95% confidence bounds):
-       a =        4498  (-1.731e+04, 2.63e+04)
-       b =      -6.351  (-12.72, 0.02085)
-       c =       104.9  (61.24, 148.5)
-       d =     -0.6928  (-0.9048, -0.4808)
+      double a = 4498;
+      double b = -6.351;
+      double c = 104.9;
+      double d = -0.6928;
 
-Goodness of fit:
-  SSE: 9.915
-  R-square: 0.9974
-  Adjusted R-square: 0.9955
-  RMSE: 1.574
+      return (a * exp(b * voltage) + c * exp(d * voltage));
+    }
 
- \*
-
-  double a = 4498;
-  double b = -6.351;
-  double c = 104.9;
-  double d = -0.6928;
-
-  return (a * exp(b * voltage) + c * exp(d * voltage));
-}
-```
 
 The next part of the code reads the data from the sensor and checks whether it is the same +/- the standard deviation of the former measurement. If it is the same, it returns, otherwise it reads the signal and converts it to a voltage.
 
-```void distance()
-{
-  value = analogRead(IR_PIN); // reading our analog voltage, careful we only have 10 bit resolution so each
-                              // measurement step is only 5V ÷ 1024, so our result will be 0 - 1023
+    void distance()
+    {
+        value = analogRead(IR_PIN); // reading our analog voltage, careful we only have 10 bit resolution so each measurement step is only 5V ÷ 1024, so our result will be 0 - 1023
 
-  // if value is within the range of [ previous - σ , previous + σ], ignore it (if value is relatively the same)
-  // this will help with having data ocuppy your buffer that is not a significant deviation.
-  if (value >= (prev_value - deviation) && value <= (prev_value + deviation))
-    return;
+        // if value is within the range of [ previous - σ , previous + σ], ignore it (if value is relatively the same) this will help with having data ocuppy your buffer that is not a significant deviation.
+        if (value >= (prev_value - deviation) && value <= (prev_value + deviation))
+          return;
 
-  voltage_value = double((value * 5)) / 1023; // converting to voltage [ 0, 5] v.
-```
+        voltage_value = double((value * 5)) / 1023; // converting to voltage [ 0, 5] v.
+
 
 The next piece of code is used to translate the voltage value into a distance value (cm). It then checks whether the measured signal is within the range of measurement. If it is out of the range, the code will return.
 
-```  distance_value = convert_to_distance(voltage_value); // getting actual distance value(cm) (careful using this, accuracy may not be ideal)
-                                                       // due to the functioning of the sensor, once you're closer than around 20 cm, it will
-                                                       // start predicting higher distances again. Be careful with this, this is something you can
-                                                       // solve with software, however. (if previous results are close to 20 and its going down)
-                                                       // then do something.... to ignore results, perhaps.
+    distance_value = convert_to_distance(voltage_value); // getting actual distance value(cm)
+Careful using this, accuracy may not be ideal. Due to the functioning of the sensor, once you're closer than around 20 cm, it will start predicting higher distances again. Be careful with this, this is something you can solve with software, however (if previous results are close to 20 and its going down) then do something.... to ignore results, perhaps.
 
-  if (distance_value < 20 || distance_value > 150) // We will ignore values outside the range of measurement, this will happen around 2.7 -0.4 v
-    return;
-```
+    if (distance_value < 20 || distance_value > 150) // We will ignore values outside the range of measurement, this will happen around 2.7 -0.4 v
+      return;
+
 
 The last bit of code is used to print the measured value into the serial & it updates the previous value that was measured to the new value.
 
-
-  ``` //Serial.print("Distance: ");
-      //Serial.print(value);
-      //Serial.print(" (0 - 1023) steps,  ");
-      //Serial.print(voltage_value);
-      //Serial.print(" (v),  ");
-
-  Serial.println();
-  Serial.print(distanceId);
-  Serial.print(",");
-  Serial.println(distance_value);
-
-  prev_value = value; // Here we have the previous saved variable.
-}
-
-```
 
 ### Pressure Sensor
 Four Force Resistive Sensors are used on the seating of the wheelchair. The code for each of them follows the following structure.
