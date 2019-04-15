@@ -361,7 +361,7 @@ The next piece of code is used to translate the voltage value into a distance va
 
   if (distance_value < 20 || distance_value > 150) // We will ignore values outside the range of measurement, this will happen around 2.7 -0.4 v
     return;
-    ```
+```
 
 The last bit of code is used to print the measured value into the serial & it updates the previous value that was measured to the new value.
 
