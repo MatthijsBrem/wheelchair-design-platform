@@ -306,7 +306,6 @@ The next piece of code is just a piece of commentary that specifies the paramete
     //      b =      -6.351  (-12.72, 0.02085)
     //      c =       104.9  (61.24, 148.5)
     //      d =     -0.6928  (-0.9048, -0.4808)
-
     //  Goodness of fit:
     //  SSE: 9.915
     //  R-square: 0.9974
@@ -356,17 +355,18 @@ Four Force Resistive Sensors are used on the seating of the wheelchair. The code
 The data of the Voltage measured by the FSRs are converted in Newtons
 
     double convert_to_newtons(double voltage)
-    {double a = 0.01419;
-    double b = 0.9523;
-    double c = -0.01461;
-    double d = -2.231;
+    {
+      double a = 0.01419;
+      double b = 0.9523;
+      double c = -0.01461;
+      double d = -2.231;
 
-    return ((a * exp(b * voltage) + c * exp(d * voltage)) * 9.81);
+      return ((a * exp(b * voltage) + c * exp(d * voltage)) * 9.81);
     }
 
 The void loop for the pressure sensors sets the sensibility of the sensors by comparing the measured value to the previous ones
 ```
-{  value_Pressure_1 = analogRead(PRESSURE_PIN1);
+  value_Pressure_1 = analogRead(PRESSURE_PIN1);
   if (value_Pressure_1 >= (prev_value_Pressure_1 - deviationPressure) && value_Pressure_1 <= (prev_value_Pressure_1 + deviationPressure))
     return;
 
@@ -376,24 +376,9 @@ The void loop for the pressure sensors sets the sensibility of the sensors by co
 
   prev_value_Pressure_1 = value_Pressure_1;
 
-  prev_value_Pressure_2 = value_Pressure_2; // PRESSURE SENSOR 2
-
-  value_Pressure_2 = analogRead(PRESSURE_PIN2);
-
-  String pressureStringBuf;
-  pressureStringBuf += pressureID;
-  pressureStringBuf += ",";
-  pressureStringBuf += String(newton_value_Pressure_1);
-  pressureStringBuf += ",";
-  pressureStringBuf += String(newton_value_Pressure_2);
-  pressureStringBuf += ",";
-  pressureStringBuf += String(newton_value_Pressure_3);
-  pressureStringBuf += ",";
-  pressureStringBuf += String(newton_value_Pressure_4);
-  Serial.println(pressureStringBuf);
   ```
 
-As with the rest of the sensors the loop is called in the end in order to merge informstions in one file
+As with the rest of the sensors this function is called from the loop.
 
 ### communication
 Communication with the python code is done through the serial port. This means that in Arduino, the values the sensors measure are printed to the Serial port with an unique identifier in front of them. Then the python code reads the serial port of the Raspberry Pi and processes it. The example given is from the Pressure sensor. To prevent errors it is advisable to first put everything into one string before printing it.
@@ -534,7 +519,7 @@ In order to manipulate the music that is being played on the Pi, another program
 
 After the processing of the sensor data in python, the commands that correspond with the behavior are sent to PureData over a socket, using TCP communication. PureData receives these commands and routes them to the right parts in the code. This then controls the different variables that adjust pitch/play direction/delay. The advantage of Pure Data is, that it runs on linux and thus can be run on the raspberry pi.
 
-The latest version of Pure Data can be found on the Pure Data website (https://puredata.info/downloads)
+The latest version of Pure Data can be found on the Pure Data [website](https://puredata.info/downloads)
 
 To install Pure Data on the raspberry, connect to the raspberry and type the following text in the command line:
 
