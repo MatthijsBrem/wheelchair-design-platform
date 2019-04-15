@@ -365,8 +365,8 @@ The next piece of code is used to translate the voltage value into a distance va
 
 The last bit of code is used to print the measured value into the serial & it updates the previous value that was measured to the new value.
 
-    ```
-  /*
+
+```  /*
     Serial.print("Distance: ");
     Serial.print(value);
     Serial.print(" (0 - 1023) steps,  ");
@@ -380,7 +380,6 @@ The last bit of code is used to print the measured value into the serial & it up
 
   prev_value = value; // Here we have the previous saved variable.
 }
-
 ```
 
 ### Pressure Sensor
