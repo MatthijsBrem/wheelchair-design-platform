@@ -366,13 +366,12 @@ The next piece of code is used to translate the voltage value into a distance va
 The last bit of code is used to print the measured value into the serial & it updates the previous value that was measured to the new value.
 
 
-```  /*
-    Serial.print("Distance: ");
-    Serial.print(value);
-    Serial.print(" (0 - 1023) steps,  ");
-    Serial.print(voltage_value);
-    Serial.print(" (v),  ");
-    */
+``` //Serial.print("Distance: ");
+    //Serial.print(value);
+    //Serial.print(" (0 - 1023) steps,  ");
+    //Serial.print(voltage_value);
+    //Serial.print(" (v),  ");
+    
   Serial.println();
   Serial.print(distanceId);
   Serial.print(",");
