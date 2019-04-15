@@ -298,7 +298,7 @@ To keep the results somewhat reliable the next part of code checks whether the s
 
 The next piece of code is just a piece of commentary that specifies the parameters with which te sensor works.
 
-``    /* General model Exp2:
+```    /* General model Exp2:
       f(x) = a*exp(b*x) + c*exp(d*x)
         Coefficients (with 95% confidence bounds):
           a =        4498  (-1.731e+04, 2.63e+04)
@@ -321,7 +321,7 @@ The next piece of code is just a piece of commentary that specifies the paramete
 
       return (a * exp(b * voltage) + c * exp(d * voltage));
     }
-``
+```
 
 The next part of the code reads the data from the sensor and checks whether it is the same +/- the standard deviation of the former measurement. If it is the same, it returns, otherwise it reads the signal and converts it to a voltage.
 
