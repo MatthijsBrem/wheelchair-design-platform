@@ -384,6 +384,7 @@ Four Force Resistive Sensors are used on the seating of the wheelchair. The code
     int value_Pressure_1, prev_value_Pressure_1 = -10000;     // int values (read from analog port, both the current and the previous)
     int deviationPressure = 0;                                // setting the minimum deviation between the measurements
 The data of the Voltage measured by the FSRs are converted in Newtons
+
     double convert_to_newtons(double voltage)
     {double a = 0.01419;
     double b = 0.9523;
