@@ -127,7 +127,8 @@ The gradient is reset every time a palette gets completed
 
 If there is a decent change in volume since the last pass, we average it into "avgBump" and if there is a notable change in volume, trigger a "bump"
 
-       if (volume - last > avgVol - last && avgVol - last > 0) avgBump = (avgBump + (volume - last)) / 2.0;
+       if (volume - last > avgVol - last && avgVol - last > 0)
+          avgBump = (avgBump + (volume - last)) / 2.0;
 
        bump = (volume - last) > avgBump;
 
@@ -142,14 +143,14 @@ In the following section the functions of graphical display of the LEDs are set
 
     void Pulse() {
 
-    fade(0.75);   //dims the colors a little bit each pass of loop()
+      fade(0.75);   //dims the colors a little bit each pass of loop()
 
-    //Advances the gradient to the next noticeable color if there is a "bump"
-    if (bump) gradient += 64;
+      //Advances the gradient to the next noticeable color if there is a "bump"
+      if (bump) gradient += 64;
 
-    //If it's silent, we want the fade effect to take over, hence this if-statement
-    if (volume > 0) {
-    uint32_t col = Rainbow(gradient); //Our retrieved 32-bit color
+      //If it's silent, we want the fade effect to take over, hence this if-statement
+      if (volume > 0) {
+        uint32_t col = Rainbow(gradient); //Our retrieved 32-bit color
 
 These variables determine where to start and end the pulse since it starts from the middle of the strand. The quantities are stored in variables so they only have to be computed once.
 
